@@ -1,0 +1,133 @@
+<h1 class="film__title film__title_ru">{{filmCtrl.filmContent.nameRU}}</h1>
+<h2 class="film__title film__title_en">{{filmCtrl.filmContent.nameEN}}</h2>
+<div class="film__content">
+  <img class="film__poster" ng-src="https://st.kp.yandex.net/images/{{filmCtrl.posterPath}}" alt="Постер {{filmCtrl.filmContent.nameRU}}" />
+  <div>
+    <table class="film__info filmInfo">
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Жанр
+        </td>
+        <td class="filmInfo__element">
+         {{filmCtrl.filmContent.genre}}
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Год
+        </td>
+        <td class="filmInfo__element">
+          {{filmCtrl.filmContent.year}}
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Продолжительность
+        </td>
+        <td class="filmInfo__element">
+          {{filmCtrl.filmContent.filmLength}}
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Страна
+        </td>
+        <td class="filmInfo__element">
+          {{filmCtrl.filmContent.country}}
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Премьера мир
+        </td>
+        <td class="filmInfo__element">
+          {{filmCtrl.filmContent.rentData.premiereWorld}}
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Премьера РФ
+        </td>
+        <td class="filmInfo__element">
+          <p ng-if="filmCtrl.filmContent.rentData.premiereRU">
+            {{filmCtrl.filmContent.rentData.premiereRU}}
+          </p>
+          <p ng-if=!filmCtrl.filmContent.rentData.premiereRU>
+            –
+          </p>
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Рейтинг
+        </td>
+        <td class="filmInfo__element">
+          <p ng-if="filmCtrl.filmContent.ratingData.rating">
+            {{filmCtrl.filmContent.ratingData.rating}}
+          </p>
+          <p ng-if=!filmCtrl.filmContent.ratingData.rating>
+            –
+          </p>
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Рейтинг IMDb
+        </td>
+        <td class="filmInfo__element">
+          <p ng-if="filmCtrl.filmContent.ratingData.ratingIMDb">
+            {{filmCtrl.filmContent.ratingData.ratingIMDb}}
+          </p>
+          <p ng-if=!filmCtrl.filmContent.ratingData.ratingIMDb>
+            –
+          </p>
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Режиссеры
+        </td>
+        <td class="filmInfo__element">
+          <p class="film__infoContent">
+            <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="person.nameRU">
+              {{person.nameRU}}
+            </p>
+            <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="!person.nameRU">
+              {{person.nameEN}}
+            </p>
+          </p>
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          В ролях
+        </td>
+        <td class="filmInfo__element">
+          <p class="film__infoContent">
+            <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="person.nameRU">
+              {{person.nameRU}}
+            </p>
+            <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="!person.nameRU">
+              {{person.nameEN}}
+            </p>
+          </p>
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+          Описание
+        </td>
+        <td class="filmInfo__element">
+          {{filmCtrl.filmContent.description}}
+        </td>
+      </tr>
+      <tr class="filmInfo__row">
+        <td class="filmInfo__element filmInfo__element_title">
+        </td>
+        <td class="filmInfo__element">
+          <a class="filmInfo__link" href="#/seances/{{filmCtrl.filmContent.filmID}}">Найти сеансы на "{{filmCtrl.filmContent.nameRU}}" в кино >></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

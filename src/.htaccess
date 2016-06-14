@@ -1,0 +1,6 @@
+Options -MultiViews
+Options All -Indexes
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1\.php -f [NC]
+RewriteRule ^(.+?)/?$ /$1.php [R,L]

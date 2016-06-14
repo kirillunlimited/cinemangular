@@ -1,0 +1,3 @@
+Options -MultiViews
+RewriteEngine On
+RewriteRule ^(.*)$  /dist/$1 [R]

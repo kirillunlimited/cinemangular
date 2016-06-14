@@ -1,0 +1,132 @@
+var gulp         = require('gulp');
+
+var csso         = require('gulp-csso');
+var uglify       = require('gulp-uglify');
+var imagemin     = require('gulp-imagemin');
+
+var sass         = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var browserify   = require('browserify');
+var babelify     = require('babelify');
+// to make it work with jsx - 'npm install save-dev babel-preset-react babel-preset-es2015'
+var source       = require('vinyl-source-stream');
+var browserSync  = require('browser-sync').create();
+
+var htmlhint     = require("gulp-htmlhint");
+var phplint      = require('gulp-phplint');
+var jshint       = require('gulp-jshint');
+
+var clean        = require('gulp-clean');
+var runSequence  = require('run-sequence');
+
+gulp.task('html', function() {
+  return gulp.src('./src/**/*.html')
+    // .pipe(htmlhint())
+    // .pipe(htmlhint.reporter())
+    .pipe(gulp.dest('./dist'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('php', function() {
+  return gulp.src('./src/**/*.php')
+    // .pipe(phplint())
+    .pipe(gulp.dest('./dist'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('sass', function () {
+  return gulp.src('./src/sass/main.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({ browsers: [
+      'Android >= 2.3',
+      'BlackBerry >= 7',
+      'Chrome >= 9',
+      'Firefox >= 4',
+      'Explorer >= 9',
+      'iOS >= 5',
+      'Opera >= 11',
+      'Safari >= 5',
+      'OperaMobile >= 11',
+      'OperaMini >= 6',
+      'ChromeAndroid >= 9',
+      'FirefoxAndroid >= 4',
+      'ExplorerMobile >= 9'
+     ]}))
+    .pipe(csso())
+    .pipe(gulp.dest('./dist/css'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('js', function() {
+  return gulp.src('./src/js/**/*.js')
+    // .pipe(jshint())
+    // .pipe(jshint.reporter('default'))
+    // .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('browserify', function() {
+  browserify("./src/jsx/app.js")
+    .transform(babelify, {presets: ["es2015", "react"]})
+    .bundle()
+    .on('error', console.error.bind(console))
+    .pipe(source('main.js'))
+    .pipe(gulp.dest('./src/js/'))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('img', function() {
+  return gulp.src('./src/**/*.{jpg,png,svg,gif}')
+    .pipe(imagemin({
+      verbose: true,
+      optimizationLevel: 3,
+      progressive: true,
+      interlaced: true
+    }))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('watch', function(){
+  gulp.watch('./src/**/*.html', ['html']);
+  gulp.watch('./src/**/*.php', ['php']);
+  gulp.watch('./src/js/**/*.js', ['js']);
+  gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
+  // gulp.watch('./src/jsx/**/*.{js,jsx}',['browserify']);
+});
+
+gulp.task('serve', ['default'], function() {
+  // browserSync.init({
+  //   server: {
+  //     baseDir: "./"
+  //   },
+  //   startPath: "/dist"
+  // });
+  browserSync.init({
+    proxy: "kinoshka"
+  });
+  // gulp.watch('./dist/**/*.html').on('change', browserSync.reload);
+});
+
+gulp.task('clean', function () {
+  return gulp.src('./dist', {read: false})
+    .pipe(clean({force: true}));
+});
+
+gulp.task('copy', function() {
+  var excludedFolders = ["css", "img", "js", "sass"];
+  var objects = ['./src/**'];
+  for (var i = 0; i < excludedFolders.length; i++) {
+    var folder = '!/src/' + excludedFolders[i];
+    objects.push(folder); // exclude folder
+    objects.push(folder + '/**'); // exclude files in the folder
+  }
+  return gulp.src(objects, {dot: true})
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build', function() {
+  runSequence('clean', 'copy', 'html', 'php', 'sass', 'js', 'img');
+});
+
+gulp.task('default', ['html', 'php', 'js', 'sass', 'watch']);
