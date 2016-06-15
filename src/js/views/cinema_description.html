@@ -1,25 +1,30 @@
-<h1 class="cinema__title">Кинотеатр "{{cinemaCtrl.cinemaContent.cinemaName}}"</h1>
+<div ng-if="cinemaCtrl.status == 'Loading'">
+  <div class="loader"></div>
+</div>
 
-<select class="cinema__select" ng-model="cinemaCtrl.cinemaSelect" ng-options="day for day in cinemaCtrl.days" ng-change="cinemaCtrl.getData(cinemaCtrl.cinemaSelect)"></select>
+<div ng-if="cinemaCtrl.status == 'Ready'">
+  <h1 class="cinema__title">Кинотеатр "{{cinemaCtrl.cinemaContent.cinemaName}}"</h1>
+  <select class="cinema__select" ng-model="cinemaCtrl.cinemaSelect" ng-options="day for day in cinemaCtrl.days" ng-change="cinemaCtrl.getData(cinemaCtrl.cinemaSelect)"></select>
 
-<table ng-if="cinemaCtrl.cinemaContent" class="cinema__list">
-  <tr class="cinema__film" ng-repeat="film in cinemaCtrl.cinemaContent.seance.items">
-    <td class="cinema__element">
-      <a href="#/film/{{film.filmID}}">
-        <img class="cinema__poster" ng-src="https://st.kp.yandex.net/images/{{film.posterURL}}" alt="" />
-      </a>
-    </td>
-    <td class="cinema__element">
-      <a class="cinema__link" href="#/film/{{film.filmID}}">{{film.nameRU}}</a>
-    </td>
-    <td class="cinema__element">
-      <div ng-if="film.seance">
-        <span ng-repeat="seance in film.seance track by $index">{{seance}}{{$last ? '' : ', '}}</span>
-      </div>
-      <div class="seances__3d" ng-if="film.seance3D">
-        <span ng-repeat="seance in film.seance3D track by $index">{{seance}}<sup class="seances__3dSup"style="color: yellow;">3D</sup>{{$last ? '' : ', '}}</span>
-      </div>
-    </td>
-  </tr>
-</table>
-<p ng-if="!cinemaCtrl.cinemaContent">К сожалению, в кинотеатре "{{seancesCtrl.seancesContent.nameRU}}" нет сеансов.</p>
+  <table ng-if="cinemaCtrl.cinemaContent" class="cinema__list">
+    <tr class="cinema__film" ng-repeat="film in cinemaCtrl.cinemaContent.seance.items">
+      <td class="cinema__element">
+        <a href="#/film/{{film.filmID}}">
+          <img class="cinema__poster" ng-src="https://st.kp.yandex.net/images/{{film.posterURL}}" alt="" />
+        </a>
+      </td>
+      <td class="cinema__element">
+        <a class="cinema__link" href="#/film/{{film.filmID}}">{{film.nameRU}}</a>
+      </td>
+      <td class="cinema__element">
+        <div ng-if="film.seance">
+          <span ng-repeat="seance in film.seance track by $index">{{seance}}{{$last ? '' : ', '}}</span>
+        </div>
+        <div class="seances__3d" ng-if="film.seance3D">
+          <span ng-repeat="seance in film.seance3D track by $index">{{seance}}<sup class="seances__3dSup"style="color: yellow;">3D</sup>{{$last ? '' : ', '}}</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <p ng-if="!cinemaCtrl.cinemaContent">К сожалению, в кинотеатре "{{seancesCtrl.seancesContent.nameRU}}" нет сеансов.</p>
+</div>

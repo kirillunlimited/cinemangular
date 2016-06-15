@@ -1,20 +1,25 @@
-<h1 class="seances__title">"{{seancesCtrl.seancesContent.nameRU}}" в кино</h1>
+<div ng-if="seancesCtrl.status == 'Loading'">
+  <div class="loader"></div>
+</div>
 
-<select class="seances__select" ng-model="seancesCtrl.seancesSelect" ng-options="day for day in seancesCtrl.days" ng-change="seancesCtrl.getData(seancesCtrl.seancesSelect)"></select>
+<div ng-if="seancesCtrl.status == 'Ready'">
+  <h1 class="seances__title">"{{seancesCtrl.seancesContent.nameRU}}" в кино</h1>
+  <select class="seances__select" ng-model="seancesCtrl.seancesSelect" ng-options="day for day in seancesCtrl.days" ng-change="seancesCtrl.getData(seancesCtrl.seancesSelect)"></select>
 
-<table ng-if="seancesCtrl.seancesContent.items" class="seances__list">
-  <tr class="seances__cinema" ng-repeat="cinema in seancesCtrl.seancesContent.items">
-    <td class="seances__element">
-      <a class="seances__link" href="#/cinema/{{cinema.cinemaID}}">{{cinema.cinemaName}}</a>
-    </td>
-    <td class="seances__element">
-      <div ng-if="cinema.seance">
-        <span ng-repeat="seance in cinema.seance track by $index">{{seance}}{{$last ? '' : ', '}}</span>
-      </div>
-      <div class="seances__3d" ng-if="cinema.seance3D">
-        <span ng-repeat="seance in cinema.seance3D track by $index">{{seance}}<sup class="seances__3dSup"style="color: yellow;">3D</sup>{{$last ? '' : ', '}}</span>
-      </div>
-    </td>
-  </tr>
-</table>
-<p ng-if="!seancesCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{seancesCtrl.seancesContent.nameRU}}".</p>
+  <table ng-if="seancesCtrl.seancesContent.items" class="seances__list">
+    <tr class="seances__cinema" ng-repeat="cinema in seancesCtrl.seancesContent.items">
+      <td class="seances__element">
+        <a class="seances__link" href="#/cinema/{{cinema.cinemaID}}">{{cinema.cinemaName}}</a>
+      </td>
+      <td class="seances__element">
+        <div ng-if="cinema.seance">
+          <span ng-repeat="seance in cinema.seance track by $index">{{seance}}{{$last ? '' : ', '}}</span>
+        </div>
+        <div class="seances__3d" ng-if="cinema.seance3D">
+          <span ng-repeat="seance in cinema.seance3D track by $index">{{seance}}<sup class="seances__3dSup"style="color: yellow;">3D</sup>{{$last ? '' : ', '}}</span>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <p ng-if="!seancesCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{seancesCtrl.seancesContent.nameRU}}".</p>
+</div>

@@ -122,9 +122,12 @@ function dateService() {
 function TodayController(jsonApi, dateService) {
   var vm = this;
 
+  vm.status = "Loading";
+
   vm.pageTitle = "Сегодня в прокате";
   jsonApi.fetch("http://api.kinopoisk.cf/getTodayFilms?date=" + dateService.getToday()).then(function(response) {
     vm.films = jsonApi.parse(response, 'filmsData');
+    vm.status = "Ready";
   });
   vm.switchPosterSize = function(imgPath, imgWidth) {
     return jsonApi.switchPosterSize(imgPath, imgWidth);
@@ -134,9 +137,12 @@ function TodayController(jsonApi, dateService) {
 function SoonController(jsonApi) {
   var vm = this;
 
+  vm.status = "Loading";
+
   vm.pageTitle = "Скоро в прокате";
   jsonApi.fetch("http://api.kinopoisk.cf/getSoonFilms").then(function(response) {
     vm.films = jsonApi.parse(response, 'previewFilms');
+    vm.status = "Ready";
   });
   vm.switchPosterSize = function(imgPath, imgWidth) {
     return jsonApi.switchPosterSize(imgPath, imgWidth);
@@ -146,27 +152,33 @@ function SoonController(jsonApi) {
 function FilmController(jsonApi, $routeParams) {
   var vm = this;
 
+  vm.status = "Loading";
+
   jsonApi.fetch("http://api.kinopoisk.cf/getFilm?filmID=" + $routeParams.filmID).then(function(response) {
     vm.filmContent = response.data;
     vm.posterPath = jsonApi.switchPosterSize(vm.filmContent.posterURL, 360);
+    vm.status = "Ready";
   });
 }
 
 function SeancesController(jsonApi, dateService, $routeParams) {
   var vm = this;
-  vm.status = "loading";
+
+  vm.status = "Loading";
 
   vm.days = dateService.getDaysList();
   vm.seancesSelect = vm.days[0];  // init default value for select
 
   jsonApi.fetch("http://api.kinopoisk.cf/getSeance?filmID=" + $routeParams.filmID + "&date=" + dateService.getToday()).then(function(response) {
-    vm.status = "ready";
+    vm.status = "Ready";
     vm.seancesContent = response.data;
   });
 
   vm.getData = function(date) {
+    vm.status = "Loading";
     jsonApi.fetch("http://api.kinopoisk.cf/getSeance?filmID=" + $routeParams.filmID + "&date=" + date).then(function(response) {
       vm.seancesContent = response.data;
+      vm.status = "Ready";
     });
   };
 }
@@ -174,16 +186,21 @@ function SeancesController(jsonApi, dateService, $routeParams) {
 function CinemaController(jsonApi, dateService, $routeParams) {
   var vm = this;
 
+  vm.status = 'Loading';
+
   vm.days = dateService.getDaysList();
   vm.cinemaSelect = vm.days[0];  // init default value for select
 
   jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $routeParams.cinemaID + "&date=" + dateService.getToday()).then(function(response) {
     vm.cinemaContent = response.data.cinemaDetail;
+    vm.status = 'Ready';
   });
 
   vm.getData = function(date) {
+    vm.status = 'Loading';
     jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $routeParams.cinemaID + "&date=" + date).then(function(response) {
       vm.cinemaContent = response.data.cinemaDetail;
+      vm.status = 'Ready';
     });
   }
 }
