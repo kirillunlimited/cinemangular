@@ -57,24 +57,32 @@ gulp.task('sass', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('js', function() {
+// gulp.task('js', function() {
+//   return gulp.src('./src/js/**/*.js')
+//     .pipe(jshint())
+//     .pipe(jshint.reporter('default'))
+//     .pipe(uglify())
+//     .pipe(gulp.dest('./dist/js'))
+//     .pipe(browserSync.stream());
+// });
+
+gulp.task('lint', function() {
   return gulp.src('./src/js/**/*.js')
-    // .pipe(jshint())
-    // .pipe(jshint.reporter('default'))
-    // .pipe(uglify())
-    .pipe(gulp.dest('./dist/js'))
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+});
+gulp.task('bundle', function() {
+  browserify("./src/js/app.js")
+    // .transform(babelify, {presets: ["es2015", "react"]})
+    .bundle()
+    .on('error', console.error.bind(console))
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./dist/js/'))
+    // .pipe(uglify({mangle: false}))
     .pipe(browserSync.stream());
 });
 
-gulp.task('browserify', function() {
-  browserify("./src/jsx/app.js")
-    .transform(babelify, {presets: ["es2015", "react"]})
-    .bundle()
-    .on('error', console.error.bind(console))
-    .pipe(source('main.js'))
-    .pipe(gulp.dest('./src/js/'))
-    .pipe(browserSync.stream());
-});
+gulp.task('js', ['lint', 'bundle']);
 
 gulp.task('img', function() {
   return gulp.src('./src/**/*.{jpg,png,svg,gif}')
@@ -90,7 +98,7 @@ gulp.task('img', function() {
 gulp.task('watch', function(){
   gulp.watch('./src/**/*.html', ['html']);
   gulp.watch('./src/**/*.php', ['php']);
-  gulp.watch('./src/js/**/*.js', ['js']);
+  gulp.watch('./src/js/**/*.js', ['browserify']);
   gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
   // gulp.watch('./src/jsx/**/*.{js,jsx}',['browserify']);
 });
