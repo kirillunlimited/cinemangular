@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp         = require('gulp');
 
 var csso         = require('gulp-csso');
@@ -10,6 +12,7 @@ var browserify   = require('browserify');
 var babelify     = require('babelify');
 // to make it work with jsx - 'npm install save-dev babel-preset-react babel-preset-es2015'
 var source       = require('vinyl-source-stream');
+var buffer       = require('vinyl-buffer');
 var browserSync  = require('browser-sync').create();
 
 var htmlhint     = require("gulp-htmlhint");
@@ -57,32 +60,27 @@ gulp.task('sass', function () {
     .pipe(browserSync.stream());
 });
 
-// gulp.task('js', function() {
+// gulp.task('lint', function() {
 //   return gulp.src('./src/js/**/*.js')
 //     .pipe(jshint())
-//     .pipe(jshint.reporter('default'))
-//     .pipe(uglify())
-//     .pipe(gulp.dest('./dist/js'))
-//     .pipe(browserSync.stream());
+//     .pipe(jshint.reporter('default'));
 // });
-
-gulp.task('lint', function() {
+gulp.task('js', function() {
   return gulp.src('./src/js/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js'))
+    .pipe(browserSync.stream());
 });
 gulp.task('bundle', function() {
   browserify("./src/js/app.js")
     // .transform(babelify, {presets: ["es2015", "react"]})
     .bundle()
-    .on('error', console.error.bind(console))
     .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(uglify({mangle: false}))
     .pipe(gulp.dest('./dist/js/'))
-    // .pipe(uglify({mangle: false}))
     .pipe(browserSync.stream());
 });
-
-gulp.task('js', ['lint', 'bundle']);
 
 gulp.task('img', function() {
   return gulp.src('./src/**/*.{jpg,png,svg,gif}')
@@ -93,14 +91,6 @@ gulp.task('img', function() {
       interlaced: true
     }))
     .pipe(gulp.dest('./dist'));
-});
-
-gulp.task('watch', function(){
-  gulp.watch('./src/**/*.html', ['html']);
-  gulp.watch('./src/**/*.php', ['php']);
-  gulp.watch('./src/js/**/*.js', ['browserify']);
-  gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
-  // gulp.watch('./src/jsx/**/*.{js,jsx}',['browserify']);
 });
 
 gulp.task('serve', ['default'], function() {
@@ -125,7 +115,7 @@ gulp.task('copy', function() {
   var excludedFolders = ["css", "img", "js", "sass"];
   var objects = ['./src/**'];
   for (var i = 0; i < excludedFolders.length; i++) {
-    var folder = '!/src/' + excludedFolders[i];
+    var folder = '!./src/' + excludedFolders[i];
     objects.push(folder); // exclude folder
     objects.push(folder + '/**'); // exclude files in the folder
   }
@@ -133,8 +123,18 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', function() {
-  runSequence('clean', 'copy', 'html', 'php', 'sass', 'js', 'img');
+var jsTaskName = 'bundle'; // js | bundle
+
+gulp.task('watch', function(){
+  gulp.watch('./src/**/*.html', ['html']);
+  gulp.watch('./src/**/*.php', ['php']);
+  gulp.watch('./src/js/**/*.js', [jsTaskName]);
+  gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
+  // gulp.watch('./src/jsx/**/*.{js,jsx}',['browserify']);
 });
 
-gulp.task('default', ['html', 'php', 'js', 'sass', 'watch']);
+gulp.task('build', function() {
+  runSequence('clean', 'copy', 'html', 'php', 'sass', jsTaskName, 'img');
+});
+
+gulp.task('default', ['html', 'php', 'sass', jsTaskName, 'watch']);
