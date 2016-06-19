@@ -26,6 +26,11 @@ module.exports = function routerConfig($routeProvider) {
       controller: 'CinemaController',
       controllerAs: 'cinemaCtrl'
     })
+    .when("/search", {
+      templateUrl : 'js/views/search.html',
+      controller: 'SearchController',
+      controllerAs: 'searchCtrl'
+    })
     .otherwise({
       redirectTo: '/today'
     });

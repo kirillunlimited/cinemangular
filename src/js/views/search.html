@@ -1,0 +1,28 @@
+<h1 class="content__title">Поиск</h1>
+<form ng-submit="searchCtrl.findFilm()">
+  <input type="text" class="content__search" placeholder="Название фильма" ng-model="searchCtrl.searchString" />
+  <button class="content__button" type="submit">Найти</button>
+</form>
+<div ng-if="searchCtrl.status == 'Loading'">
+  <div class="loader"></div>
+</div>
+<div ng-if="searchCtrl.status == 'Ready'">
+  <div class="search">
+    <div class="search__element" ng-repeat="film in searchCtrl.filmsContent">
+      <a href="#/film/{{film.id}}">
+        <img class="search__img" ng-src="{{searchCtrl.getPoster(film.posterURL)}}" alt="" />
+      </a>
+      <div class="search__info">
+        <div>
+          <a href="#/film/{{film.id}}" class="search__title search__title_ru link">{{film.nameRU}}</a>
+          <span class="search__year">({{film.year}})</span>
+        </div>
+        <span class="search__title search__title_en">{{film.nameEN}}</span>
+        <p class="search__description">{{film.description}}</p>
+        <p class="search__rating">{{film.rating}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
