@@ -67,13 +67,13 @@ gulp.task('js', function() {
     .pipe(browserSync.stream());
 });
 gulp.task('bundle', function() {
-  browserify("./src/js/app.js")
+  browserify("./src/app/app.js")
     // .transform(babelify, {presets: ["es2015", "react"]})
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(uglify({mangle: false}))
-    .pipe(gulp.dest('./dist/js/'))
+    .pipe(gulp.dest('./dist/app/'))
     .pipe(browserSync.stream());
 });
 
@@ -111,24 +111,24 @@ gulp.task('copy', function() {
     './src/**',
     '!./src/sass', '!./src/sass/**',
     '!./src/js', '!./src/js/**',
+    '!./src/app', '!./src/app/**',
     '!./src/img', '!./src/img/**'
   ];
   return gulp.src(objects, {dot: true})
     .pipe(gulp.dest('./dist'));
 });
 
-var jsTaskName = 'bundle'; // js | bundle
-
 gulp.task('watch', function(){
   gulp.watch('./src/**/*.html', ['html']);
   gulp.watch('./src/**/*.php', ['php']);
-  gulp.watch('./src/js/**/*.js', [jsTaskName]);
+  gulp.watch('./src/js/**/*.js', ['js']);
+  gulp.watch('./src/app/**/*.js', ['bundle']);
   gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
   // gulp.watch('./src/jsx/**/*.{js,jsx}',['browserify']);
 });
 
 gulp.task('build', function() {
-  runSequence('clean', 'copy', 'html', 'php', 'sass', jsTaskName, 'img');
+  runSequence('clean', 'copy', 'html', 'php', 'sass', 'js', 'bundle', 'img');
 });
 
-gulp.task('default', ['html', 'php', 'sass', jsTaskName, 'watch']);
+gulp.task('default', ['html', 'php', 'sass', 'js', 'bundle', 'watch']);
