@@ -11,5 +11,5 @@ module.exports = function SoonController(jsonApi) {
   });
   vm.switchPosterSize = function(imgPath, imgWidth) {
     return jsonApi.switchPosterSize(imgPath, imgWidth);
-  }
-}
+  };
+};

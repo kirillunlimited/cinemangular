@@ -11,5 +11,5 @@ module.exports = function TodayController(jsonApi, dateService) {
   });
   vm.switchPosterSize = function(imgPath, imgWidth) {
     return jsonApi.switchPosterSize(imgPath, imgWidth);
-  }
-}
+  };
+};

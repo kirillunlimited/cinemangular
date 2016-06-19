@@ -8,7 +8,7 @@
     <div class="films__poster poster" ng-repeat="film in filmsCtrl.films">
       <div class="poster__wrapper">
         <a href="#/film/{{film.id}}" class="poster__link">
-          <img class="poster__img" src="img/blank_poster.png" alt="Постер {{film.nameRU}}" style="background-image: url('https://st.kp.yandex.net/images/{{filmsCtrl.switchPosterSize(film.posterURL, 360)}}')" />
+          <img class="poster__img" src="img/blank_poster.png" alt="Постер {{film.nameRU}}" style="background-image: url('{{filmsCtrl.switchPosterSize(film.posterURL, 360)}}')" />
           <p class="poster__description">
             <span class="poster__title poster__title_ru">{{film.nameRU}}</span>
             <span class="poster__title poster__title_en">{{film.nameEN}}</span>

@@ -9,6 +9,7 @@ module.exports = function CinemaController(jsonApi, dateService, $routeParams) {
 
   jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $routeParams.cinemaID + "&date=" + dateService.getToday()).then(function(response) {
     vm.cinemaContent = response.data.cinemaDetail;
+    console.log(vm.cinemaContent);
     vm.status = 'Ready';
   });
 
@@ -18,5 +19,5 @@ module.exports = function CinemaController(jsonApi, dateService, $routeParams) {
       vm.cinemaContent = response.data.cinemaDetail;
       vm.status = 'Ready';
     });
-  }
-}
+  };
+};

@@ -19,4 +19,4 @@ module.exports = function SeancesController(jsonApi, dateService, $routeParams) 
       vm.status = "Ready";
     });
   };
-}
+};

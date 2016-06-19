@@ -1,9 +1,6 @@
 'use strict';
 module.exports = function routerConfig($routeProvider) {
   $routeProvider
-    .when("/", {
-      templateUrl : 'js/views/index.html'
-    })
     .when("/today", {
       templateUrl : 'js/views/films_catalog.html',
       controller: 'TodayController',
@@ -30,6 +27,6 @@ module.exports = function routerConfig($routeProvider) {
       controllerAs: 'cinemaCtrl'
     })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/today'
     });
-}
+};

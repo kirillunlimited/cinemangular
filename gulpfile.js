@@ -103,7 +103,7 @@ gulp.task('serve', ['default'], function() {
   browserSync.init({
     proxy: "kinoshka"
   });
-  // gulp.watch('./dist/**/*.html').on('change', browserSync.reload);
+  gulp.watch('./dist/**').on('change', browserSync.reload);
 });
 
 gulp.task('clean', function () {
@@ -116,7 +116,7 @@ gulp.task('copy', function() {
   var objects = ['./src/**'];
   for (var i = 0; i < excludedFolders.length; i++) {
     var folder = '!./src/' + excludedFolders[i];
-    objects.push(folder); // exclude folder
+    objects.push(folder);         // exclude folder
     objects.push(folder + '/**'); // exclude files in the folder
   }
   return gulp.src(objects, {dot: true})

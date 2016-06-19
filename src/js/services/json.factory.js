@@ -22,10 +22,10 @@ module.exports = function jsonApi($http) {
   }
   function switchPosterSize(imgPath, imgWidth) {
     if (imgPath) {
-      return imgPath.replace('iphone60', 'iphone' + imgWidth).replace('iphone90', 'iphone' + imgWidth);
+      return "https://st.kp.yandex.net/images/" +imgPath.replace('iphone60', 'iphone' + imgWidth).replace('iphone90', 'iphone' + imgWidth);
     }
     else {
-      return "images/movies/poster_none.png";
+      return "img/no_poster.png";
     }
   }
   return {
@@ -33,4 +33,4 @@ module.exports = function jsonApi($http) {
     parse: parse,
     switchPosterSize: switchPosterSize
   };
-}
+};

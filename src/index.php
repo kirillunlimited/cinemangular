@@ -19,7 +19,6 @@
 
   <aside class="page__aside aside">
     <ul class="aside__menu menu">
-      <li class="menu__item"><a class="menu__link" href="#/">Главная</a></li>
       <li class="menu__item"><a class="menu__link" href="#/today">Сегодня в прокате</a></li>
       <li class="menu__item"><a class="menu__link" href="#/soon">Скоро в прокате</a></li>
     </ul>

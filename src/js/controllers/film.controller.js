@@ -9,4 +9,4 @@ module.exports = function FilmController(jsonApi, $routeParams) {
     vm.posterPath = jsonApi.switchPosterSize(vm.filmContent.posterURL, 360);
     vm.status = "Ready";
   });
-}
+};

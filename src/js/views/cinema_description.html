@@ -4,6 +4,19 @@
 
 <div ng-if="cinemaCtrl.status == 'Ready'">
   <h1 class="cinema__title">Кинотеатр "{{cinemaCtrl.cinemaContent.cinemaName}}"</h1>
+  <div class="cinema__info">
+    <p>
+      {{cinemaCtrl.cinemaContent.cinemaLocation.addressDescription}}
+    </p>
+    <p>
+      {{cinemaCtrl.cinemaContent.cinemaTelephone}}
+    </p>
+    <div class="cinema__linkContainer">
+      <a href="{{cinemaCtrl.cinemaContent.cinemaWeb}}" target="_blank" class="cinema__link">
+        Перейти на сайт
+      </a>
+    </div>
+  </div>
   <select class="cinema__select" ng-model="cinemaCtrl.cinemaSelect" ng-options="day for day in cinemaCtrl.days" ng-change="cinemaCtrl.getData(cinemaCtrl.cinemaSelect)"></select>
 
   <table ng-if="cinemaCtrl.cinemaContent" class="cinema__list">
