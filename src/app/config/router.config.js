@@ -2,17 +2,17 @@
 module.exports = function routerConfig($routeProvider) {
   $routeProvider
     .when("/today", {
-      templateUrl : 'app/views/films_catalog.html',
+      templateUrl : 'app/views/catalog.html',
       controller: 'TodayController',
       controllerAs: 'filmsCtrl'
     })
     .when("/soon", {
-      templateUrl : 'app/views/films_catalog.html',
+      templateUrl : 'app/views/catalog.html',
       controller: 'SoonController',
       controllerAs: 'filmsCtrl'
     })
     .when("/film/:filmID", {
-      templateUrl : 'app/views/film_description.html',
+      templateUrl : 'app/views/film.html',
       controller: 'FilmController',
       controllerAs: 'filmCtrl'
     })
@@ -22,7 +22,7 @@ module.exports = function routerConfig($routeProvider) {
       controllerAs: 'seancesCtrl'
     })
     .when("/cinema/:cinemaID", {
-      templateUrl : 'app/views/cinema_description.html',
+      templateUrl : 'app/views/cinema_seances.html',
       controller: 'CinemaController',
       controllerAs: 'cinemaCtrl'
     })

@@ -1,27 +1,34 @@
-.films
-  display: flex
-  flex-wrap: wrap
-  justify-content: center
+.catalog
+  &__title
+    margin: 0
+    font-size: 2em
+    font-weight: normal
+    color: #fff
+    text-align: center
+  &__content
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
   &__poster
     position: relative
     width: 20%
 
 @media(max-width: 1800px)
-  .films
+  .catalog
     &__poster
       width: 25%
 
 @media(max-width: 1400px)
-  .films
+  .catalog
     &__poster
       width: 33.33%
 
 @media(max-width: 1024px)
-  .films
+  .catalog
     &__poster
       width: 50%
 
 @media(max-width: 640px)
-  .films
+  .catalog
     &__poster
       width: 100%
