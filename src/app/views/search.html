@@ -3,12 +3,6 @@
   <form class="search__form" name="search_form" ng-submit="searchCtrl.findFilm()">
     <input type="text" class="textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
     <button class="button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
-    <div>
-      <input type="radio" class="search__radio" id="radio_films" name="search_filter" value="films" ng-model="searchCtrl.searchFilter" />
-      <label class="search__label" for="radio_films">Фильмы</label>
-      <input type="radio" class="search__radio" id="radio_people" name="search_filter" value="people" ng-model="searchCtrl.searchFilter"/>
-      <label class="search__label" for="radio_people">Люди</label>
-    </div>
   </form>
 
   <div ng-if="searchCtrl.status == 'Loading'">
@@ -19,15 +13,14 @@
 
     <section ng-if="searchCtrl.filmsContent" class="search__section">
       <h2 class="search__subtitle">Фильмы</h2>
-      <div class="search__element" ng-repeat="film in searchCtrl.filmsContent">
+      <div class="search__element" ng-repeat="film in searchCtrl.filmsContent | limitTo:searchCtrl.filmsLimit">
         <a href="#/film/{{film.id}}">
           <img class="search__img" ng-src="{{searchCtrl.getPoster(film.posterURL)}}" alt="" />
         </a>
         <div class="search__content">
           <div class="search__main">
             <div>
-              <a href="#/film/{{film.id}}" class="search__value link">{{film.nameRU}}</a>
-              <span>({{film.year}})</span>
+              <a href="#/film/{{film.id}}" class="search__value link">{{film.nameRU}} ({{film.year}})</a>
             </div>
             <span class="search__value search__value_secondary">{{film.nameEN}}</span>
           </div>
@@ -37,11 +30,12 @@
           </div>
         </div>
       </div>
+      <button class="button" ng-click="searchCtrl.moreFilms(searchCtrl.filmsContent.length)" ng-hide="searchCtrl.allFilms">Показать все фильмы</button>
     </section>
 
     <section ng-if="searchCtrl.peopleContent" class="search__section">
       <h2 class="search__subtitle">Люди</h2>
-      <div class="search__element" ng-repeat="person in searchCtrl.peopleContent">
+      <div class="search__element" ng-repeat="person in searchCtrl.peopleContent | limitTo:searchCtrl.peopleLimit ">
         <a href="#/person/{{person.id}}">
           <img class="search__img" ng-src="{{searchCtrl.getPoster(person.posterURL)}}" alt="" />
         </a>
@@ -57,6 +51,7 @@
           </div>
         </div>
       </div>
+      <button class="button" ng-click="searchCtrl.morePeople(searchCtrl.peopleContent.length)" ng-hide="searchCtrl.allPeople">Показать всех людей</button>
     </section>
 
   </div>

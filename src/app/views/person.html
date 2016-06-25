@@ -26,7 +26,7 @@
            {{personCtrl.sex}}
           </td>
         </tr>
-        <tr class="details__element">
+        <tr ng-if="personCtrl.personContent.birthday" class="details__element">
           <td class="details__title">
             Дата рождения
           </td>
@@ -37,7 +37,7 @@
            </span>
           </td>
         </tr>
-        <tr class="details__element">
+        <tr ng-if="personCtrl.personContent.birthplace" class="details__element">
           <td class="details__title">
             Место рождения
           </td>

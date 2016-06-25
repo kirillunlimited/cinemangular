@@ -14,18 +14,20 @@ module.exports = function PersonController(jsonApi, $routeParams) {
   });
 
   vm.getRusAge = function(age) {
-    var lastDigit = age.toString().split('').pop();
-    var rusAge = "лет";
-    if (lastDigit == 1 ) {
-      rusAge = "год";
+    if (age != null) {
+      var lastDigit = age.toString().split('').pop();
+      var rusAge = "лет";
+      if (lastDigit == 1 ) {
+        rusAge = "год";
+      }
+      else if (lastDigit > 1 && lastDigit < 5) {
+        rusAge = "года";
+      }
+      else if (lastDigit >= 5 || lastDigit == 0) {
+        rusAge = "лет";
+      }
+      return rusAge;
     }
-    else if (lastDigit > 1 && lastDigit < 5) {
-      rusAge = "года";
-    }
-    else if (lastDigit >= 5 || lastDigit == 0) {
-      rusAge = "лет";
-    }
-    return rusAge;
   };
 
   vm.getRusSex = function(sex) {
