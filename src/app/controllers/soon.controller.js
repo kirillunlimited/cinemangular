@@ -7,6 +7,7 @@ module.exports = function SoonController(jsonApi) {
   vm.pageTitle = "Скоро в прокате";
   jsonApi.fetch("http://api.kinopoisk.cf/getSoonFilms").then(function(response) {
     vm.films = jsonApi.parse(response, 'previewFilms');
+    console.log(vm.films);
     vm.status = "Ready";
   });
   vm.switchPosterSize = function(imgPath, imgWidth) {

@@ -1,28 +1,61 @@
 <div class="search">
   <h1 class="search__title">Поиск</h1>
   <form class="search__form" ng-submit="searchCtrl.findFilm()">
-    <input type="text" class="textbox" placeholder="Название фильма" ng-model="searchCtrl.searchString" />
+    <input type="text" class="textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" />
     <button class="button" type="submit">Найти</button>
+    <div>
+      <input type="radio" class="search__radio" id="radio_films" name="search_filter" value="films" ng-model="searchCtrl.searchFilter" />
+      <label class="search__label" for="radio_films">Фильмы</label>
+      <input type="radio" class="search__radio" id="radio_people" name="search_filter" value="people" ng-model="searchCtrl.searchFilter"/>
+      <label class="search__label" for="radio_people">Люди</label>
+    </div>
   </form>
   <div ng-if="searchCtrl.status == 'Loading'">
     <div class="loader"></div>
   </div>
   <div class="search__results" ng-if="searchCtrl.status == 'Ready'">
-    <div class="search__element" ng-repeat="film in searchCtrl.filmsContent">
-      <a href="#/film/{{film.id}}">
-        <img class="search__img" ng-src="{{searchCtrl.getPoster(film.posterURL)}}" alt="" />
-      </a>
-      <div class="search__content">
-        <div>
-          <a href="#/film/{{film.id}}" class="search__value link">{{film.nameRU}}</a>
-          <span>({{film.year}})</span>
-        </div>
-        <span class="search__value search__value_secondary">{{film.nameEN}}</span>
-        <div class="search__description">
-          <p class="search__value">{{film.description}}</p>
-          <p class="search__value">{{film.rating}}</p>
+
+    <section ng-if="searchCtrl.filmsContent" class="search__section">
+      <h2 class="search__subtitle">Фильмы</h2>
+      <div class="search__element" ng-repeat="film in searchCtrl.filmsContent">
+        <a href="#/film/{{film.id}}">
+          <img class="search__img" ng-src="{{searchCtrl.getPoster(film.posterURL)}}" alt="" />
+        </a>
+        <div class="search__content">
+          <div class="search__main">
+            <div>
+              <a href="#/film/{{film.id}}" class="search__value link">{{film.nameRU}}</a>
+              <span>({{film.year}})</span>
+            </div>
+            <span class="search__value search__value_secondary">{{film.nameEN}}</span>
+          </div>
+          <div class="search__description">
+            <p class="search__value">{{film.description}}</p>
+            <p class="search__value">{{film.rating}}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section ng-if="searchCtrl.peopleContent" class="search__section">
+      <h2 class="search__subtitle">Люди</h2>
+      <div class="search__element" ng-repeat="person in searchCtrl.peopleContent">
+        <a href="#/person/{{person.id}}">
+          <img class="search__img" ng-src="{{searchCtrl.getPoster(person.posterURL)}}" alt="" />
+        </a>
+        <div class="search__content">
+          <div class="search__main">
+            <div>
+              <a href="#/person/{{person.id}}" class="search__value link">{{person.nameRU}}</a>
+            </div>
+            <span class="search__value search__value_secondary">{{person.nameEN}}</span>
+          </div>
+          <div class="search__description">
+            <p class="search__value">{{person.description}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </div>

@@ -5,20 +5,39 @@
     font-weight: normal
     color: #fff
     text-align: center
-  &__element
-    margin-top: 1em
+  &__form
+    margin-bottom: 1em
+  &__radio
+
+  &__label
+    margin-right: 1em
+  &__section
     padding-top: 1em
+    padding-bottom: 1em
     border-top: 1px solid #aaa
+  &__subtitle
+    font-size: 1.5em
+    font-weight: normal
+  &__element
+    display: flex
+    margin-top: 1em
+    padding-bottom: 1em
+    border-bottom: 1px dotted rgba(255,255,255,0.25)
+    &:last-child
+      border-bottom: 0
   &__img
     width: 90px
     vertical-align: top
   &__content
+    display: flex
+    flex-direction: column
+    justify-content: space-between
     padding-left: 1em
-    display: inline-block
-    vertical-align: top
+  &__main
+
   &__value
     font-size: 1em
     &_secondary
       color: #aaa
   &__description
-    margin-top: 1em
+

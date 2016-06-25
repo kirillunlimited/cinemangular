@@ -1,3 +1,14 @@
-Options -MultiViews
-RewriteEngine On
-RewriteRule ^(.*)$  /dist/$1 [R]
+#Options -MultiViews
+#RewriteEngine On
+#RewriteRule ^(.*)$  /dist/$1 [R]
+
+# Запрет выдачи листинга пустого каталога
+Options -Indexes
+
+RewriteEngine on
+
+# change root
+RewriteCond %{HTTP_HOST} ^kinoshka$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.kinoshka$
+RewriteCond %{REQUEST_URI} !dist/
+RewriteRule (.*) /dist/$1 [L]
