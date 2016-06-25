@@ -34,8 +34,14 @@ module.exports = function routerConfig($routeProvider) {
     .when("/search", {
       templateUrl : 'app/views/search.html',
       controller: 'SearchController',
-      controllerAs: 'searchCtrl'
+      controllerAs: 'searchCtrl',
+      reloadOnSearch: false
     })
+    // .when("/search/:searchString", {
+    //   templateUrl : 'app/views/search.html',
+    //   controller: 'SearchController',
+    //   controllerAs: 'searchCtrl'
+    // })
     .otherwise({
       redirectTo: '/today'
     });

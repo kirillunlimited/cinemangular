@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <button class="button" ng-click="searchCtrl.moreFilms(searchCtrl.filmsContent.length)" ng-hide="searchCtrl.allFilms">Показать все фильмы</button>
+      <button class="button" ng-click="searchCtrl.moreFilms(searchCtrl.filmsContent.length)" ng-if="searchCtrl.filmsContent.length > searchCtrl.filmsLimit">Показать все фильмы</button>
     </section>
 
     <section ng-if="searchCtrl.peopleContent" class="search__section">
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-      <button class="button" ng-click="searchCtrl.morePeople(searchCtrl.peopleContent.length)" ng-hide="searchCtrl.allPeople">Показать всех людей</button>
+      <button class="button" ng-click="searchCtrl.morePeople(searchCtrl.peopleContent.length)" ng-if="searchCtrl.peopleContent.length > searchCtrl.peopleLimit">Показать всех людей</button>
     </section>
 
   </div>
