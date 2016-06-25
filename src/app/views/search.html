@@ -1,8 +1,8 @@
 <div class="search">
   <h1 class="search__title">Поиск</h1>
-  <form class="search__form" ng-submit="searchCtrl.findFilm()">
-    <input type="text" class="textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" />
-    <button class="button" type="submit">Найти</button>
+  <form class="search__form" name="search_form" ng-submit="searchCtrl.findFilm()">
+    <input type="text" class="textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
+    <button class="button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
     <div>
       <input type="radio" class="search__radio" id="radio_films" name="search_filter" value="films" ng-model="searchCtrl.searchFilter" />
       <label class="search__label" for="radio_films">Фильмы</label>
@@ -10,9 +10,11 @@
       <label class="search__label" for="radio_people">Люди</label>
     </div>
   </form>
+
   <div ng-if="searchCtrl.status == 'Loading'">
     <div class="loader"></div>
   </div>
+
   <div class="search__results" ng-if="searchCtrl.status == 'Ready'">
 
     <section ng-if="searchCtrl.filmsContent" class="search__section">
