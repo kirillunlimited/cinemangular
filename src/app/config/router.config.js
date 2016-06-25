@@ -16,6 +16,11 @@ module.exports = function routerConfig($routeProvider) {
       controller: 'FilmController',
       controllerAs: 'filmCtrl'
     })
+    .when("/person/:personID", {
+      templateUrl : 'app/views/person.html',
+      controller: 'PersonController',
+      controllerAs: 'personCtrl'
+    })
     .when("/seances/:filmID", {
       templateUrl : 'app/views/film_seances.html',
       controller: 'SeancesController',

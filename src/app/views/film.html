@@ -96,10 +96,10 @@
           <td class="details__value">
             <p class="film__infoContent">
               <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="person.nameRU">
-                {{person.nameRU}}
+                <a class="link" href="#/person/{{person.id}}">{{person.nameRU}}</a>
               </p>
               <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="!person.nameRU">
-                {{person.nameEN}}
+                <a class="link" href="#/person/{{person.id}}">{{person.nameEN}}</a>
               </p>
             </p>
           </td>
@@ -111,10 +111,10 @@
           <td class="details__value">
             <p class="film__infoContent">
               <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="person.nameRU">
-                {{person.nameRU}}
+                <a class="link" href="#/person/{{person.id}}">{{person.nameRU}}</a>
               </p>
               <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="!person.nameRU">
-                {{person.nameEN}}
+                <a class="link" href="#/person/{{person.id}}">{{person.nameEN}}</a>
               </p>
             </p>
           </td>
