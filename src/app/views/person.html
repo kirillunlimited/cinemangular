@@ -74,4 +74,24 @@
     </div>
   </div>
 
+  <div ng-repeat="filmsGroup in personCtrl.personContent.filmography" class="person__filmsGroup">
+    <h3 class="person__filmsGroupTitle">{{filmsGroup[0].professionText}} ({{filmsGroup.length}})</h3>
+    <table class="person__filmTable">
+      <tr class="person__film" ng-repeat="film in filmsGroup">
+        <td class="person__filmCell person__filmCounter">
+          {{$index + 1}}
+        </td>
+        <td class="person__filmCell">
+          <div>
+            <a href="#/film/{{film.filmID}}" class="person__filmTitle person__filmTitle_ru link">
+              {{film.nameRU}}
+              <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
+            </a>
+          </div>
+          <span class="person__filmTitle person__filmTitle_en">{{film.nameEN}}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
 </div>
