@@ -3,9 +3,9 @@
 </div>
 
 <div class="film" ng-if="filmCtrl.status == 'Ready'">
-  <div class="film__subject">
-    <h1 class="film__title film__title_ru">{{filmCtrl.filmContent.nameRU}}</h1>
-    <h2 ng-if="filmCtrl.filmContent.nameEN" class="film__title film__title_en">{{filmCtrl.filmContent.nameEN}}</h2>
+  <div class="subject">
+    <h1 class="subject__title subject__title_main">{{filmCtrl.filmContent.nameRU}}</h1>
+    <h2 ng-if="filmCtrl.filmContent.nameEN" class="subject__title subject__title_sub">{{filmCtrl.filmContent.nameEN}}</h2>
   </div>
 
   <div class="film__content">

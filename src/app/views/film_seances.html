@@ -3,7 +3,9 @@
 </div>
 
 <div class="seances" ng-if="seancesCtrl.status == 'Ready'">
-  <h1 class="seances__title">"{{seancesCtrl.seancesContent.nameRU}}" в кино</h1>
+  <div class="subject">
+    <h1 class="subject__title subject__title_main">"{{seancesCtrl.seancesContent.nameRU}}" в кино</h1>
+  </div>
 
   <select class="select" ng-model="seancesCtrl.seancesSelect" ng-options="day for day in seancesCtrl.days" ng-change="seancesCtrl.getData(seancesCtrl.seancesSelect)"></select>
 

@@ -3,12 +3,12 @@
 </div>
 
 <div class="person" ng-if="personCtrl.status == 'Ready'">
-  <div ng-if="personCtrl.personContent.nameRU" class="person__subject">
-    <h1 class="person__name person__name_main">{{personCtrl.personContent.nameRU}}</h1>
-    <h2 ng-if="personCtrl.personContent.nameEN" class="person__name person__name_sub">{{personCtrl.personContent.nameEN}}</h2>
+  <div ng-if="personCtrl.personContent.nameRU" class="subject">
+    <h1 class="subject__title subject__title_main">{{personCtrl.personContent.nameRU}}</h1>
+    <h2 ng-if="personCtrl.personContent.nameEN" class="subject__title subject__title_sub">{{personCtrl.personContent.nameEN}}</h2>
   </div>
-  <div ng-if="!personCtrl.personContent.nameRU" class="person__subject">
-    <h1 class="person__name person__name_main">{{personCtrl.personContent.nameEN}}</h1>
+  <div ng-if="!personCtrl.personContent.nameRU" class="subject">
+    <h1 class="subject__title subject__title_main">{{personCtrl.personContent.nameEN}}</h1>
   </div>
 
   <div class="person__content">

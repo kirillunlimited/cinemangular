@@ -3,7 +3,9 @@
 </div>
 
 <div class="cinema" ng-if="cinemaCtrl.status == 'Ready'">
-  <h1 class="cinema__title">Кинотеатр "{{cinemaCtrl.cinemaContent.cinemaName}}"</h1>
+  <div class="subject">
+    <h1 class="subject__title subject__title_main">Кинотеатр "{{cinemaCtrl.cinemaContent.cinemaName}}"</h1>
+  </div>
   <div class="cinema__info">
     <p class="cinema__address">
       {{cinemaCtrl.cinemaContent.cinemaLocation.addressDescription}}

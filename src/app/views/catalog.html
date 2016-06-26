@@ -3,7 +3,9 @@
 </div>
 
 <div class="catalog" ng-if="filmsCtrl.status == 'Ready'">
-  <h1 class="catalog__title">{{filmsCtrl.pageTitle}}</h1>
+  <div class="subject">
+    <h1 class="subject__title subject__title_main">{{filmsCtrl.pageTitle}}</h1>
+  </div>
   <div class="catalog__content">
     <div class="catalog__poster poster" ng-repeat="film in filmsCtrl.films">
       <div class="poster__wrapper">
