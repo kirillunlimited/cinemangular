@@ -18,11 +18,18 @@
           <img class="search__img" ng-src="{{searchCtrl.getPoster(film.posterURL)}}" alt="" />
         </a>
         <div class="search__content">
-          <div class="search__main">
+          <div ng-if="film.nameRU" class="search__main">
             <div>
-              <a href="#/film/{{film.id}}" class="search__value link">{{film.nameRU}} ({{film.year}})</a>
+              <a href="#/film/{{film.id}}" class="search__value link">{{film.nameRU}}
+                <span ng-if="film.year">({{film.year}})</span>
+              </a>
             </div>
             <span class="search__value search__value_secondary">{{film.nameEN}}</span>
+          </div>
+          <div ng-if="!film.nameRU" class="search__main">
+            <a href="#/film/{{film.id}}" class="search__value link">{{film.nameEN}}
+              <span ng-if="film.year">({{film.year}})</span>
+            </a>
           </div>
           <div class="search__description">
             <p class="search__value">{{film.description}}</p>
@@ -40,11 +47,16 @@
           <img class="search__img" ng-src="{{searchCtrl.getPoster(person.posterURL)}}" alt="" />
         </a>
         <div class="search__content">
-          <div class="search__main">
+          <div ng-if="person.nameRU" class="search__main">
             <div>
               <a href="#/person/{{person.id}}" class="search__value link">{{person.nameRU}}</a>
             </div>
-            <span class="search__value search__value_secondary">{{person.nameEN}}</span>
+            <span ng-if="person.nameEN" class="search__value search__value_secondary">{{person.nameEN}}</span>
+          </div>
+          <div ng-if="!person.nameRU" class="search__main">
+            <div>
+              <a href="#/person/{{person.id}}" class="search__value link">{{person.nameEN}}</a>
+            </div>
           </div>
           <div class="search__description">
             <p class="search__value">{{person.description}}</p>

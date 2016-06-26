@@ -3,8 +3,13 @@
 </div>
 
 <div class="person" ng-if="personCtrl.status == 'Ready'">
-  <h1 class="person__name person__name_ru">{{personCtrl.personContent.nameRU}}</h1>
-  <h2 class="person__name person__name_en">{{personCtrl.personContent.nameEN}}</h2>
+  <div ng-if="personCtrl.personContent.nameRU" class="person__subject">
+    <h1 class="person__name person__name_main">{{personCtrl.personContent.nameRU}}</h1>
+    <h2 ng-if="personCtrl.personContent.nameEN" class="person__name person__name_sub">{{personCtrl.personContent.nameEN}}</h2>
+  </div>
+  <div ng-if="!personCtrl.personContent.nameRU" class="person__subject">
+    <h1 class="person__name person__name_main">{{personCtrl.personContent.nameEN}}</h1>
+  </div>
 
   <div class="person__content">
     <img class="person__poster" ng-src="{{personCtrl.posterPath}}" alt="Постер {{personCtrl.personContent.nameRU}}" />
@@ -14,8 +19,11 @@
           <td class="details__title">
             Профессия
           </td>
-          <td class="details__value">
+          <td ng-if="personCtrl.personContent.profession" class="details__value">
            {{personCtrl.personContent.profession}}
+          </td>
+          <td ng-if="!personCtrl.personContent.profession" class="details__value">
+           –
           </td>
         </tr>
         <tr class="details__element">
@@ -81,14 +89,20 @@
         <td class="person__filmCell person__filmCounter">
           {{$index + 1}}
         </td>
-        <td class="person__filmCell">
+        <td ng-if="film.nameRU" class="person__filmCell">
           <div>
-            <a href="#/film/{{film.filmID}}" class="person__filmTitle person__filmTitle_ru link">
+            <a href="#/film/{{film.filmID}}" class="person__filmTitle person__filmTitle_main link">
               {{film.nameRU}}
               <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
             </a>
           </div>
-          <span class="person__filmTitle person__filmTitle_en">{{film.nameEN}}</span>
+          <span ng-if="film.nameEN" class="person__filmTitle person__filmTitle_sub">{{film.nameEN}}</span>
+        </td>
+        <td ng-if="!film.nameRU" class="person__filmCell">
+          <a href="#/film/{{film.filmID}}" class="person__filmTitle person__filmTitle_main link">
+            {{film.nameEN}}
+            <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
+          </a>
         </td>
       </tr>
     </table>
