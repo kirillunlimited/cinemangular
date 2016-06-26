@@ -1,7 +1,7 @@
 <div class="search">
   <h1 class="search__title">Поиск</h1>
   <form class="search__form" name="search_form" ng-submit="searchCtrl.findFilm()">
-    <input type="text" class="textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
+    <input type="text" class="search__textbox textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
     <button class="button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
   </form>
 
