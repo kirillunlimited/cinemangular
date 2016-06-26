@@ -17,13 +17,15 @@
 </head>
 <body class="page" ng-app="app" ng-cloak>
 
-  <aside class="page__aside aside">
-    <ul class="aside__menu menu">
+  <!-- <aside class="page__aside aside"> -->
+  <nav class="page__navigation navigation">
+    <ul class="navigation__menu menu">
       <li class="menu__item"><a class="menu__link" href="#/today">Сегодня в прокате</a></li>
       <li class="menu__item"><a class="menu__link" href="#/soon">Скоро в прокате</a></li>
       <li class="menu__item"><a class="menu__link" href="#/search">Поиск</a></li>
     </ul>
-  </aside>
+  </nav>
+  <!-- </aside> -->
 
   <div class="page__content content">
     <div class="content__wrapper" ng-view></div>
