@@ -1,15 +1,10 @@
 'use strict';
 module.exports = function routerConfig($routeProvider) {
   $routeProvider
-    .when("/today", {
-      templateUrl : 'app/views/catalog.html',
-      controller: 'TodayController',
-      controllerAs: 'filmsCtrl'
-    })
-    .when("/soon", {
-      templateUrl : 'app/views/catalog.html',
-      controller: 'SoonController',
-      controllerAs: 'filmsCtrl'
+    .when("/afisha/:period", {
+      templateUrl : 'app/views/afisha.html',
+      controller: 'AfishaController',
+      controllerAs: 'afishaCtrl'
     })
     .when("/film/:filmID", {
       templateUrl : 'app/views/film.html',
@@ -37,12 +32,7 @@ module.exports = function routerConfig($routeProvider) {
       controllerAs: 'searchCtrl',
       reloadOnSearch: false
     })
-    // .when("/search/:searchString", {
-    //   templateUrl : 'app/views/search.html',
-    //   controller: 'SearchController',
-    //   controllerAs: 'searchCtrl'
-    // })
     .otherwise({
-      redirectTo: '/today'
+      redirectTo: '/afisha/today'
     });
 };
