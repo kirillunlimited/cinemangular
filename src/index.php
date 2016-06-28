@@ -20,14 +20,14 @@
   <!-- <aside class="page__aside aside"> -->
   <nav class="page__navigation navigation">
     <ul class="navigation__menu menu">
-      <li class="menu__item"><a class="menu__link" href="#/afisha/today">Афиша</a></li>
-      <li class="menu__item"><a class="menu__link" href="#/search">Поиск</a></li>
+      <li class="menu__item"><a class="menu__link" ui-sref="afisha.today">Афиша</a></li>
+      <li class="menu__item"><a class="menu__link" ui-sref="search">Поиск</a></li>
     </ul>
   </nav>
   <!-- </aside> -->
 
   <div class="page__content content">
-    <div class="content__wrapper" ng-view></div>
+    <div class="content__wrapper" ui-view></div>
   </div>
 
 </body>

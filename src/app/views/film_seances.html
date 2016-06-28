@@ -12,7 +12,7 @@
   <table ng-if="seancesCtrl.seancesContent.items" class="seances__list">
     <tr class="seances__element" ng-repeat="cinema in seancesCtrl.seancesContent.items">
       <td class="seances__cell">
-        <a class="link" href="#/cinema/{{cinema.cinemaID}}">{{cinema.cinemaName}}</a>
+        <a class="link" ui-sref="cinema({cinemaId: cinema.cinemaID})">{{cinema.cinemaName}}</a>
       </td>
       <td class="seances__cell">
         <div ng-if="cinema.seance">

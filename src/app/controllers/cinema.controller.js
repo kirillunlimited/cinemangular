@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function CinemaController(jsonApi, dateService, $routeParams) {
+module.exports = function CinemaController(jsonApi, dateService, $state) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -7,7 +7,7 @@ module.exports = function CinemaController(jsonApi, dateService, $routeParams) {
   vm.days = dateService.getDaysList();
   vm.cinemaSelect = vm.days[0];  // init default value for select
 
-  jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $routeParams.cinemaID + "&date=" + dateService.getToday()).then(function(response) {
+  jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $state.params.cinemaId + "&date=" + dateService.getToday()).then(function(response) {
     vm.cinemaContent = response.data.cinemaDetail;
     console.log(vm.cinemaContent);
     vm.status = 'Ready';
@@ -15,7 +15,7 @@ module.exports = function CinemaController(jsonApi, dateService, $routeParams) {
 
   vm.getData = function(date) {
     vm.status = 'Loading';
-    jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $routeParams.cinemaID + "&date=" + date).then(function(response) {
+    jsonApi.fetch("http://api.kinopoisk.cf/getCinemaDetail?cinemaID=" + $state.params.cinemaId + "&date=" + date).then(function(response) {
       vm.cinemaContent = response.data.cinemaDetail;
       vm.status = 'Ready';
     });

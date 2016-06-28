@@ -1,7 +1,7 @@
 'use strict';
 var angular = require('angular');
-var ngRoute = require('angular-route');
-var app = angular.module('app', [ngRoute]);
+var ngRoute = require('angular-ui-router');
+var app = angular.module('app', ['ui.router']);
 
 require('./config');
 require('./services');

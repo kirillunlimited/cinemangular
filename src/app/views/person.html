@@ -91,7 +91,7 @@
         </td>
         <td ng-if="film.nameRU" class="person__filmCell">
           <div>
-            <a href="#/film/{{film.filmID}}" class="person__filmTitle person__filmTitle_main link">
+            <a ui-sref="film({filmId: film.filmID})" class="person__filmTitle person__filmTitle_main link">
               {{film.nameRU}}
               <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
             </a>
@@ -99,7 +99,7 @@
           <span ng-if="film.nameEN" class="person__filmTitle person__filmTitle_sub">{{film.nameEN}}</span>
         </td>
         <td ng-if="!film.nameRU" class="person__filmCell">
-          <a href="#/film/{{film.filmID}}" class="person__filmTitle person__filmTitle_main link">
+          <a ui-sref="film({filmId: film.filmID})" class="person__filmTitle person__filmTitle_main link">
             {{film.nameEN}}
             <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
           </a>

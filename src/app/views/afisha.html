@@ -4,23 +4,13 @@
 
 <div class="afisha" ng-if="afishaCtrl.status == 'Ready'">
   <div class="subject">
-    <h1 class="subject__title subject__title_main">{{afishaCtrl.pageTitle}}</h1>
+    <h1 class="subject__title subject__title_main">Афиша</h1>
   </div>
   <nav class="afisha__buttons">
-    <a href="#/afisha/today" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('today')}">Сегодня</a>
-    <a href="#/afisha/soon" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('soon')}">Скоро</a>
+    <a ui-sref="afisha.today" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}">Сегодня</a>
+    <a ui-sref="afisha.soon" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.soon')}">Скоро</a>
   </nav>
-  <div class="afisha__content">
-    <div class="afisha__poster poster" ng-repeat="film in afishaCtrl.films">
-      <div class="poster__wrapper">
-        <a href="#/film/{{film.id}}" class="poster__link">
-          <img class="poster__img" src="img/blank_poster.png" alt="Постер {{film.nameRU}}" style="background-image: url('{{afishaCtrl.switchPosterSize(film.posterURL, 360)}}')" />
-          <p class="poster__description">
-            <span class="poster__title poster__title_ru">{{film.nameRU}}</span>
-            <span class="poster__title poster__title_en">{{film.nameEN}}</span>
-          </p>
-        </a>
-      </div>
-    </div>
-  </div>
+
+  <div class="afisha__content" ui-view></div>
+
 </div>

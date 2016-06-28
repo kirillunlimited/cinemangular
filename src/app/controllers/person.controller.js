@@ -1,10 +1,10 @@
 'use strict';
-module.exports = function PersonController(jsonApi, $routeParams) {
+module.exports = function PersonController(jsonApi, $state) {
   var vm = this;
 
   vm.status = "Loading";
 
-  jsonApi.fetch("http://api.kinopoisk.cf/getPeopleDetail?peopleID=" + $routeParams.personID).then(function(response) {
+  jsonApi.fetch("http://api.kinopoisk.cf/getPeopleDetail?peopleID=" + $state.params.personId).then(function(response) {
     vm.personContent = response.data;
     console.log(vm.personContent);
     vm.posterPath = jsonApi.switchPosterSize(vm.personContent.posterURL, 180);

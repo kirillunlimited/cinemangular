@@ -104,10 +104,10 @@
           <td class="details__value">
             <p class="film__infoContent">
               <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="person.nameRU">
-                <a class="link" href="#/person/{{person.id}}">{{person.nameRU}}</a>
+                <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
               </p>
               <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="!person.nameRU">
-                <a class="link" href="#/person/{{person.id}}">{{person.nameEN}}</a>
+                <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
               </p>
             </p>
           </td>
@@ -119,10 +119,10 @@
           <td class="details__value">
             <p class="film__infoContent">
               <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="person.nameRU">
-                <a class="link" href="#/person/{{person.id}}">{{person.nameRU}}</a>
+                <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
               </p>
               <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="!person.nameRU">
-                <a class="link" href="#/person/{{person.id}}">{{person.nameEN}}</a>
+                <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
               </p>
             </p>
           </td>
@@ -142,7 +142,8 @@
           <td class="details__title">
           </td>
           <td class="details__value">
-            <a class="link" href="#/seances/{{filmCtrl.filmContent.filmID}}">Посмотреть сеансы</a>
+            <p class="details__important">Фильм идет в кинотеатрах!</p>
+            <a class="link" ui-sref="seances({filmId: filmCtrl.filmContent.filmID})">Посмотреть сеансы</a>
           </td>
         </tr>
       </table>

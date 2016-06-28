@@ -1,23 +1,21 @@
 'use strict';
-module.exports = function AfishaController(jsonApi, dateService, $routeParams, $location) {
+module.exports = function AfishaController(jsonApi, dateService, $state, $location) {
   var vm = this;
 
   vm.status = "Loading";
 
-  console.log($routeParams.period);
+  console.log($state.current.name);
 
-  switch($routeParams.period) {
-    case('today'):
+  switch($state.current.name) {
+    case('afisha.today'):
       jsonApi.fetch("http://api.kinopoisk.cf/getTodayFilms?date=" + dateService.getToday()).then(function(response) {
         vm.films = jsonApi.parse(response, 'filmsData');
-        vm.pageTitle = "Афиша на сегодня";
         vm.status = "Ready";
       });
       break;
-    case('soon'):
+    case('afisha.soon'):
       jsonApi.fetch("http://api.kinopoisk.cf/getSoonFilms").then(function(response) {
         vm.films = jsonApi.parse(response, 'previewFilms');
-        vm.pageTitle = "Скоро в кинотеатрах";
         vm.status = "Ready";
       });
       break;
@@ -27,12 +25,7 @@ module.exports = function AfishaController(jsonApi, dateService, $routeParams, $
     return jsonApi.switchPosterSize(imgPath, imgWidth);
   };
 
-  vm.getClass = function(currentLocation) {
-    if (currentLocation == '/') {
-      return $location.path() === currentLocation;
-    }
-    else {
-      return $routeParams.period === currentLocation;
-    }
+  vm.getClass = function(currentState) {
+    return $state.current.name === currentState;
   }
 };

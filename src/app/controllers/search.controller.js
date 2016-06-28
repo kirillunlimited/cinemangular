@@ -1,15 +1,17 @@
 'use strict';
-module.exports = function SearchController(jsonApi, $location, $routeParams) {
+module.exports = function SearchController(jsonApi, $state) {
   var vm = this;
 
-  vm.searchString = $routeParams.searchString;
+  vm.searchString = $state.params.value;
   vm.status = "Ready";
 
   vm.filmsLimit = 3;
   vm.peopleLimit = 3;
 
   vm.findFilm = function() {
-    $location.search('searchString', vm.searchString);
+
+    $state.transitionTo('search', {value: vm.searchString});
+    // $location.search('searchString', vm.searchString);
     if (vm.searchString != null) {
       vm.status = "Loading";
       jsonApi.fetch("http://api.kinopoisk.cf/searchFilms?keyword=" + vm.searchString).then(function(filmsResponse) {
