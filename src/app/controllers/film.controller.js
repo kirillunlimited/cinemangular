@@ -4,7 +4,7 @@ module.exports = function FilmController(jsonApi, dateService, $state) {
 
   vm.status = "Loading";
 
-  console.log($state);
+  // console.log($state);
 
   jsonApi.fetch("http://api.kinopoisk.cf/getFilm?filmID=" + $state.params.filmId).then(function(filmResponse) {
     vm.filmContent = filmResponse.data;

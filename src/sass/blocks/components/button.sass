@@ -1,14 +1,15 @@
 .button
   padding: .5em 2em
-  background-color: $primary_bg
+  background-color: transparent
   border: 1px solid #fff
   border-radius: 2px
   transition: background-color .1s ease
   outline: 0
   &:hover, &_active
-    background-color: $secondary_bg
+    background-color: $color_contrast
   &[disabled]
     color: #aaa
     border: 1px solid #aaa
+    background-color: transparent
     &:hover
       background-color: transparent
