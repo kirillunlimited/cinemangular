@@ -5,4 +5,5 @@ var app = angular.module('app', ['ui.router']);
 
 require('./config');
 require('./services');
+require('./directives');
 require('./controllers');
