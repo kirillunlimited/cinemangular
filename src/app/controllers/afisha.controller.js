@@ -8,14 +8,17 @@ module.exports = function AfishaController(jsonApi, dateService, $state, $locati
 
   switch($state.current.name) {
     case('afisha.today'):
+      console.log('123');
       jsonApi.fetch("http://api.kinopoisk.cf/getTodayFilms?date=" + dateService.getToday()).then(function(response) {
         vm.films = jsonApi.parse(response, 'filmsData');
+        console.log(vm.films);
         vm.status = "Ready";
       });
       break;
     case('afisha.soon'):
       jsonApi.fetch("http://api.kinopoisk.cf/getSoonFilms").then(function(response) {
         vm.films = jsonApi.parse(response, 'previewFilms');
+        console.log(vm.films);
         vm.status = "Ready";
       });
       break;
