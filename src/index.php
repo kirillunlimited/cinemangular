@@ -28,7 +28,11 @@
 
   <div class="page__content content">
     <div class="content__wrapper" ui-view></div>
+    <footer class="page__footer footer">
+      <div class="footer__element">Сделано с помощью <a href="https://angularjs.org/" class="link">Angular 1.5</a></div>
+    </footer>
   </div>
+
 
 </body>
 </html>
