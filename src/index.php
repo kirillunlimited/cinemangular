@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Киношка</title>
   <link rel="stylesheet" href="css/main.css" />
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <script src="app/app.js"></script>
   <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
@@ -23,7 +19,7 @@
   <div class="page__content content">
     <div class="content__wrapper" ui-view></div>
     <footer class="page__footer footer">
-      <div class="footer__element">Сделано с помощью <a href="https://angularjs.org/" class="link">Angular 1.5</a></div>
+      <div class="footer__element">Сделано с помощью <a href="https://angularjs.org/"><img class="footer__img" src="img/angular.png" alt="Angular JS"/></a></div>
     </footer>
   </div>
 </body>
