@@ -1,13 +1,14 @@
 .button
   padding: .5em 2em
+  color: #fff
   background-color: transparent
-  border: 1px solid $color_contrast
+  border: 1px solid #fff
   border-radius: 2px
-  transition: background-color .1s ease, color .1s ease
+  transition: background-color .1s ease, border .1s ease
   outline: 0
   &:hover, &_active
-    color: #fff
     background-color: $color_contrast
+    border: 1px solid $color_contrast
   &[disabled]
     color: #aaa
     border: 1px solid #aaa
