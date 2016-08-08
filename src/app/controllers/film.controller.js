@@ -4,11 +4,8 @@ module.exports = function FilmController(jsonApi, dateService, $state) {
 
   vm.status = "Loading";
 
-  // console.log($state);
-
   jsonApi.fetch("http://api.kinopoisk.cf/getFilm?filmID=" + $state.params.filmId).then(function(filmResponse) {
     vm.filmContent = filmResponse.data;
-    console.log(vm.filmContent);
     vm.posterPath = jsonApi.switchPosterSize(vm.filmContent.posterURL, 360);
     jsonApi.fetch("http://api.kinopoisk.cf/getSeance?filmID=" + $state.params.filmId + "&date=" + dateService.getToday()).then(function(seancesResponse) {
       vm.isInCinema = false;
