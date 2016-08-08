@@ -22,7 +22,7 @@ module.exports = function jsonApi($http) {
   }
   function switchPosterSize(imgPath, imgWidth) {
     if (imgPath) {
-      return "https://st.kp.yandex.net/images/" +imgPath.replace('iphone60', 'iphone' + imgWidth).replace('iphone90', 'iphone' + imgWidth);
+      return "https://st.kp.yandex.net/images/" + imgPath.replace('iphone_', 'iphone' + imgWidth + '_');
     }
     else {
       return "img/no_poster.png";
