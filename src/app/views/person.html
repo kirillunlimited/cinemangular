@@ -13,73 +13,71 @@
 
   <div class="person__content">
     <img class="person__poster" ng-src="{{personCtrl.posterPath}}" alt="Постер {{personCtrl.personContent.nameRU}}" />
-    <div>
-      <table class="person__details details">
-        <tr class="details__element">
-          <td class="details__title">
-            Профессия
-          </td>
-          <td ng-if="personCtrl.personContent.profession" class="details__value">
-           {{personCtrl.personContent.profession}}
-          </td>
-          <td ng-if="!personCtrl.personContent.profession" class="details__value">
-           –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Пол
-          </td>
-          <td class="details__value">
-           {{personCtrl.sex}}
-          </td>
-        </tr>
-        <tr ng-if="personCtrl.personContent.birthday" class="details__element">
-          <td class="details__title">
-            Дата рождения
-          </td>
-          <td class="details__value">
-           {{personCtrl.personContent.birthday}}
-           <span ng-if="!personCtrl.personContent.death">
-             ({{personCtrl.personContent.age}} {{personCtrl.rusAge}})
-           </span>
-          </td>
-        </tr>
-        <tr ng-if="personCtrl.personContent.birthplace" class="details__element">
-          <td class="details__title">
-            Место рождения
-          </td>
-          <td class="details__value">
-           {{personCtrl.personContent.birthplace}}
-          </td>
-        </tr>
-        <tr ng-if="personCtrl.personContent.death" class="details__element">
-          <td class="details__title">
-            Дата смерти
-          </td>
-          <td class="details__value">
-           {{personCtrl.personContent.death}} ({{personCtrl.personContent.age}} {{personCtrl.rusAge}})
-          </td>
-        </tr>
-        <tr ng-if="personCtrl.personContent.deathplace" class="details__element">
-          <td class="details__title">
-            Место смерти
-          </td>
-          <td class="details__value">
-           {{personCtrl.personContent.deathplace}}
-          </td>
-        </tr>
-        <tr class="details__element" ng-if="personCtrl.personContent.growth" >
-          <td class="details__title">
-            Рост
-          </td>
-          <td class="details__value">
-           {{personCtrl.personContent.growth}}
-          </td>
-        </tr>
+    <table class="person__details details">
+      <tr class="details__element">
+        <td class="details__title">
+          Профессия
+        </td>
+        <td ng-if="personCtrl.personContent.profession" class="details__value">
+         {{personCtrl.personContent.profession}}
+        </td>
+        <td ng-if="!personCtrl.personContent.profession" class="details__value">
+         –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Пол
+        </td>
+        <td class="details__value">
+         {{personCtrl.sex}}
+        </td>
+      </tr>
+      <tr ng-if="personCtrl.personContent.birthday" class="details__element">
+        <td class="details__title">
+          Дата рождения
+        </td>
+        <td class="details__value">
+         {{personCtrl.personContent.birthday}}
+         <span ng-if="!personCtrl.personContent.death">
+           ({{personCtrl.personContent.age}} {{personCtrl.rusAge}})
+         </span>
+        </td>
+      </tr>
+      <tr ng-if="personCtrl.personContent.birthplace" class="details__element">
+        <td class="details__title">
+          Место рождения
+        </td>
+        <td class="details__value">
+         {{personCtrl.personContent.birthplace}}
+        </td>
+      </tr>
+      <tr ng-if="personCtrl.personContent.death" class="details__element">
+        <td class="details__title">
+          Дата смерти
+        </td>
+        <td class="details__value">
+         {{personCtrl.personContent.death}} ({{personCtrl.personContent.age}} {{personCtrl.rusAge}})
+        </td>
+      </tr>
+      <tr ng-if="personCtrl.personContent.deathplace" class="details__element">
+        <td class="details__title">
+          Место смерти
+        </td>
+        <td class="details__value">
+         {{personCtrl.personContent.deathplace}}
+        </td>
+      </tr>
+      <tr class="details__element" ng-if="personCtrl.personContent.growth" >
+        <td class="details__title">
+          Рост
+        </td>
+        <td class="details__value">
+         {{personCtrl.personContent.growth}}
+        </td>
+      </tr>
 
-      </table>
-    </div>
+    </table>
   </div>
 
   <div ng-repeat="filmsGroup in personCtrl.personContent.filmography" class="person__filmsGroup">

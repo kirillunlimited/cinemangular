@@ -9,3 +9,19 @@
   &__value
     padding: 1em
     padding-top: 0
+
+@media (max-width: 480px)
+  .details
+    &__title
+      display: block
+      padding-left: 0
+      padding-right: 0
+      padding-bottom: 0
+    &__value
+      display: block
+      padding-left: 0
+      padding-right: 0
+    &__element
+      &:last-child
+        .details__value
+          padding-bottom: 0

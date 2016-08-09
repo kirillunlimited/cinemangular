@@ -18,7 +18,7 @@
     </a>
   </div>
 
-  <select class="select" ng-model="cinemaCtrl.cinemaSelect" ng-options="day for day in cinemaCtrl.days" ng-change="cinemaCtrl.getData(cinemaCtrl.cinemaSelect)"></select>
+  <select class="select cinema__select" ng-model="cinemaCtrl.cinemaSelect" ng-options="day for day in cinemaCtrl.days" ng-change="cinemaCtrl.getData(cinemaCtrl.cinemaSelect)"></select>
 
   <div class="seances">
     <table ng-if="cinemaCtrl.cinemaContent" class="seances__list">

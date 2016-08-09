@@ -10,142 +10,140 @@
 
   <div class="film__content">
     <img class="film__poster" ng-src="{{filmCtrl.posterPath}}" alt="Постер {{filmCtrl.filmContent.nameRU}}" />
-    <div>
-      <table class="film__details details">
-        <tr class="details__element">
-          <td class="details__title">
-            Жанр
-          </td>
-          <td class="details__value">
-           {{filmCtrl.filmContent.genre}}
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Год
-          </td>
-          <td ng-if="filmCtrl.filmContent.year" class="details__value">
-            {{filmCtrl.filmContent.year}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.year" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Продолжительность
-          </td>
-          <td ng-if="filmCtrl.filmContent.filmLength" class="details__value">
-            {{filmCtrl.filmContent.filmLength}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.filmLength" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Страна
-          </td>
-          <td ng-if="filmCtrl.filmContent.country" class="details__value">
-            {{filmCtrl.filmContent.country}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.country" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Премьера мир
-          </td>
-          <td ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__value">
-            {{filmCtrl.filmContent.rentData.premiereWorld}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.rentData.premiereWorld" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Премьера РФ
-          </td>
-          <td ng-if="filmCtrl.filmContent.rentData.premiereRU" class="details__value">
-            {{filmCtrl.filmContent.rentData.premiereRU}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.rentData.premiereRU" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Рейтинг
-          </td>
-          <td ng-if="filmCtrl.filmContent.ratingData.rating" class="details__value">
-            {{filmCtrl.filmContent.ratingData.rating}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.ratingData.rating" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Рейтинг IMDb
-          </td>
-          <td ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__value">
-            {{filmCtrl.filmContent.ratingData.ratingIMDb}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.ratingData.ratingIMDb" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Режиссеры
-          </td>
-          <td class="details__value">
-            <p class="film__infoContent">
-              <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="person.nameRU">
-                <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
-              </p>
-              <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="!person.nameRU">
-                <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
-              </p>
+    <table class="film__details details">
+      <tr class="details__element">
+        <td class="details__title">
+          Жанр
+        </td>
+        <td class="details__value">
+         {{filmCtrl.filmContent.genre}}
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Год
+        </td>
+        <td ng-if="filmCtrl.filmContent.year" class="details__value">
+          {{filmCtrl.filmContent.year}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.year" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Продолжительность
+        </td>
+        <td ng-if="filmCtrl.filmContent.filmLength" class="details__value">
+          {{filmCtrl.filmContent.filmLength}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.filmLength" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Страна
+        </td>
+        <td ng-if="filmCtrl.filmContent.country" class="details__value">
+          {{filmCtrl.filmContent.country}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.country" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Премьера мир
+        </td>
+        <td ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__value">
+          {{filmCtrl.filmContent.rentData.premiereWorld}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.rentData.premiereWorld" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Премьера РФ
+        </td>
+        <td ng-if="filmCtrl.filmContent.rentData.premiereRU" class="details__value">
+          {{filmCtrl.filmContent.rentData.premiereRU}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.rentData.premiereRU" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Рейтинг
+        </td>
+        <td ng-if="filmCtrl.filmContent.ratingData.rating" class="details__value">
+          {{filmCtrl.filmContent.ratingData.rating}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.ratingData.rating" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Рейтинг IMDb
+        </td>
+        <td ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__value">
+          {{filmCtrl.filmContent.ratingData.ratingIMDb}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.ratingData.ratingIMDb" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Режиссеры
+        </td>
+        <td class="details__value">
+          <p class="film__infoContent">
+            <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="person.nameRU">
+              <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
             </p>
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            В ролях
-          </td>
-          <td class="details__value">
-            <p class="film__infoContent">
-              <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="person.nameRU">
-                <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
-              </p>
-              <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="!person.nameRU">
-                <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
-              </p>
+            <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="!person.nameRU">
+              <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
             </p>
-          </td>
-        </tr>
-        <tr class="details__element">
-          <td class="details__title">
-            Описание
-          </td>
-          <td ng-if="filmCtrl.filmContent.description" class="details__value">
-            {{filmCtrl.filmContent.description}}
-          </td>
-          <td ng-if="!filmCtrl.filmContent.description" class="details__value">
-            –
-          </td>
-        </tr>
-        <tr ng-if="filmCtrl.isInCinema" class="details__element">
-          <td class="details__title">
-          </td>
-          <td class="details__value">
-            <a class="link" ui-sref="seances({filmId: filmCtrl.filmContent.filmID})">Посмотреть сеансы</a>
-          </td>
-        </tr>
-      </table>
-    </div>
+          </p>
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          В ролях
+        </td>
+        <td class="details__value">
+          <p class="film__infoContent">
+            <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="person.nameRU">
+              <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
+            </p>
+            <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="!person.nameRU">
+              <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
+            </p>
+          </p>
+        </td>
+      </tr>
+      <tr class="details__element">
+        <td class="details__title">
+          Описание
+        </td>
+        <td ng-if="filmCtrl.filmContent.description" class="details__value">
+          {{filmCtrl.filmContent.description}}
+        </td>
+        <td ng-if="!filmCtrl.filmContent.description" class="details__value">
+          –
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.isInCinema" class="details__element">
+        <td class="details__title">
+        </td>
+        <td class="details__value">
+          <a class="link" ui-sref="seances({filmId: filmCtrl.filmContent.filmID})">Посмотреть сеансы</a>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

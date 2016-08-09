@@ -4,7 +4,7 @@
   </div>
   <form class="search__form" name="search_form" ng-submit="searchCtrl.findFilm()">
     <input type="text" class="search__textbox textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
-    <button class="button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
+    <button class="button search__button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
   </form>
 
   <div ng-if="searchCtrl.status == 'Loading'">
