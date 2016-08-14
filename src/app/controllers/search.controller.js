@@ -9,8 +9,9 @@ module.exports = function SearchController(jsonApi, $state) {
   vm.peopleLimit = 3;
 
   vm.findFilm = function() {
+    console.log('search');
     if (vm.searchString != null) {
-      $state.transitionTo('search', {value: vm.searchString});
+      $state.transitionTo('search.results', {value: vm.searchString});
       vm.status = "Loading";
       jsonApi.fetch("http://api.kinopoisk.cf/searchFilms?keyword=" + vm.searchString).then(function(filmsResponse) {
         vm.filmsContent = filmsResponse.data.searchFilms;

@@ -22,8 +22,14 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'afishaCtrl'
     })
     .state('search', {
-      url: "/search/:value",
+      url: "/search/",
       templateUrl: "app/views/search.html",
+      controller: 'SearchController',
+      controllerAs: 'searchCtrl'
+    })
+    .state('search.results', {
+      url: ":value",
+      templateUrl: "app/views/search.results.html",
       controller: 'SearchController',
       controllerAs: 'searchCtrl'
     })
