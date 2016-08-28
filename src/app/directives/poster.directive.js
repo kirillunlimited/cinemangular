@@ -10,6 +10,6 @@ module.exports = function poster(jsonApi) {
         'background-image': 'url(' + scope.url + ')'
       });
     },
-    template: '<img class="poster__img" src="img/blank_poster.png">'
+    template: '<div class="poster__img">'
   }
 }
