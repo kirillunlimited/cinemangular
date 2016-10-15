@@ -6,9 +6,13 @@ module.exports = function PersonController(jsonApi, $state) {
 
   jsonApi.fetch("http://api.kinopoisk.cf/getPeopleDetail?peopleID=" + $state.params.personId).then(function(response) {
     vm.personContent = response.data;
+    vm.personContent = vm.parseGeneralFilms(vm.personContent);
+    console.log(vm.personContent);
     vm.posterPath = jsonApi.switchPosterSize(vm.personContent.posterURL, 180);
     vm.sex = vm.getRusSex(vm.personContent.sex);
     vm.rusAge = vm.getRusAge(vm.personContent.age);
+
+
     vm.status = "Ready";
   });
 
@@ -36,5 +40,30 @@ module.exports = function PersonController(jsonApi, $state) {
       case "female":
         return "женский";
     }
+  };
+
+  vm.parseGeneralFilms = function(content) {
+    var generalFilmsIdsArray = [];
+
+    content.generalFilms.forEach(function(obj) {
+      generalFilmsIdsArray.push(obj.filmID);
+    });
+    content.generalSeries.forEach(function(obj) {
+      generalFilmsIdsArray.push(obj.filmID);
+    });
+
+    content.filmography.forEach(function(filmographyElement, filmographyElementIndex, filmography) {
+      filmographyElement.forEach(function(film, filmIndex, filmographyElement) {
+        if (generalFilmsIdsArray.indexOf(film.filmID) != -1) {
+          film.isGeneral = true;
+        }
+      })
+    });
+
+    return content;
+  };
+
+  vm.checkGeneralFilm = function(filmID) {
+
   };
 };

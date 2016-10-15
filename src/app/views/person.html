@@ -92,6 +92,7 @@
             <a ui-sref="film({filmId: film.filmID})" class="person__filmTitle person__filmTitle_main link">
               {{film.nameRU}}
               <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
+              <span ng-if="film.isGeneral" class="person__filmGeneral">★</span>
             </a>
           </div>
           <span ng-if="film.nameEN" class="person__filmTitle person__filmTitle_sub">{{film.nameEN}}</span>
@@ -100,6 +101,7 @@
           <a ui-sref="film({filmId: film.filmID})" class="person__filmTitle person__filmTitle_main link">
             {{film.nameEN}}
             <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
+            <span ng-if="film.isGeneral" class="person__filmGeneral">★</span>
           </a>
         </td>
       </tr>
