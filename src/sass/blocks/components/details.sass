@@ -10,17 +10,20 @@
     padding: 1em
     padding-top: 0
 
-@media (max-width: 480px)
+@media (max-width: 800px)
   .details
-    // &__element
-      // text-align: center
     &__title
       display: block
-      padding-left: 0
-      padding-right: 0
       padding-bottom: 0
     &__value
       display: block
+
+@media (max-width: 480px)
+  .details
+    &__title
+      padding-left: 0
+      padding-right: 0
+    &__value
       padding-left: 0
       padding-right: 0
     &__element
