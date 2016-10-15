@@ -62,7 +62,7 @@ gulp.task('img', function() {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('serve', ['default'], function() {
+gulp.task('serve', ['watch'], function() {
   browserSync.init({
     server: {
       baseDir: "./"
@@ -95,4 +95,4 @@ gulp.task('watch', function(){
   gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
 });
 
-gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'watch']);
+gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'watch', 'serve']);
