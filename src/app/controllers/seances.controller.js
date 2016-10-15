@@ -10,6 +10,7 @@ module.exports = function SeancesController(jsonApi, dateService, $state) {
   jsonApi.fetch("http://api.kinopoisk.cf/getSeance?filmID=" + $state.params.filmId + "&date=" + dateService.getToday()).then(function(response) {
     vm.status = "Ready";
     vm.seancesContent = response.data;
+    console.log(vm.seancesContent);
   });
 
   vm.getData = function(date) {
