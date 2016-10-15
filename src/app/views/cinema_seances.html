@@ -36,7 +36,7 @@
             <span class="seances__time" ng-repeat="seance in film.seance track by $index">{{seance.time}}{{$last ? '' : ', '}}</span>
           </div>
           <div ng-if="film.seance3D">
-            <span class="seances__time" ng-repeat="seance in film.seance3D track by $index">{{seance.time}}<sup class="seances__3d"style="color: yellow;">3D</sup>{{$last ? '' : ', '}}</span>
+            <span class="seances__time" ng-repeat="seance in film.seance3D track by $index">{{seance.time}}<sup class="seances__3d">3D</sup>{{$last ? '' : ', '}}</span>
           </div>
         </td>
       </tr>

@@ -146,7 +146,7 @@
   <div class="loader"></div>
 </div>
 
-<div class="film" ng-if="filmCtrl.seancesStatus == 'Ready'">
+<div class="seances" ng-if="filmCtrl.seancesStatus == 'Ready'">
   <select class="select" ng-model="filmCtrl.seancesSelect" ng-options="day for day in filmCtrl.days" ng-change="filmCtrl.getData(filmCtrl.seancesSelect)"></select>
   <table ng-if="filmCtrl.seancesContent.items" class="seances__list">
     <tr class="seances__element" ng-repeat="cinema in filmCtrl.seancesContent.items">
