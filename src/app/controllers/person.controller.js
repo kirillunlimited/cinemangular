@@ -45,12 +45,17 @@ module.exports = function PersonController(jsonApi, $state) {
   vm.parseGeneralFilms = function(content) {
     var generalFilmsIdsArray = [];
 
-    content.generalFilms.forEach(function(obj) {
-      generalFilmsIdsArray.push(obj.filmID);
-    });
-    content.generalSeries.forEach(function(obj) {
-      generalFilmsIdsArray.push(obj.filmID);
-    });
+    if (content.generalFilms) {
+      content.generalFilms.forEach(function(obj) {
+        generalFilmsIdsArray.push(obj.filmID);
+      });
+    }
+
+    if (content.generalSeries) {
+      content.generalSeries.forEach(function(obj) {
+        generalFilmsIdsArray.push(obj.filmID);
+      });
+    }
 
     content.filmography.forEach(function(filmographyElement, filmographyElementIndex, filmography) {
       filmographyElement.forEach(function(film, filmIndex, filmographyElement) {
