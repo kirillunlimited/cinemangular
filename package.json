@@ -1,12 +1,17 @@
 {
-  "name": "ng-kinosearch",
+  "name": "kinosearch-angular",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Single page application made with Angular JS using free kinopoisk API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirillunlimited/kinosearch-angular"
   },
-  "keywords": [],
+  "keywords": [
+    "angular",
+    "spa",
+    "movies",
+    "kinopoisk"
+  ],
   "author": "Kirill Ivanov",
   "license": "ISC",
   "devDependencies": {
