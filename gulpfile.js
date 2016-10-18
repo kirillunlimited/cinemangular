@@ -62,6 +62,11 @@ gulp.task('img', function() {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('gallery-icons', function() {
+  return gulp.src('./node_modules/ng-image-gallery/res/icons/**/*.{jpg,png,svg,gif}')
+    .pipe(gulp.dest('./dist/res/icons'));
+});
+
 gulp.task('serve', ['watch'], function() {
   browserSync.init({
     server: {
@@ -95,4 +100,4 @@ gulp.task('watch', function(){
   gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
 });
 
-gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'watch', 'serve']);
+gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'gallery-icons', 'watch', 'serve']);

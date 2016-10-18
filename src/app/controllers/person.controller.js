@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function PersonController(jsonApi, $state) {
+module.exports = function PersonController(jsonApi, $state, $scope) {
   var vm = this;
 
   vm.status = "Loading";
@@ -10,6 +10,7 @@ module.exports = function PersonController(jsonApi, $state) {
     vm.posterPath = jsonApi.switchPosterSize(vm.personContent.posterURL, 180);
     vm.sex = vm.getRusSex(vm.personContent.sex);
     vm.rusAge = vm.getRusAge(vm.personContent.age);
+    vm.photos = jsonApi.getPhotoArray(vm.personContent.gallery);
 
     vm.status = "Ready";
   });
@@ -64,9 +65,5 @@ module.exports = function PersonController(jsonApi, $state) {
     });
 
     return content;
-  };
-
-  vm.checkGeneralFilm = function(filmID) {
-
   };
 };

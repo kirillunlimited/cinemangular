@@ -10,6 +10,8 @@ module.exports = function FilmController(jsonApi, dateService, $state) {
   jsonApi.fetch("http://api.kinopoisk.cf/getFilm?filmID=" + $state.params.filmId).then(function(filmResponse) {
     vm.filmContent = filmResponse.data;
     vm.posterPath = jsonApi.switchPosterSize(vm.filmContent.posterURL, 360);
+    vm.photos = jsonApi.getPhotoArray(vm.filmContent.gallery);
+
     vm.filmStatus = "Ready";
 
     vm.getData(vm.seancesSelect);
@@ -22,5 +24,4 @@ module.exports = function FilmController(jsonApi, dateService, $state) {
       vm.seancesStatus = "Ready";
     });
   };
-
 };

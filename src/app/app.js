@@ -1,8 +1,10 @@
 'use strict';
-var angular = require('angular');
-var ngRoute = require('angular-ui-router');
-var ngAnimate = require('angular-animate');
-var app = angular.module('app', ['ui.router', 'ngAnimate']);
+require('angular');
+require('angular-ui-router');
+require('angular-animate');
+require('ng-image-gallery');
+
+var app = angular.module('app', ['ui.router', 'ngAnimate', 'thatisuday.ng-image-gallery']);
 
 require('./config');
 require('./services');

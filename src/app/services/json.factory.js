@@ -29,9 +29,25 @@ module.exports = function jsonApi($http) {
       return "img/no_poster.png";
     }
   }
+
+  function getFullPhotoPath(imgPath) {
+    return imgPath.replace('sm_','');
+  }
+
+  function getPhotoArray(content) {
+    var photoArray = [];
+    for (var i in content) {
+      var fullPhotoPath = getFullPhotoPath(content[i].preview);
+      photoArray.push({url: 'https://st.kp.yandex.net/images/' + fullPhotoPath})
+    }
+    return photoArray;
+  }
+
+
   return {
     fetch: fetch,
     parse: parse,
-    switchPosterSize: switchPosterSize
+    switchPosterSize: switchPosterSize,
+    getPhotoArray: getPhotoArray
   };
 };
