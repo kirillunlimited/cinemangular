@@ -79,7 +79,7 @@
     </table>
   </div>
 
-  <ng-image-gallery images="personCtrl.photos"></ng-image-gallery>
+  <ng-image-gallery class="gallery_person" images="personCtrl.photos"></ng-image-gallery>
 
   <div ng-repeat="filmsGroup in personCtrl.personContent.filmography" class="person__filmsGroup">
     <h3 class="person__filmsGroupTitle">{{filmsGroup[0].professionText}} ({{filmsGroup.length}})</h3>
