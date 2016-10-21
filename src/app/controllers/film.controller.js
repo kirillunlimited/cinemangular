@@ -4,9 +4,6 @@ module.exports = function FilmController(jsonApi, dateService, $state) {
 
   vm.filmStatus = "Loading";
 
-  vm.days = dateService.getDaysList();
-  vm.seancesSelect = vm.days[0];  // init default value for select
-
   jsonApi.fetch("http://api.kinopoisk.cf/getFilm?filmID=" + $state.params.filmId).then(function(filmResponse) {
     vm.filmContent = filmResponse.data;
     vm.posterPath = jsonApi.switchPosterSize(vm.filmContent.posterURL, 360);
@@ -14,7 +11,15 @@ module.exports = function FilmController(jsonApi, dateService, $state) {
 
     vm.filmStatus = "Ready";
 
-    vm.getData(vm.seancesSelect);
+    if (vm.filmContent.hasSeance) {
+      vm.days = dateService.getDaysList();
+      vm.seancesSelect = vm.days[0];  // init default value for select
+      vm.getData(vm.seancesSelect);
+      vm.hasSeance = true;
+    }
+    else {
+      vm.hasSeance = false;
+    }
   });
 
   vm.getData = function(date) {

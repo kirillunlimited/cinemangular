@@ -11,7 +11,7 @@
   <div class="film__content">
     <img class="film__poster" ng-src="{{filmCtrl.posterPath}}" alt="Постер {{filmCtrl.filmContent.nameRU}}" />
     <table class="film__details details">
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.genre" class="details__element">
         <td class="details__title">
           Жанр
         </td>
@@ -19,81 +19,60 @@
          {{filmCtrl.filmContent.genre}}
         </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.year" class="details__element">
         <td class="details__title">
           Год
         </td>
-        <td ng-if="filmCtrl.filmContent.year" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.year}}
         </td>
-        <td ng-if="!filmCtrl.filmContent.year" class="details__value">
-          –
-        </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.filmLength" class="details__element">
         <td class="details__title">
           Продолжительность
         </td>
-        <td ng-if="filmCtrl.filmContent.filmLength" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.filmLength}}
         </td>
-        <td ng-if="!filmCtrl.filmContent.filmLength" class="details__value">
-          –
-        </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.country" class="details__element">
         <td class="details__title">
           Страна
         </td>
-        <td ng-if="filmCtrl.filmContent.country" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.country}}
         </td>
-        <td ng-if="!filmCtrl.filmContent.country" class="details__value">
-          –
-        </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__element">
         <td class="details__title">
           Премьера мир
         </td>
-        <td ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.rentData.premiereWorld}}
         </td>
-        <td ng-if="!filmCtrl.filmContent.rentData.premiereWorld" class="details__value">
-          –
-        </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.rentData.premiereRU" class="details__element">
         <td class="details__title">
           Премьера РФ
         </td>
-        <td ng-if="filmCtrl.filmContent.rentData.premiereRU" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.rentData.premiereRU}}
         </td>
-        <td ng-if="!filmCtrl.filmContent.rentData.premiereRU" class="details__value">
-          –
-        </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.ratingData.rating" class="details__element">
         <td class="details__title">
           Рейтинг
         </td>
-        <td ng-if="filmCtrl.filmContent.ratingData.rating" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.ratingData.rating}}
         </td>
-        <td ng-if="!filmCtrl.filmContent.ratingData.rating" class="details__value">
-          –
-        </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__element">
         <td class="details__title">
           Рейтинг IMDb
         </td>
-        <td ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.ratingData.ratingIMDb}}
-        </td>
-        <td ng-if="!filmCtrl.filmContent.ratingData.ratingIMDb" class="details__value">
-          –
         </td>
       </tr>
       <tr class="details__element">
@@ -126,15 +105,12 @@
           </p>
         </td>
       </tr>
-      <tr class="details__element">
+      <tr ng-if="filmCtrl.filmContent.description" class="details__element">
         <td class="details__title">
           Описание
         </td>
-        <td ng-if="filmCtrl.filmContent.description" class="details__value">
+        <td class="details__value">
           {{filmCtrl.filmContent.description}}
-        </td>
-        <td ng-if="!filmCtrl.filmContent.description" class="details__value">
-          –
         </td>
       </tr>
     </table>
@@ -142,27 +118,28 @@
   <ng-image-gallery images="filmCtrl.photos"></ng-image-gallery>
 </div>
 
+<div ng-if="filmCtrl.hasSeance">
+  <div ng-if="filmCtrl.seancesStatus == 'Loading'">
+    <div class="loader"></div>
+  </div>
 
-<div ng-if="filmCtrl.seancesStatus == 'Loading'">
-  <div class="loader"></div>
-</div>
-
-<div class="seances" ng-if="filmCtrl.seancesStatus == 'Ready'">
-  <select class="select" ng-model="filmCtrl.seancesSelect" ng-options="day for day in filmCtrl.days" ng-change="filmCtrl.getData(filmCtrl.seancesSelect)"></select>
-  <table ng-if="filmCtrl.seancesContent.items" class="seances__list">
-    <tr class="seances__element" ng-repeat="cinema in filmCtrl.seancesContent.items">
-      <td class="seances__cell">
-        <a class="link" ui-sref="cinema({cinemaId: cinema.cinemaID})">{{cinema.cinemaName}}</a>
-      </td>
-      <td class="seances__cell">
-        <div ng-if="cinema.seance">
-          <span class="seances__time" ng-repeat="seance in cinema.seance track by $index">{{seance.time}}{{$last ? '' : ', '}}</span>
-        </div>
-        <div ng-if="cinema.seance3D">
-          <span class="seances__time" ng-repeat="seance in cinema.seance3D track by $index">{{seance.time}}<sup class="seances__3d">3D</sup>{{$last ? '' : ', '}}</span>
-        </div>
-      </td>
-    </tr>
-  </table>
-  <p ng-if="!filmCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{filmCtrl.seancesContent.nameRU}}".</p>
+  <div class="seances" ng-if="filmCtrl.seancesStatus == 'Ready'">
+    <select class="select" ng-model="filmCtrl.seancesSelect" ng-options="day for day in filmCtrl.days" ng-change="filmCtrl.getData(filmCtrl.seancesSelect)"></select>
+    <table ng-if="filmCtrl.seancesContent.items" class="seances__list">
+      <tr class="seances__element" ng-repeat="cinema in filmCtrl.seancesContent.items">
+        <td class="seances__cell">
+          <a class="link" ui-sref="cinema({cinemaId: cinema.cinemaID})">{{cinema.cinemaName}}</a>
+        </td>
+        <td class="seances__cell">
+          <div ng-if="cinema.seance">
+            <span class="seances__time" ng-repeat="seance in cinema.seance track by $index">{{seance.time}}{{$last ? '' : ', '}}</span>
+          </div>
+          <div ng-if="cinema.seance3D">
+            <span class="seances__time" ng-repeat="seance in cinema.seance3D track by $index">{{seance.time}}<sup class="seances__3d">3D</sup>{{$last ? '' : ', '}}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p ng-if="!filmCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{filmCtrl.seancesContent.nameRU}}".</p>
+  </div>
 </div>
