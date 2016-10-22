@@ -68,7 +68,7 @@
          {{personCtrl.personContent.deathplace}}
         </td>
       </tr>
-      <tr class="details__element" ng-if="personCtrl.personContent.growth" >
+      <tr ng-if="personCtrl.personContent.growth" class="details__element">
         <td class="details__title">
           Рост
         </td>
@@ -79,7 +79,7 @@
     </table>
   </div>
 
-  <ng-image-gallery class="gallery_person" images="personCtrl.photos"></ng-image-gallery>
+  <ng-image-gallery class="gallery_person" images="personCtrl.photos" bg-close="true"></ng-image-gallery>
 
   <div ng-repeat="filmsGroup in personCtrl.personContent.filmography" class="person__filmsGroup">
     <h3 class="person__filmsGroupTitle">{{filmsGroup[0].professionText}} ({{filmsGroup.length}})</h3>

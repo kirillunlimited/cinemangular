@@ -115,12 +115,12 @@
       </tr>
     </table>
   </div>
-  <ng-image-gallery images="filmCtrl.photos"></ng-image-gallery>
+  <ng-image-gallery images="filmCtrl.photos" bg-close="true"></ng-image-gallery>
 </div>
 
 <div ng-if="filmCtrl.hasSeance">
   <div ng-if="filmCtrl.seancesStatus == 'Loading'">
-    <div class="loader"></div>
+    <div class="loader loader_inner"></div>
   </div>
 
   <div class="seances" ng-if="filmCtrl.seancesStatus == 'Ready'">
