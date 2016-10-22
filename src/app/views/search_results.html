@@ -1,0 +1,54 @@
+<section ng-if="searchCtrl.filmsContent" class="search__section">
+  <h2 class="search__subtitle">Фильмы</h2>
+  <div class="search__element" ng-repeat="film in searchCtrl.filmsContent | limitTo:searchCtrl.filmsLimit">
+    <a ui-sref="film({filmId: film.id})">
+      <img class="search__img" ng-src="{{searchCtrl.getPoster(film.posterURL)}}" alt="" />
+    </a>
+    <div class="search__content">
+      <div ng-if="film.nameRU" class="search__main">
+        <div>
+          <a ui-sref="film({filmId: film.id})" class="search__value link">{{film.nameRU}}
+            <span ng-if="film.year">({{film.year}})</span>
+          </a>
+        </div>
+        <span class="search__value search__value_secondary">{{film.nameEN}}</span>
+      </div>
+      <div ng-if="!film.nameRU" class="search__main">
+        <a ui-sref="film({filmId: film.id})" class="search__value link">{{film.nameEN}}
+          <span ng-if="film.year">({{film.year}})</span>
+        </a>
+      </div>
+      <div class="search__description">
+        <p class="search__value">{{film.description}}</p>
+        <p class="search__value">{{film.rating}}</p>
+      </div>
+    </div>
+  </div>
+  <button class="button" ng-click="searchCtrl.moreFilms(searchCtrl.filmsContent.length)" ng-if="searchCtrl.filmsContent.length > searchCtrl.filmsLimit">Показать все фильмы</button>
+</section>
+
+<section ng-if="searchCtrl.peopleContent" class="search__section">
+  <h2 class="search__subtitle">Люди</h2>
+  <div class="search__element" ng-repeat="person in searchCtrl.peopleContent | limitTo:searchCtrl.peopleLimit ">
+    <a ui-sref="person({personId: person.id})">
+      <img class="search__img" ng-src="{{searchCtrl.getPoster(person.posterURL)}}" alt="" />
+    </a>
+    <div class="search__content">
+      <div ng-if="person.nameRU" class="search__main">
+        <div>
+          <a ui-sref="person({personId: person.id})" class="search__value link">{{person.nameRU}}</a>
+        </div>
+        <span ng-if="person.nameEN" class="search__value search__value_secondary">{{person.nameEN}}</span>
+      </div>
+      <div ng-if="!person.nameRU" class="search__main">
+        <div>
+          <a ui-sref="person({personId: person.id})" class="search__value link">{{person.nameEN}}</a>
+        </div>
+      </div>
+      <div class="search__description">
+        <p class="search__value">{{person.description}}</p>
+      </div>
+    </div>
+  </div>
+  <button class="button" ng-click="searchCtrl.morePeople(searchCtrl.peopleContent.length)" ng-if="searchCtrl.peopleContent.length > searchCtrl.peopleLimit">Показать всех людей</button>
+</section>

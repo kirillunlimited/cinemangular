@@ -1,10 +1,12 @@
-// сервис для работы с датами
+/**
+ * Сервис для работы с датами
+ */
 'use strict';
 module.exports = function dateService() {
-  this.getToday = function() {
+  function getToday() {
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+    var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
     if(dd<10) {
         dd='0'+dd;
@@ -17,13 +19,13 @@ module.exports = function dateService() {
   };
 
   // формирование массива дней для заполнения выпадающего списка
-  this.getDaysList = function() {
+  function getDaysList() {
     var days = [];
     for (var i = 0; i < 7; i++) {
       var day = new Date();
       day.setDate(day.getDate() + i);
       var dd = day.getDate();
-      var mm = day.getMonth() + 1; //January is 0!
+      var mm = day.getMonth() + 1;
       var yyyy = day.getFullYear();
       if(dd<10) {
           dd='0'+dd;
@@ -36,4 +38,11 @@ module.exports = function dateService() {
     }
     return days;
   };
+
+  return {
+    getToday: getToday,
+    getDaysList: getDaysList
+  };
+
 };
+

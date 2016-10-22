@@ -29,7 +29,10 @@
           </a>
         </td>
         <td class="seances__cell">
-          <a class="link" ui-sref="film({filmId: film.filmID})">{{film.nameRU}}</a>
+          <div>
+            <a class="seances__title link" ui-sref="film({filmId: film.filmID})">{{film.nameRU}}</a>
+          </div>
+          <span ng-if="film.genre" class="seances__filmGenre">{{film.genre}}</span>
         </td>
         <td class="seances__cell">
           <div ng-if="film.seance">

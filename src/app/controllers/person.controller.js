@@ -1,18 +1,18 @@
 'use strict';
-module.exports = function PersonController(jsonApi, $state, $scope) {
+module.exports = function PersonController(jsonFactory, photoService, $state, $scope) {
   var vm = this;
 
-  vm.status = "Loading";
+  vm.status = 'Loading';
 
-  jsonApi.fetch("http://api.kinopoisk.cf/getPeopleDetail?peopleID=" + $state.params.personId).then(function(response) {
+  jsonFactory.fetch('person', $state.params.personId).then(function(response) {
     vm.personContent = response.data;
     vm.personContent = vm.parseGeneralFilms(vm.personContent);
-    vm.posterPath = jsonApi.switchPosterSize(vm.personContent.posterURL, 180);
+    vm.posterPath = photoService.switchPosterSize(vm.personContent.posterURL, 180);
     vm.sex = vm.getRusSex(vm.personContent.sex);
     vm.rusAge = vm.getRusAge(vm.personContent.age);
-    vm.photos = jsonApi.getPhotoArray(vm.personContent.gallery);
+    vm.photos = photoService.getPhotoArray(vm.personContent.gallery);
 
-    vm.status = "Ready";
+    vm.status = 'Ready';
   });
 
   vm.getRusAge = function(age) {
@@ -34,13 +34,14 @@ module.exports = function PersonController(jsonApi, $state, $scope) {
 
   vm.getRusSex = function(sex) {
     switch(sex) {
-      case "male":
-        return "мужской";
-      case "female":
+      case 'male':
+        return 'мужской';
+      case 'female':
         return "женский";
     }
   };
 
+  // получить список лучших фильмов
   vm.parseGeneralFilms = function(content) {
     var generalFilmsIdsArray = [];
 

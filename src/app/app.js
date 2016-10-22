@@ -6,6 +6,7 @@ require('ng-image-gallery');
 
 var app = angular.module('app', ['ui.router', 'ngAnimate', 'thatisuday.ng-image-gallery']);
 
+require('./constants/')
 require('./config');
 require('./services');
 require('./directives');
