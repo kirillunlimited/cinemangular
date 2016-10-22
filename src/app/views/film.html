@@ -75,32 +75,17 @@
           {{filmCtrl.filmContent.ratingData.ratingIMDb}}
         </td>
       </tr>
-      <tr class="details__element">
+
+
+
+      <tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creators">
         <td class="details__title">
-          Режиссеры
+          {{type}}
         </td>
         <td class="details__value">
           <p class="film__infoContent">
-            <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="person.nameRU">
-              <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
-            </p>
-            <p ng-repeat="person in filmCtrl.filmContent.creators[0]" ng-if="!person.nameRU">
-              <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
-            </p>
-          </p>
-        </td>
-      </tr>
-      <tr class="details__element">
-        <td class="details__title">
-          В ролях
-        </td>
-        <td class="details__value">
-          <p class="film__infoContent">
-            <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="person.nameRU">
-              <a class="link" ui-sref="person({personId: person.id})">{{person.nameRU}}</a>
-            </p>
-            <p ng-repeat="person in filmCtrl.filmContent.creators[1]" ng-if="!person.nameRU">
-              <a class="link" ui-sref="person({personId: person.id})">{{person.nameEN}}</a>
+            <p ng-repeat="creator in creatorsGroup">
+              <a class="link" ui-sref="person({personId: creator.id})">{{creator.name}}</a>
             </p>
           </p>
         </td>

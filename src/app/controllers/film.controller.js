@@ -8,7 +8,7 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.filmContent = filmResponse.data;
     vm.posterPath = photoService.switchPosterSize(vm.filmContent.posterURL, 360);
     vm.photos = photoService.getPhotoArray(vm.filmContent.gallery);
-
+    vm.creators = vm.parseCreators(filmResponse.data.creators);
     vm.filmStatus = 'Ready';
 
     if (vm.filmContent.hasSeance) {
@@ -29,4 +29,21 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
       vm.seancesStatus = 'Ready';
     });
   };
+
+  vm.parseCreators = function(creatorsArray) {
+    var creators = {};
+    creatorsArray.forEach(function(creatorsGroup) {
+      var creatorsType = creatorsGroup[0].professionText;
+      creators[creatorsType] = [];
+      creatorsGroup.forEach(function(creator) {
+        var newCreator = {};
+        newCreator.id = creator.id;
+        // использовать имя на английском, если отсутствует на русском
+        newCreator.name = (creator.nameRU ? creator.nameRU : creator.nameEN);
+        creators[creatorsType].push(newCreator);
+      })
+    });
+    return creators;
+  }
+
 };
