@@ -27,6 +27,14 @@
           {{filmCtrl.filmContent.year}}
         </td>
       </tr>
+      <tr ng-if="filmCtrl.filmContent.slogan" class="details__element">
+        <td class="details__title">
+          Слоган
+        </td>
+        <td class="details__value">
+          {{filmCtrl.filmContent.slogan}}
+        </td>
+      </tr>
       <tr ng-if="filmCtrl.filmContent.filmLength" class="details__element">
         <td class="details__title">
           Продолжительность
@@ -64,7 +72,7 @@
           Рейтинг
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.rating}}
+          {{filmCtrl.filmContent.ratingData.rating}} <span ng-if="filmCtrl.filmContent.ratingData.ratingVoteCount">({{filmCtrl.filmContent.ratingData.ratingVoteCount}} голосов)</span>
         </td>
       </tr>
       <tr ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__element">
@@ -72,7 +80,64 @@
           Рейтинг IMDb
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.ratingIMDb}}
+          {{filmCtrl.filmContent.ratingData.ratingIMDb}} <span ng-if="filmCtrl.filmContent.ratingData.ratingIMDbVoteCount">({{filmCtrl.filmContent.ratingData.ratingIMDbVoteCount}} голосов)</span>
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.filmContent.ratingData.ratingFilmCritics" class="details__element">
+        <td class="details__title">
+          Рейтинг критиков
+        </td>
+        <td class="details__value">
+          {{filmCtrl.filmContent.ratingData.ratingFilmCritics}} <span ng-if="filmCtrl.filmContent.ratingData.ratingFilmCriticsVoteCount">({{filmCtrl.filmContent.ratingData.ratingFilmCriticsVoteCount}} голосов)</span>
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.filmContent.ratingData.ratingGoodReview" class="details__element">
+        <td class="details__title">
+          Положительные отзывы
+        </td>
+        <td class="details__value">
+          {{filmCtrl.filmContent.ratingData.ratingGoodReview}} <span ng-if="filmCtrl.filmContent.ratingData.ratingGoodReviewVoteCount">({{filmCtrl.filmContent.ratingData.ratingGoodReviewVoteCount}} голосов)</span>
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.filmContent.ratingData.ratingAwait" class="details__element">
+        <td class="details__title">
+          Рейтинг ожидания
+        </td>
+        <td class="details__value">
+          {{filmCtrl.filmContent.ratingData.ratingAwait}} <span ng-if="filmCtrl.filmContent.ratingData.ratingAwaitCount">({{filmCtrl.filmContent.ratingData.ratingAwaitCount}} голосов)</span>
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.filmContent.budgetData.budget" class="details__element">
+        <td class="details__title">
+          Бюджет
+        </td>
+        <td class="details__value">
+          {{filmCtrl.filmContent.budgetData.budget}}
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.filmContent.budgetData.grossRU" class="details__element">
+        <td class="details__title">
+          Сборы в России
+        </td>
+        <td class="details__value">
+          ${{filmCtrl.filmContent.budgetData.grossRU}}
+        </td>
+      </tr>
+      <tr ng-if="filmCtrl.filmContent.budgetData.grossUSA" class="details__element">
+        <td class="details__title">
+          Сборы в США
+        </td>
+        <td class="details__value">
+          ${{filmCtrl.filmContent.budgetData.grossUSA}}
+        </td>
+      </tr>
+
+      <tr ng-if="filmCtrl.filmContent.budgetData.grossWorld" class="details__element">
+        <td class="details__title">
+          Сборы в мире
+        </td>
+        <td class="details__value">
+          ${{filmCtrl.filmContent.budgetData.grossWorld}}
         </td>
       </tr>
 
@@ -125,6 +190,6 @@
         </td>
       </tr>
     </table>
-    <p ng-if="!filmCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{filmCtrl.seancesContent.nameRU}}".</p>
+    <p ng-if="!filmCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{filmCtrl.seancesContent.nameRU}}". Укажите другую дату.</p>
   </div>
 </div>
