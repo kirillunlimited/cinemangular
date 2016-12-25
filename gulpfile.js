@@ -67,7 +67,7 @@ gulp.task('gallery-icons', function() {
     .pipe(gulp.dest('./dist/res/icons'));
 });
 
-gulp.task('serve', ['watch'], function() {
+gulp.task('serve', ['default'], function() {
   browserSync.init({
     server: {
       baseDir: "./"
@@ -100,4 +100,4 @@ gulp.task('watch', function(){
   gulp.watch('./src/sass/**/*.{sass,scss}', ['sass']);
 });
 
-gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'gallery-icons', 'watch', 'serve']);
+gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'gallery-icons', 'watch']);

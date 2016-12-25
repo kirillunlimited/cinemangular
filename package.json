@@ -1,10 +1,9 @@
 {
-  "name": "kinosearch-angular",
+  "name": "kinosearch",
   "version": "1.0.0",
-  "description": "Single page application made with Angular JS using free kinopoisk API",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kirillunlimited/kinosearch-angular"
+    "url": "https://github.com/kirillunlimited/kinosearch"
   },
   "keywords": [
     "angular",
@@ -30,7 +29,7 @@
   "dependencies": {
     "angular": "^1.5.7",
     "angular-animate": "^1.5.8",
-    "ng-image-gallery": "^2.0.8",
-    "ui-router": "^1.0.0-alpha.3"
+    "angular-ui-router": "^0.3.2",
+    "ng-image-gallery": "^2.0.8"
   }
 }
