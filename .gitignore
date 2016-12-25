@@ -2,3 +2,4 @@ dist/
 logs/
 res/
 node_modules/
+src/app/constants/key.constant.js
