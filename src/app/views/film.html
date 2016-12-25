@@ -4,54 +4,54 @@
 
 <div class="film" ng-if="filmCtrl.filmStatus == 'Ready'">
   <div class="subject">
-    <h1 class="subject__title subject__title_main">{{filmCtrl.filmContent.nameRU}}</h1>
-    <h2 ng-if="filmCtrl.filmContent.nameEN" class="subject__title subject__title_sub">{{filmCtrl.filmContent.nameEN}}</h2>
+    <h1 class="subject__title subject__title_main">{{filmCtrl.filmContent.title}}</h1>
+    <h2 class="subject__title subject__title_sub">{{filmCtrl.filmContent.original_title}}</h2>
   </div>
 
   <div class="film__content">
-    <img class="film__poster" ng-src="{{filmCtrl.posterPath}}" alt="Постер {{filmCtrl.filmContent.nameRU}}" />
+    <img class="film__poster" ng-src="{{filmCtrl.filmContent.poster_path_full}}" alt="Постер {{filmCtrl.filmContent.title}}" />
     <table class="film__details details">
-      <tr ng-if="filmCtrl.filmContent.genre" class="details__element">
+      <tr ng-if="filmCtrl.filmContent.genres.content" class="details__element">
         <td class="details__title">
           Жанр
         </td>
         <td class="details__value">
-         {{filmCtrl.filmContent.genre}}
+         {{filmCtrl.filmContent.genres.content}}
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.year" class="details__element">
+      <tr ng-if="filmCtrl.filmContent.release_date" class="details__element">
         <td class="details__title">
-          Год
+          Дата выхода
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.year}}
+          {{filmCtrl.filmContent.release_date}}
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.slogan" class="details__element">
+      <tr ng-if="filmCtrl.filmContent.status" class="details__element">
         <td class="details__title">
-          Слоган
+          Статус
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.slogan}}
+          {{filmCtrl.filmContent.status}}
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.filmLength" class="details__element">
+      <tr ng-if="filmCtrl.filmContent.runtime" class="details__element">
         <td class="details__title">
           Продолжительность
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.filmLength}}
+          {{filmCtrl.filmContent.runtime}}
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.country" class="details__element">
+      <tr ng-if="filmCtrl.filmContent.production_countries.content" class="details__element">
         <td class="details__title">
           Страна
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.country}}
+          {{filmCtrl.filmContent.production_countries.content}}
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__element">
+      <!--<tr ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__element">
         <td class="details__title">
           Премьера мир
         </td>
@@ -66,16 +66,16 @@
         <td class="details__value">
           {{filmCtrl.filmContent.rentData.premiereRU}}
         </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.ratingData.rating" class="details__element">
+      </tr>-->
+      <tr ng-if="filmCtrl.filmContent.vote_average" class="details__element">
         <td class="details__title">
           Рейтинг
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.rating}} <span ng-if="filmCtrl.filmContent.ratingData.ratingVoteCount">({{filmCtrl.filmContent.ratingData.ratingVoteCount}} голосов)</span>
+          {{filmCtrl.filmContent.vote_average}} <span ng-if="filmCtrl.filmContent.vote_count">({{filmCtrl.filmContent.vote_count}} голосов)</span>
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__element">
+      <!--<tr ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__element">
         <td class="details__title">
           Рейтинг IMDb
         </td>
@@ -106,16 +106,16 @@
         <td class="details__value">
           {{filmCtrl.filmContent.ratingData.ratingAwait}} <span ng-if="filmCtrl.filmContent.ratingData.ratingAwaitCount">({{filmCtrl.filmContent.ratingData.ratingAwaitCount}} голосов)</span>
         </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.budgetData.budget" class="details__element">
+      </tr>-->
+      <tr ng-if="filmCtrl.filmContent.budget" class="details__element">
         <td class="details__title">
           Бюджет
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.budgetData.budget}}
+          {{filmCtrl.filmContent.budget}}
         </td>
       </tr>
-      <tr ng-if="filmCtrl.filmContent.budgetData.grossRU" class="details__element">
+      <!--<tr ng-if="filmCtrl.filmContent.budgetData.grossRU" class="details__element">
         <td class="details__title">
           Сборы в России
         </td>
@@ -139,11 +139,9 @@
         <td class="details__value">
           ${{filmCtrl.filmContent.budgetData.grossWorld}}
         </td>
-      </tr>
+      </tr>-->
 
-
-
-      <tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creators">
+      <!--<tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creators">
         <td class="details__title">
           {{type}}
         </td>
@@ -154,13 +152,14 @@
             </p>
           </p>
         </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.description" class="details__element">
+      </tr>-->
+
+      <tr ng-if="filmCtrl.filmContent.overview" class="details__element">
         <td class="details__title">
           Описание
         </td>
         <td class="details__value">
-          {{filmCtrl.filmContent.description}}
+          {{filmCtrl.filmContent.overview}}
         </td>
       </tr>
     </table>
@@ -168,7 +167,7 @@
   <ng-image-gallery images="filmCtrl.photos" bg-close="true"></ng-image-gallery>
 </div>
 
-<div ng-if="filmCtrl.hasSeance">
+<!--<div ng-if="filmCtrl.hasSeance">
   <div ng-if="filmCtrl.seancesStatus == 'Loading'">
     <div class="loader loader_inner"></div>
   </div>
@@ -192,4 +191,5 @@
     </table>
     <p ng-if="!filmCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{filmCtrl.seancesContent.nameRU}}". Укажите другую дату.</p>
   </div>
-</div>
+
+</div>-->

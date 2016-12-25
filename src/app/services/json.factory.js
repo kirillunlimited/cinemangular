@@ -2,15 +2,38 @@
  * Фабрика для получения и обработки данных из API
  */
 'use strict';
-module.exports = function jsonFactory($http, dateService, PATH) {
+module.exports = function jsonFactory($http, dateService, PATH, KEY) {
 
   // обращение к API
-  function fetch(method, paramId, paramDate) {
-    var objectId = (paramId) ? paramId : '';
-    var date = (paramDate) ? '&date=' + paramDate : '';
-    var requestUrl = PATH.API + PATH.METHODS[method] + objectId + date;
 
+  // function fetch(method, paramId, paramDate) {
+  //   var objectId = (paramId) ? paramId : '';
+  //   var date = (paramDate) ? '&date=' + paramDate : '';
+  //   var requestUrl = PATH.API + PATH.METHODS[method] + objectId + date;
+
+  //   return $http.get(requestUrl);
+  // }
+
+  function fetch(method, action){
+    console.log(KEY);
+    if (action) {
+      var method = PATH.METHODS[method] + action;
+    }
+    else {
+      var method = PATH.METHODS[method];
+    }
+    var requestUrl = PATH.API + method + '?api_key=' + KEY.VALUE + '&language=ru-RU';
     return $http.get(requestUrl);
+  }
+
+  function serialize(obj) {
+    var str = [];
+    for(var p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    }
+    return str.join("&");
   }
 
   function parse(response, objKey) {
@@ -30,8 +53,17 @@ module.exports = function jsonFactory($http, dateService, PATH) {
     }
   }
 
+  // массив объектов -> перечисление названий объектов
+  function extractObjectArray(objetArray) {
+    var names = objetArray.map(function(object) {
+      return object.name;
+    });
+    return names.join(', ');
+  }
+
   return {
     fetch: fetch,
-    parse: parse
+    parse: parse,
+    extractObjectArray: extractObjectArray
   };
 };

@@ -1,10 +1,10 @@
 <div class="afisha__poster poster" ng-repeat="film in afishaCtrl.films">
   <div class="poster__wrapper">
     <a ui-sref="film({filmId: film.id})" class="poster__link">
-      <poster path="{{film.posterURL}}"></poster>
+      <poster path="{{film.poster_path}}"></poster>
       <p class="poster__description">
-        <span class="poster__title poster__title_name">{{film.nameRU}}</span>
-        <span class="poster__title poster__title_genre">{{film.genre}}</span>
+        <span class="poster__title poster__title_name">{{film.title}}</span>
+        <!--<span class="poster__title poster__title_genre">{{film.genre}}</span>-->
       </p>
     </a>
   </div>

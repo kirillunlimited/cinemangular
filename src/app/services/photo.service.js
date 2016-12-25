@@ -13,9 +13,14 @@ module.exports = function photoService(PATH) {
     }
   };
 
+  // function getFullPhotoPath(imgPath) {
+  //   return imgPath.replace('sm_','');
+  // };
+
   function getFullPhotoPath(imgPath) {
-    return imgPath.replace('sm_','');
-  };
+    console.log(PATH);
+    return PATH.IMG + imgPath;
+  }
 
   function getPhotoArray(content) {
     var photoArray = [];

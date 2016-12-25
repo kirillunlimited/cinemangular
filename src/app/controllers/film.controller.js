@@ -4,22 +4,35 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
 
   vm.filmStatus = 'Loading';
 
+  // jsonFactory.fetch('film',$state.params.filmId).then(function(filmResponse) {
+  //   vm.filmContent = filmResponse.data;
+  //   vm.posterPath = photoService.switchPosterSize(vm.filmContent.posterURL, 360);
+  //   vm.photos = photoService.getPhotoArray(vm.filmContent.gallery);
+  //   vm.creators = vm.parseCreators(filmResponse.data.creators);
+  //   vm.filmStatus = 'Ready';
+
+  //   if (vm.filmContent.hasSeance) {
+  //     vm.days = dateService.getDaysList();
+  //     vm.seancesSelect = vm.days[0];
+  //     vm.getData(vm.seancesSelect);
+  //     vm.hasSeance = true;
+  //   }
+  //   else {
+  //     vm.hasSeance = false;
+  //   }
+  // });
+
   jsonFactory.fetch('film',$state.params.filmId).then(function(filmResponse) {
     vm.filmContent = filmResponse.data;
-    vm.posterPath = photoService.switchPosterSize(vm.filmContent.posterURL, 360);
-    vm.photos = photoService.getPhotoArray(vm.filmContent.gallery);
-    vm.creators = vm.parseCreators(filmResponse.data.creators);
+    vm.filmContent.genres.content = jsonFactory.extractObjectArray(vm.filmContent.genres);
+    vm.filmContent.production_countries.content = jsonFactory.extractObjectArray(vm.filmContent.production_countries);
+    vm.filmContent.poster_path_full = photoService.getFullPhotoPath(vm.filmContent.poster_path);
+    // vm.posterPath = photoService.switchPosterSize(vm.filmContent.posterURL, 360);
+    // vm.photos = photoService.getPhotoArray(vm.filmContent.gallery);
+    // vm.creators = vm.parseCreators(filmResponse.data.creators);
+    console.log(filmResponse.data);
     vm.filmStatus = 'Ready';
 
-    if (vm.filmContent.hasSeance) {
-      vm.days = dateService.getDaysList();
-      vm.seancesSelect = vm.days[0];
-      vm.getData(vm.seancesSelect);
-      vm.hasSeance = true;
-    }
-    else {
-      vm.hasSeance = false;
-    }
   });
 
   vm.getData = function(date) {
