@@ -7,8 +7,9 @@
     <h1 class="subject__title subject__title_main">Афиша</h1>
   </div>
   <nav class="afisha__buttons">
-    <a ui-sref="afisha.today" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}">Сегодня</a>
-    <a ui-sref="afisha.soon" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.soon')}">Скоро</a>
+    <a ui-sref="afisha.today" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}">В кино</a>
+    <a ui-sref="afisha.upcoming" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.upcoming')}">Скоро</a>
+    <a ui-sref="afisha.popular" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.popular')}">Популярное</a>
   </nav>
 
   <div class="afisha__content" ui-view></div>

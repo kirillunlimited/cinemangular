@@ -15,8 +15,14 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'AfishaController',
       controllerAs: 'afishaCtrl'
     })
-    .state('afisha.soon', {
-      url: '/soon',
+    .state('afisha.upcoming', {
+      url: '/upcoming',
+      templateUrl: 'app/views/afisha_content.html',
+      controller: 'AfishaController',
+      controllerAs: 'afishaCtrl'
+    })
+    .state('afisha.popular', {
+      url: '/popular',
       templateUrl: 'app/views/afisha_content.html',
       controller: 'AfishaController',
       controllerAs: 'afishaCtrl'

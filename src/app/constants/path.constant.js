@@ -17,8 +17,9 @@ module.exports = {
   'IMG': 'https://image.tmdb.org/t/p/w{size}',
   'METHODS': {
     // afisha
-    discoverMovies: 'discover/movie',
-    nowPlaying: 'movie/now_playing',
+    nowPlayingMovies: 'movie/now_playing',
+    popularMovies: 'movie/popular',
+    upcomingMovies: 'movie/upcoming',
 
     // movie
     movie: 'movie/{id}',

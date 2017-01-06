@@ -12,21 +12,17 @@ module.exports = function AfishaController(jsonFactory, dateService, photoServic
     return $state.current.name === currentState;
   };
 
+  var afishaMethods = {
+    'afisha.today': 'nowPlayingMovies',
+    'afisha.upcoming': 'upcomingMovies',
+    'afisha.popular': 'popularMovies'
+  };
+
   vm.getContent = function() {
-    switch($state.current.name) {
-      case('afisha.today'):
-        jsonFactory.fetch('nowPlaying').then(function(response) {
-          vm.films = response.data.results;
-          vm.status = 'Ready';
-        });
-        break;
-      case('afisha.soon'):
-        jsonFactory.fetch('soonFilms').then(function(response) {
-          vm.films = jsonFactory.parse(response, 'previewFilms');
-          vm.status = 'Ready';
-        });
-        break;
-    }
+    jsonFactory.fetch(afishaMethods[$state.current.name]).then(function(response) {
+      vm.films = response.data.results;
+      vm.status = 'Ready';
+    });
   };
 
   vm.getContent();
