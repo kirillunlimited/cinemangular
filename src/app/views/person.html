@@ -52,7 +52,7 @@
   <div ng-repeat="(type, filmsGroup) in personCtrl.personCreditsContent" ng-if="type !== 'id' && filmsGroup.length" class="person__filmsGroup">
     <h3 class="person__filmsGroupTitle">{{type}} ({{filmsGroup.length}})</h3>
     <table class="person__filmTable">
-      <tr class="person__film" ng-repeat="film in filmsGroup">
+      <tr class="person__film" ng-repeat="film in filmsGroup | orderBy: 'release_date || first_air_date':true">
         <td class="person__filmCell person__filmCounter">
           {{$index + 1}}
         </td>
@@ -60,10 +60,11 @@
           <div>
             <a ui-sref="film({filmId: film.id})" class="person__filmTitle person__filmTitle_main link">
               {{film.title || film.name}}
-              <span class="person__filmYear">({{film.release_date || film.first_air_date}})</span>
+              <span class="person__filmYear" ng-if="film.release_date || film.first_air_date">({{film.release_date || film.first_air_date}})</span>
             </a>
           </div>
-          <span class="person__filmTitle person__filmTitle_sub">{{film.original_title || film.original_name}}</span>
+          <span class="person__filmTitle person__filmTitle_sub" ng-if="film.title !== film.original_title || film.name !== film.original_name">{{film.original_title || film.original_name}}</span>
+          <span class="person__job" ng-if="film.character || film.job">... {{film.character || film.job}}</span>
         </td>
       </tr>
     </table>
