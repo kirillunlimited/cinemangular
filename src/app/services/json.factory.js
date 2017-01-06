@@ -14,15 +14,9 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY) {
   //   return $http.get(requestUrl);
   // }
 
-  function fetch(method, action){
-    console.log(KEY);
-    if (action) {
-      var method = PATH.METHODS[method] + action;
-    }
-    else {
-      var method = PATH.METHODS[method];
-    }
-    var requestUrl = PATH.API + method + '?api_key=' + KEY.VALUE + '&language=ru-RU';
+  function fetch(method, id){
+    var action = PATH.METHODS[method].replace('{id}',id);
+    var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=ru-RU';
     return $http.get(requestUrl);
   }
 

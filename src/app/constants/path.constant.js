@@ -16,7 +16,16 @@ module.exports = {
   'API': 'https://api.themoviedb.org/3/',
   'IMG': 'https://image.tmdb.org/t/p/w325/',
   'METHODS': {
+    // afisha
     discoverMovies: 'discover/movie',
-    film: 'movie/'
+    nowPlaying: 'movie/now_playing',
+
+    // movie
+    movie: 'movie/{id}',
+    movieCredits: 'movie/{id}/credits',
+
+    // cast and crew
+    person: 'person/{id}',
+    personCredits: 'person/{id}/combined_credits',
   }
 };

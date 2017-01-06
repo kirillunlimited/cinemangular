@@ -51,22 +51,6 @@
           {{filmCtrl.filmContent.production_countries.content}}
         </td>
       </tr>
-      <!--<tr ng-if="filmCtrl.filmContent.rentData.premiereWorld" class="details__element">
-        <td class="details__title">
-          Премьера мир
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.rentData.premiereWorld}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.rentData.premiereRU" class="details__element">
-        <td class="details__title">
-          Премьера РФ
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.rentData.premiereRU}}
-        </td>
-      </tr>-->
       <tr ng-if="filmCtrl.filmContent.vote_average" class="details__element">
         <td class="details__title">
           Рейтинг
@@ -75,38 +59,6 @@
           {{filmCtrl.filmContent.vote_average}} <span ng-if="filmCtrl.filmContent.vote_count">({{filmCtrl.filmContent.vote_count}} голосов)</span>
         </td>
       </tr>
-      <!--<tr ng-if="filmCtrl.filmContent.ratingData.ratingIMDb" class="details__element">
-        <td class="details__title">
-          Рейтинг IMDb
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.ratingIMDb}} <span ng-if="filmCtrl.filmContent.ratingData.ratingIMDbVoteCount">({{filmCtrl.filmContent.ratingData.ratingIMDbVoteCount}} голосов)</span>
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.ratingData.ratingFilmCritics" class="details__element">
-        <td class="details__title">
-          Рейтинг критиков
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.ratingFilmCritics}} <span ng-if="filmCtrl.filmContent.ratingData.ratingFilmCriticsVoteCount">({{filmCtrl.filmContent.ratingData.ratingFilmCriticsVoteCount}} голосов)</span>
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.ratingData.ratingGoodReview" class="details__element">
-        <td class="details__title">
-          Положительные отзывы
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.ratingGoodReview}} <span ng-if="filmCtrl.filmContent.ratingData.ratingGoodReviewVoteCount">({{filmCtrl.filmContent.ratingData.ratingGoodReviewVoteCount}} голосов)</span>
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.ratingData.ratingAwait" class="details__element">
-        <td class="details__title">
-          Рейтинг ожидания
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.ratingData.ratingAwait}} <span ng-if="filmCtrl.filmContent.ratingData.ratingAwaitCount">({{filmCtrl.filmContent.ratingData.ratingAwaitCount}} голосов)</span>
-        </td>
-      </tr>-->
       <tr ng-if="filmCtrl.filmContent.budget" class="details__element">
         <td class="details__title">
           Бюджет
@@ -115,44 +67,19 @@
           {{filmCtrl.filmContent.budget}}
         </td>
       </tr>
-      <!--<tr ng-if="filmCtrl.filmContent.budgetData.grossRU" class="details__element">
-        <td class="details__title">
-          Сборы в России
-        </td>
-        <td class="details__value">
-          ${{filmCtrl.filmContent.budgetData.grossRU}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.budgetData.grossUSA" class="details__element">
-        <td class="details__title">
-          Сборы в США
-        </td>
-        <td class="details__value">
-          ${{filmCtrl.filmContent.budgetData.grossUSA}}
-        </td>
-      </tr>
 
-      <tr ng-if="filmCtrl.filmContent.budgetData.grossWorld" class="details__element">
-        <td class="details__title">
-          Сборы в мире
-        </td>
-        <td class="details__value">
-          ${{filmCtrl.filmContent.budgetData.grossWorld}}
-        </td>
-      </tr>-->
-
-      <!--<tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creators">
+      <tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creditsContent" ng-if="type !== 'id'">
         <td class="details__title">
           {{type}}
         </td>
         <td class="details__value">
           <p class="film__infoContent">
-            <p ng-repeat="creator in creatorsGroup">
+            <p ng-repeat="creator in creatorsGroup | limitTo:3">
               <a class="link" ui-sref="person({personId: creator.id})">{{creator.name}}</a>
             </p>
           </p>
         </td>
-      </tr>-->
+      </tr>
 
       <tr ng-if="filmCtrl.filmContent.overview" class="details__element">
         <td class="details__title">
@@ -166,30 +93,3 @@
   </div>
   <ng-image-gallery images="filmCtrl.photos" bg-close="true"></ng-image-gallery>
 </div>
-
-<!--<div ng-if="filmCtrl.hasSeance">
-  <div ng-if="filmCtrl.seancesStatus == 'Loading'">
-    <div class="loader loader_inner"></div>
-  </div>
-
-  <div class="seances" ng-if="filmCtrl.seancesStatus == 'Ready'">
-    <select class="select" ng-model="filmCtrl.seancesSelect" ng-options="day for day in filmCtrl.days" ng-change="filmCtrl.getData(filmCtrl.seancesSelect)"></select>
-    <table ng-if="filmCtrl.seancesContent.items" class="seances__list">
-      <tr class="seances__element" ng-repeat="cinema in filmCtrl.seancesContent.items">
-        <td class="seances__cell">
-          <a class="link" ui-sref="cinema({cinemaId: cinema.cinemaID})">{{cinema.cinemaName}}</a>
-        </td>
-        <td class="seances__cell">
-          <div ng-if="cinema.seance">
-            <span class="seances__time" ng-repeat="seance in cinema.seance track by $index">{{seance}}{{$last ? '' : ', '}}</span>
-          </div>
-          <div ng-if="cinema.seance3D">
-            <span class="seances__time" ng-repeat="seance in cinema.seance3D track by $index">{{seance}}<sup class="seances__3d">3D</sup>{{$last ? '' : ', '}}</span>
-          </div>
-        </td>
-      </tr>
-    </table>
-    <p ng-if="!filmCtrl.seancesContent.items">К сожалению, в Вашем городе нет сеансов на "{{filmCtrl.seancesContent.nameRU}}". Укажите другую дату.</p>
-  </div>
-
-</div>-->

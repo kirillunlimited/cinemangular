@@ -18,7 +18,6 @@ module.exports = function photoService(PATH) {
   // };
 
   function getFullPhotoPath(imgPath) {
-    console.log(PATH);
     return PATH.IMG + imgPath;
   }
 

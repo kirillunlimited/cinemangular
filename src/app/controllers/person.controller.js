@@ -4,67 +4,15 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
 
   vm.status = 'Loading';
 
-  jsonFactory.fetch('person', $state.params.personId).then(function(response) {
-    vm.personContent = response.data;
-    vm.personContent = vm.parseGeneralFilms(vm.personContent);
-    vm.posterPath = photoService.switchPosterSize(vm.personContent.posterURL, 180);
-    vm.sex = vm.getRusSex(vm.personContent.sex);
-    vm.rusAge = vm.getRusAge(vm.personContent.age);
-    vm.photos = photoService.getPhotoArray(vm.personContent.gallery);
-
+  jsonFactory.fetch('person', $state.params.personId).then(function(personResponse) {
+    vm.personContent = personResponse.data;
+    vm.personContent.profile_path_full = photoService.getFullPhotoPath(vm.personContent.profile_path);
+    vm.genderText = (vm.personContent.gender === 1) ? 'Женский' : 'Мужской';
     vm.status = 'Ready';
   });
 
-  vm.getRusAge = function(age) {
-    if (age != null) {
-      var lastDigit = age.toString().split('').pop();
-      var rusAge = "лет";
-      if (lastDigit == 1 ) {
-        rusAge = "год";
-      }
-      else if (lastDigit > 1 && lastDigit < 5) {
-        rusAge = "года";
-      }
-      else if (lastDigit >= 5 || lastDigit == 0) {
-        rusAge = "лет";
-      }
-      return rusAge;
-    }
-  };
+  jsonFactory.fetch('personCredits', $state.params.personId).then(function(personCreditsResponse) {
+    vm.personCreditsContent = personCreditsResponse.data;
+  });
 
-  vm.getRusSex = function(sex) {
-    switch(sex) {
-      case 'male':
-        return 'мужской';
-      case 'female':
-        return "женский";
-    }
-  };
-
-  // получить список лучших фильмов
-  vm.parseGeneralFilms = function(content) {
-    var generalFilmsIdsArray = [];
-
-    if (content.generalFilms) {
-      content.generalFilms.forEach(function(obj) {
-        generalFilmsIdsArray.push(obj.filmID);
-      });
-    }
-
-    if (content.generalSeries) {
-      content.generalSeries.forEach(function(obj) {
-        generalFilmsIdsArray.push(obj.filmID);
-      });
-    }
-
-    content.filmography.forEach(function(filmographyElement, filmographyElementIndex, filmography) {
-      filmographyElement.forEach(function(film, filmIndex, filmographyElement) {
-        if (generalFilmsIdsArray.indexOf(film.filmID) != -1) {
-          film.isGeneral = true;
-        }
-      })
-    });
-
-    return content;
-  };
 };

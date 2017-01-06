@@ -3,34 +3,19 @@
 </div>
 
 <div class="person" ng-if="personCtrl.status == 'Ready'">
-  <div ng-if="personCtrl.personContent.nameRU" class="subject">
-    <h1 class="subject__title subject__title_main">{{personCtrl.personContent.nameRU}}</h1>
-    <h2 ng-if="personCtrl.personContent.nameEN" class="subject__title subject__title_sub">{{personCtrl.personContent.nameEN}}</h2>
-  </div>
-  <div ng-if="!personCtrl.personContent.nameRU" class="subject">
-    <h1 class="subject__title subject__title_main">{{personCtrl.personContent.nameEN}}</h1>
+  <div class="subject">
+    <h1 class="subject__title subject__title_main">{{personCtrl.personContent.name}}</h1>
   </div>
 
   <div class="person__content">
-    <img class="person__poster" ng-src="{{personCtrl.posterPath}}" alt="Постер {{personCtrl.personContent.nameRU}}" />
+    <img class="person__poster" ng-src="{{personCtrl.personContent.profile_path_full}}" alt="Постер {{personCtrl.personContent.name}}" />
     <table class="person__details details">
-      <tr class="details__element">
-        <td class="details__title">
-          Профессия
-        </td>
-        <td ng-if="personCtrl.personContent.profession" class="details__value">
-         {{personCtrl.personContent.profession}}
-        </td>
-        <td ng-if="!personCtrl.personContent.profession" class="details__value">
-         –
-        </td>
-      </tr>
       <tr class="details__element">
         <td class="details__title">
           Пол
         </td>
         <td class="details__value">
-         {{personCtrl.sex}}
+         {{personCtrl.genderText}}
         </td>
       </tr>
       <tr ng-if="personCtrl.personContent.birthday" class="details__element">
@@ -39,71 +24,46 @@
         </td>
         <td class="details__value">
          {{personCtrl.personContent.birthday}}
-         <span ng-if="!personCtrl.personContent.death">
-           ({{personCtrl.personContent.age}} {{personCtrl.rusAge}})
+         <span ng-if="!personCtrl.personContent.deathday">
          </span>
         </td>
       </tr>
-      <tr ng-if="personCtrl.personContent.birthplace" class="details__element">
+      <tr ng-if="personCtrl.personContent.place_of_birth" class="details__element">
         <td class="details__title">
           Место рождения
         </td>
         <td class="details__value">
-         {{personCtrl.personContent.birthplace}}
+         {{personCtrl.personContent.place_of_birth}}
         </td>
       </tr>
-      <tr ng-if="personCtrl.personContent.death" class="details__element">
+      <tr ng-if="personCtrl.personContent.deathday" class="details__element">
         <td class="details__title">
           Дата смерти
         </td>
         <td class="details__value">
-         {{personCtrl.personContent.death}} ({{personCtrl.personContent.age}} {{personCtrl.rusAge}})
-        </td>
-      </tr>
-      <tr ng-if="personCtrl.personContent.deathplace" class="details__element">
-        <td class="details__title">
-          Место смерти
-        </td>
-        <td class="details__value">
-         {{personCtrl.personContent.deathplace}}
-        </td>
-      </tr>
-      <tr ng-if="personCtrl.personContent.growth" class="details__element">
-        <td class="details__title">
-          Рост
-        </td>
-        <td class="details__value">
-         {{personCtrl.personContent.growth}}
+         {{personCtrl.personContent.deathday}}
         </td>
       </tr>
     </table>
   </div>
 
-  <ng-image-gallery class="gallery_person" images="personCtrl.photos" bg-close="true"></ng-image-gallery>
+  <!--<ng-image-gallery class="gallery_person" images="personCtrl.photos" bg-close="true"></ng-image-gallery>-->
 
-  <div ng-repeat="filmsGroup in personCtrl.personContent.filmography" class="person__filmsGroup">
-    <h3 class="person__filmsGroupTitle">{{filmsGroup[0].professionText}} ({{filmsGroup.length}})</h3>
+  <div ng-repeat="(type, filmsGroup) in personCtrl.personCreditsContent" ng-if="type !== 'id'" class="person__filmsGroup">
+    <h3 class="person__filmsGroupTitle">{{type}} ({{filmsGroup.length}})</h3>
     <table class="person__filmTable">
       <tr class="person__film" ng-repeat="film in filmsGroup">
         <td class="person__filmCell person__filmCounter">
           {{$index + 1}}
         </td>
-        <td ng-if="film.nameRU" class="person__filmCell">
+        <td class="person__filmCell">
           <div>
-            <a ui-sref="film({filmId: film.filmID})" class="person__filmTitle person__filmTitle_main link">
-              {{film.nameRU}}
-              <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
-              <span ng-if="film.isGeneral" class="person__filmGeneral">★</span>
+            <a ui-sref="film({filmId: film.id})" class="person__filmTitle person__filmTitle_main link">
+              {{film.title || film.name}}
+              <span class="person__filmYear">({{film.release_date || film.first_air_date}})</span>
             </a>
           </div>
-          <span ng-if="film.nameEN" class="person__filmTitle person__filmTitle_sub">{{film.nameEN}}</span>
-        </td>
-        <td ng-if="!film.nameRU" class="person__filmCell">
-          <a ui-sref="film({filmId: film.filmID})" class="person__filmTitle person__filmTitle_main link">
-            {{film.nameEN}}
-            <span ng-if="film.year" class="person__filmYear">({{film.year}})</span>
-            <span ng-if="film.isGeneral" class="person__filmGeneral">★</span>
-          </a>
+          <span class="person__filmTitle person__filmTitle_sub">{{film.original_title || film.original_name}}</span>
         </td>
       </tr>
     </table>

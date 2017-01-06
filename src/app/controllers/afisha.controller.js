@@ -15,12 +15,7 @@ module.exports = function AfishaController(jsonFactory, dateService, photoServic
   vm.getContent = function() {
     switch($state.current.name) {
       case('afisha.today'):
-        // jsonFactory.fetch('todayFilms', dateService.getToday()).then(function(response) {
-        //   vm.films = jsonFactory.parse(response, 'filmsData');
-        //   vm.status = 'Ready';
-        // });
-        jsonFactory.fetch('discoverMovies').then(function(response) {
-          console.log(response);
+        jsonFactory.fetch('nowPlaying').then(function(response) {
           vm.films = response.data.results;
           vm.status = 'Ready';
         });
