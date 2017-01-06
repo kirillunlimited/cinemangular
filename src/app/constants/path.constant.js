@@ -14,7 +14,7 @@ module.exports = {
   'IMG_OLD': 'https://st.kp.yandex.net/images/',
 
   'API': 'https://api.themoviedb.org/3/',
-  'IMG': 'https://image.tmdb.org/t/p/w325/',
+  'IMG': 'https://image.tmdb.org/t/p/w{size}',
   'METHODS': {
     // afisha
     discoverMovies: 'discover/movie',
@@ -27,5 +27,9 @@ module.exports = {
     // cast and crew
     person: 'person/{id}',
     personCredits: 'person/{id}/combined_credits',
+
+    // search
+    searchMovies: 'search/movie',
+    searchPeople: 'search/person',
   }
 };

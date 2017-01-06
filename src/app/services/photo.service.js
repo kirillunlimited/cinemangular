@@ -13,18 +13,25 @@ module.exports = function photoService(PATH) {
     }
   };
 
-  // function getFullPhotoPath(imgPath) {
-  //   return imgPath.replace('sm_','');
-  // };
+  function getPosterPhoto(imgPath, sizeValue) {
+    var sizes = {
+      small: 90,
+      medium: 325,
+      big: 500
+    };
 
-  function getFullPhotoPath(imgPath) {
-    return PATH.IMG + imgPath;
+    if (imgPath) {
+      return PATH.IMG.replace('{size}', sizes[sizeValue]) + imgPath;
+    }
+    else {
+      return 'img/no_poster.png';
+    }
   }
 
   function getPhotoArray(content) {
     var photoArray = [];
     for (var i in content) {
-      var fullPhotoPath = getFullPhotoPath(content[i].preview);
+      var fullPhotoPath = getPosterPhoto(content[i].preview);
       photoArray.push({url: PATH.IMG + fullPhotoPath})
     }
     return photoArray;
@@ -32,7 +39,7 @@ module.exports = function photoService(PATH) {
 
   return {
     switchPosterSize: switchPosterSize,
-    getFullPhotoPath: getFullPhotoPath,
+    getPosterPhoto: getPosterPhoto,
     getPhotoArray: getPhotoArray
   };
 

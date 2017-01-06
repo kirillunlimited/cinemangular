@@ -12,10 +12,13 @@ module.exports = function SearchController(jsonFactory, photoService, $state) {
     if (vm.searchString != null) {
       $state.transitionTo('search.results', {value: vm.searchString});
       vm.status = 'Loading';
-      jsonFactory.fetch('searchFilms', vm.searchString).then(function(filmsResponse) {
-        vm.filmsContent = filmsResponse.data.searchFilms;
-        jsonFactory.fetch('searchPeople', vm.searchString).then(function(peopleResponse) {
-          vm.peopleContent = peopleResponse.data.searchPeople;
+      var fetchParams = {
+        query: vm.searchString
+      };
+      jsonFactory.fetch('searchMovies',fetchParams).then(function(searchMoviesResponse) {
+        vm.searchMoviesContent = searchMoviesResponse.data.results;
+        jsonFactory.fetch('searchPeople', fetchParams).then(function(searchPeopleResponse) {
+          vm.searchPeopleContent = searchPeopleResponse.data.results;
           vm.status = 'Ready';
         });
       });
@@ -23,7 +26,7 @@ module.exports = function SearchController(jsonFactory, photoService, $state) {
   };
 
   vm.getPoster = function(posterURL) {
-    return photoService.switchPosterSize(posterURL, 90);
+    return photoService.getPosterPhoto(posterURL, 'small');
   };
 
   vm.moreFilms = function(limit) {

@@ -4,14 +4,18 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
 
   vm.status = 'Loading';
 
-  jsonFactory.fetch('person', $state.params.personId).then(function(personResponse) {
+  var fetchParams = {
+    id: $state.params.personId
+  };
+
+  jsonFactory.fetch('person', fetchParams).then(function(personResponse) {
     vm.personContent = personResponse.data;
-    vm.personContent.profile_path_full = photoService.getFullPhotoPath(vm.personContent.profile_path);
+    vm.personContent.profile_path_full = photoService.getPosterPhoto(vm.personContent.profile_path, 'medium');
     vm.genderText = (vm.personContent.gender === 1) ? 'Женский' : 'Мужской';
     vm.status = 'Ready';
   });
 
-  jsonFactory.fetch('personCredits', $state.params.personId).then(function(personCreditsResponse) {
+  jsonFactory.fetch('personCredits', fetchParams).then(function(personCreditsResponse) {
     vm.personCreditsContent = personCreditsResponse.data;
   });
 

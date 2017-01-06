@@ -4,19 +4,10 @@
 'use strict';
 module.exports = function jsonFactory($http, dateService, PATH, KEY) {
 
-  // обращение к API
-
-  // function fetch(method, paramId, paramDate) {
-  //   var objectId = (paramId) ? paramId : '';
-  //   var date = (paramDate) ? '&date=' + paramDate : '';
-  //   var requestUrl = PATH.API + PATH.METHODS[method] + objectId + date;
-
-  //   return $http.get(requestUrl);
-  // }
-
-  function fetch(method, id){
-    var action = PATH.METHODS[method].replace('{id}',id);
+   function fetch(method, params){
+    var action = (params) ? PATH.METHODS[method].replace('{id}',params.id) : PATH.METHODS[method];
     var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=ru-RU';
+    (params) ? requestUrl += '&query=' + params.query : '';
     return $http.get(requestUrl);
   }
 

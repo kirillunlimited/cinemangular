@@ -49,7 +49,7 @@
 
   <!--<ng-image-gallery class="gallery_person" images="personCtrl.photos" bg-close="true"></ng-image-gallery>-->
 
-  <div ng-repeat="(type, filmsGroup) in personCtrl.personCreditsContent" ng-if="type !== 'id'" class="person__filmsGroup">
+  <div ng-repeat="(type, filmsGroup) in personCtrl.personCreditsContent" ng-if="type !== 'id' && filmsGroup.length" class="person__filmsGroup">
     <h3 class="person__filmsGroupTitle">{{type}} ({{filmsGroup.length}})</h3>
     <table class="person__filmTable">
       <tr class="person__film" ng-repeat="film in filmsGroup">
