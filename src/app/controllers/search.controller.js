@@ -37,6 +37,10 @@ module.exports = function SearchController(jsonFactory, photoService, $state) {
     vm.peopleLimit = limit;
   };
 
+  vm.formatDate = function(releaseDate) {
+    return jsonFactory.getYear(releaseDate);
+  }
+
   vm.findFilm();
 
 };

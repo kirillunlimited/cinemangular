@@ -67,6 +67,14 @@
           {{filmCtrl.filmContent.budget}}
         </td>
       </tr>
+      <tr ng-if="filmCtrl.filmContent.revenue" class="details__element">
+        <td class="details__title">
+          Сборы
+        </td>
+        <td class="details__value">
+          {{filmCtrl.filmContent.revenue}}
+        </td>
+      </tr>
 
       <tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creditsContent" ng-if="type !== 'id'">
         <td class="details__title">

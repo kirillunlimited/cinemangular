@@ -9,7 +9,7 @@
       <div ng-if="film.title" class="search__main">
         <div>
           <a ui-sref="film({filmId: film.id})" class="search__value link">{{film.title}}
-            <span ng-if="film.release_date">({{film.release_date}})</span>
+            <span ng-if="film.release_date">({{searchCtrl.formatDate(film.release_date)}})</span>
           </a>
         </div>
         <span class="search__value search__value_secondary">{{film.original_title}}</span>

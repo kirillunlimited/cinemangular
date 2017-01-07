@@ -11,6 +11,8 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
   jsonFactory.fetch('person', fetchParams).then(function(personResponse) {
     vm.personContent = personResponse.data;
     vm.personContent.profile_path_full = photoService.getPosterPhoto(vm.personContent.profile_path, 'medium');
+    vm.personContent.birthday = jsonFactory.formatDate(vm.personContent.birthday);
+    vm.personContent.deathday = jsonFactory.formatDate(vm.personContent.deathday);
     vm.genderText = (vm.personContent.gender === 1) ? 'Женский' : 'Мужской';
     vm.status = 'Ready';
   });

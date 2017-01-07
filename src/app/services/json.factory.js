@@ -1,6 +1,3 @@
-/**
- * Фабрика для получения и обработки данных из API
- */
 'use strict';
 module.exports = function jsonFactory($http, dateService, PATH, KEY) {
 
@@ -46,9 +43,73 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY) {
     return names.join(', ');
   }
 
+  function formatDate(inputDate) {
+    if (!inputDate) {
+      return false;
+    }
+
+    var dateObject = new Date(inputDate);
+
+    var monthNames = [
+      "Января",
+      "Февраля",
+      "Марта",
+      "Апреля",
+      "Мая",
+      "Июня",
+      "Июля",
+      "Августа",
+      "Сентября",
+      "Октября",
+      "Ноября",
+      "Декабря"
+    ];
+
+    var outputDate = dateObject.getUTCDate() + ' ' + monthNames[dateObject.getMonth()] + ' ' + dateObject.getUTCFullYear();
+    return outputDate;
+  }
+
+  function formatRuntime(inputRuntime) {
+    if (!inputRuntime) {
+      return false;
+    }
+
+    var hours = Math.floor( inputRuntime / 60);
+    var minutes = inputRuntime % 60;
+
+    var outputRuntime = hours + ' ч. ' + minutes + ' мин.';
+
+    return outputRuntime;
+  }
+
+  function formatMoney(inputAmount) {
+    if (!inputAmount) {
+      return false;
+    }
+
+    var outputAmount = '$' + inputAmount.toLocaleString();
+    return outputAmount;
+  }
+
+  function getYear(inputDate) {
+    if (!inputDate) {
+      return false;
+    }
+
+    var dateObject = new Date(inputDate);
+
+    var outputYear = dateObject.getUTCFullYear();
+    return outputYear;
+
+  }
+
   return {
     fetch: fetch,
     parse: parse,
-    extractObjectArray: extractObjectArray
+    extractObjectArray: extractObjectArray,
+    formatDate: formatDate,
+    formatRuntime: formatRuntime,
+    formatMoney: formatMoney,
+    getYear: getYear
   };
 };
