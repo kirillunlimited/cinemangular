@@ -81,11 +81,10 @@
           {{type}}
         </td>
         <td class="details__value">
-          <p class="film__infoContent">
-            <p ng-repeat="creator in creatorsGroup | limitTo:3">
-              <a class="link" ui-sref="person({personId: creator.id})">{{creator.name}}</a>
-            </p>
+          <p ng-repeat="creator in creatorsGroup | limitTo:3">
+            <a class="link" ui-sref="person({personId: creator.id})">{{creator.name}}</a><span class="details__extra"> ... {{creator.character || creator.job}}</span>
           </p>
+          <a class="link" ui-sref="credits({filmId: filmCtrl.filmContent.id})">more...</a>
         </td>
       </tr>
 

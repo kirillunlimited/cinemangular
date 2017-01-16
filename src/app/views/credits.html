@@ -1,0 +1,28 @@
+<div ng-if="creditsCtrl.status == 'Loading'">
+  <div class="loader"></div>
+</div>
+
+<div class="credits" ng-if="creditsCtrl.status == 'Ready'">
+  <div class="subject">
+    <h1 class="subject__title subject__title_main">{{creditsCtrl.filmContent.title}}</h1>
+    <h2 class="subject__title subject__title_sub">{{creditsCtrl.filmContent.original_title}}</h2>
+  </div>
+
+  <section class="search__section" ng-repeat="(type, creatorsGroup) in creditsCtrl.creditsContent" ng-if="type !== 'id'">
+    <h2 class="search__subtitle">{{type}}</h2>
+    <div class="search__element" ng-repeat="person in creatorsGroup">
+      <a ui-sref="person({personId: person.id})">
+        <img class="search__img" ng-src="{{creditsCtrl.getPoster(person.profile_path)}}" alt="" />
+      </a>
+      <div class="search__content">
+        <div ng-if="person.name" class="search__main">
+          <div>
+            <a ui-sref="person({personId: person.id})" class="search__value link">{{person.name}}</a><br/>
+            <span class="search__value search__value_secondary">{{person.character || person.job}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
