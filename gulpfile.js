@@ -70,9 +70,9 @@ gulp.task('gallery-icons', function() {
 gulp.task('serve', ['default'], function() {
   browserSync.init({
     server: {
-      baseDir: "./"
+      baseDir: "./dist"
     },
-    startPath: "/dist"
+    startPath: "/"
   });
   gulp.watch('./dist/**').on('change', browserSync.reload);
 });
