@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Киношка</title>
   <link rel="stylesheet" href="css/main.css" />
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   <script src="app/app.js"></script>
   <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
@@ -17,10 +16,7 @@
     </ul>
   </nav>
   <div class="page__content content">
-    <div class="content__wrapper" ui-view></div>
-    <footer class="page__footer footer">
-      <div class="footer__element">Сделано с помощью <a href="https://angularjs.org/" target="_blank"><img class="footer__img" src="img/angular.png" alt="Angular JS"/></a></div>
-    </footer>
+    <ui-view></ui-view>
   </div>
 </body>
 </html>
