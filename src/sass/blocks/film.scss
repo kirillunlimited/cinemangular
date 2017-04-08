@@ -1,0 +1,118 @@
+.film {
+  &__backdrop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.25);
+    }
+  }
+  &__content {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    background-color: $bg_color;
+  }
+  &__header {
+    position: absolute;
+    bottom: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  &__headerTop {
+    position: relative;
+    border-bottom: 4px solid $brand_color;
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20em;
+      background: linear-gradient(to bottom, transparent,#000);
+    }
+  }
+
+  &__wrapper {
+    @extend %wrapper;
+  }
+
+  &__poster {
+    width: 300px;
+    position: absolute;
+    bottom: 0;
+  }
+  &__main {
+    margin-left: 1em;
+    padding-left: 300px;
+    padding-right: 8em;
+    padding-bottom: 1em;
+  }
+  &__title {
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.4;
+    &--original {
+      font-size: 1rem;
+      color: $passive_color;
+    }
+  }
+  &__genres {
+    padding: 1em 0;
+  }
+  &__genre {
+    margin-right: 1em;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__info {
+    padding: .25em 1em;
+    line-height: 1.4;
+  }
+  &__infoItem {
+    padding-right: .5em;
+    &:last-child {
+      padding-right: 1em;
+    }
+  }
+  &__rating {
+    color: #fff;
+    width: 8em;
+    height: 8em;
+    text-align: center;
+    background-color: $brand_color;
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+  }
+  &__voteContent {
+    font-size: 4em;
+  }
+  &__voteCount {
+    position: absolute;
+    font-size: 1em;
+    bottom: 1em;
+    left: 0;
+    right: 0;
+  }
+
+  &__headerBottom {
+    padding: 1em 0;
+    background-color: $bg_color;
+  }
+}

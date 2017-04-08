@@ -28,6 +28,10 @@ module.exports = function photoService(PATH) {
     }
   }
 
+  function getBackdropPath(imgPath) {
+    return PATH.IMG.replace('{size}', '1920') + imgPath;
+  }
+
   function getPhotoArray(content) {
     var photoArray = [];
     for (var i in content) {
@@ -39,6 +43,7 @@ module.exports = function photoService(PATH) {
 
   return {
     switchPosterSize: switchPosterSize,
+    getBackdropPath: getBackdropPath,
     getPosterPhoto: getPosterPhoto,
     getPhotoArray: getPhotoArray
   };

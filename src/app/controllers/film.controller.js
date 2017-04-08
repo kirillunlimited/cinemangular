@@ -21,8 +21,28 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.filmStatus = 'Ready';
   });
 
+  var getCreditsByJob = function(job, jobProp, creditsContent) {
+    creditsContent[jobProp] = [];
+    creditsContent.crew.forEach(function(person){
+      if (person.job == job) {
+        creditsContent[jobProp].push({
+          id: person.id,
+          name: person.name
+        })
+      }
+    });
+    console.log(creditsContent);
+    return creditsContent;
+  }
+
   jsonFactory.fetch('movieCredits', fetchParams).then(function(movieCreditsResponse) {
     vm.creditsContent = movieCreditsResponse.data;
+
+    vm.creditsContent = getCreditsByJob('Director', 'directors', vm.creditsContent);
+    vm.creditsContent = getCreditsByJob('Producer', 'producers', vm.creditsContent);
+    vm.creditsContent = getCreditsByJob('Screenplay', 'screenplay', vm.creditsContent);
+    vm.creditsContent = getCreditsByJob('Story', 'story', vm.creditsContent);
+
   });
 
 };

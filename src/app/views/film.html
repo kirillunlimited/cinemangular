@@ -3,100 +3,132 @@
 </div>
 
 <div class="film" ng-if="filmCtrl.filmStatus == 'Ready'">
-  <div class="subject">
-    <h1 class="subject__title subject__title_main">{{filmCtrl.filmContent.title}}</h1>
-    <h2 class="subject__title subject__title_sub">{{filmCtrl.filmContent.original_title}}</h2>
-  </div>
+
+  <backdrop path="{{filmCtrl.filmContent.backdrop_path}}"></backdrop>
 
   <div class="film__content">
-    <img class="film__poster" ng-src="{{filmCtrl.filmContent.poster_path_full}}" alt="Постер {{filmCtrl.filmContent.title}}" />
-    <table class="film__details details">
-      <tr ng-if="filmCtrl.filmContent.genres.content" class="details__element">
-        <td class="details__title">
-          Жанр
-        </td>
-        <td class="details__value">
-         {{filmCtrl.filmContent.genres.content}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.release_date" class="details__element">
-        <td class="details__title">
-          Дата выхода
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.release_date}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.status" class="details__element">
-        <td class="details__title">
-          Статус
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.status}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.runtime" class="details__element">
-        <td class="details__title">
-          Продолжительность
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.runtime}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.production_countries.content" class="details__element">
-        <td class="details__title">
-          Страна
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.production_countries.content}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.vote_average" class="details__element">
-        <td class="details__title">
-          Рейтинг
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.vote_average}} <span ng-if="filmCtrl.filmContent.vote_count">({{filmCtrl.filmContent.vote_count}} голосов)</span>
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.budget" class="details__element">
-        <td class="details__title">
-          Бюджет
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.budget}}
-        </td>
-      </tr>
-      <tr ng-if="filmCtrl.filmContent.revenue" class="details__element">
-        <td class="details__title">
-          Сборы
-        </td>
-        <td class="details__value">
-          {{filmCtrl.filmContent.revenue}}
-        </td>
-      </tr>
+    <header class="film__header">
+      <section class="film__headerTop">
+        <div class="film__wrapper">
+          <img class="film__poster" ng-src="//image.tmdb.org/t/p/w300{{filmCtrl.filmContent.poster_path}}" alt="Постер {{filmCtrl.filmContent.title}}" />
 
-      <tr class="details__element" ng-repeat="(type, creatorsGroup) in filmCtrl.creditsContent" ng-if="type !== 'id'">
-        <td class="details__title">
-          {{type}}
-        </td>
-        <td class="details__value">
-          <p ng-repeat="creator in creatorsGroup | limitTo:3">
-            <a class="link" ui-sref="person({personId: creator.id})">{{creator.name}}</a><span class="details__extra"> ... {{creator.character || creator.job}}</span>
-          </p>
-          <a class="link" ui-sref="credits({filmId: filmCtrl.filmContent.id})">more...</a>
-        </td>
-      </tr>
+          <div class="film__main">
+            <h1 class="film__title">{{filmCtrl.filmContent.title}}</h1>
+            <h2 class="film__title film__title--original">{{filmCtrl.filmContent.original_title}}</h2>
+            <div class="film__genres">
+              <a class="film__genre button" ng-repeat="genre in filmCtrl.filmContent.genres" href="#">{{genre.name}}</a>
+            </div>
+            <table>
+              <tr ng-if="filmCtrl.filmContent.runtime">
+                <td>Runtime</td>
+                <td class="film__info">
+                  <span class="film__infoItem">
+                    {{filmCtrl.filmContent.runtime}}
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.filmContent.release_date">
+                <td>Release date</td>
+                <td class="film__info">
+                  <span class="film__infoItem">
+                    {{filmCtrl.filmContent.release_date}}
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.filmContent.status">
+                <td>Status</td>
+                <td class="film__info">
+                  <span class="film__infoItem">
+                    {{filmCtrl.filmContent.status}}
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.filmContent.budget">
+                <td>Budget</td>
+                <td class="film__info">
+                  <span class="film__infoItem">
+                    {{filmCtrl.filmContent.budget}}
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.filmContent.revenue">
+                <td>Revenue</td>
+                <td class="film__info">
+                  <span class="film__infoItem">
+                    {{filmCtrl.filmContent.revenue}}
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.creditsContent.directors.length">
+                <td>Directors</td>
+                <td class="film__info">
+                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.directors">
+                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.creditsContent.producers.length">
+                <td>Producers</td>
+                <td class="film__info">
+                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.producers">
+                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.creditsContent.screenplay.length">
+                <td>Screenplay</td>
+                <td class="film__info">
+                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.screenplay">
+                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
+                  </span>
+                </td>
+              </tr>
+              <tr ng-if="filmCtrl.creditsContent.story.length">
+                <td>Story</td>
+                <td class="film__info">
+                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.story">
+                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="film__rating">
+            <span class="film__voteContent">{{filmCtrl.filmContent.vote_average}}</span>
+            <span class="film__voteCount">{{filmCtrl.filmContent.vote_count}}</span>
+          </div>
+        </div>
+      </section>
+    </header>
 
-      <tr ng-if="filmCtrl.filmContent.overview" class="details__element">
-        <td class="details__title">
-          Описание
-        </td>
-        <td class="details__value">
+    <section class="film__headerBottom">
+      <div class="film__wrapper">
+        <p class="film__description">
           {{filmCtrl.filmContent.overview}}
-        </td>
-      </tr>
-    </table>
+        </p>
+      </div>
+    </section>
+
+    <section class="cast">
+      <div class="cast__wrapper">
+        <h3 class="cast__title">Cast</h3>
+        <div class="cast__grid">
+          <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in filmCtrl.creditsContent.cast | limitTo:5">
+            <img class="cast__portrait" ng-src="//image.tmdb.org/t/p/w180_and_h180_bestv2{{person.profile_path}}" alt="">
+            <span class="cast__content">
+              <span class="cast__name">{{person.name}}</span><br/>
+              <span class="cast__character">as<br/>{{person.character}}</span>
+            </span>
+          </a>
+          <a ng-if="filmCtrl.creditsContent.cast.length > 5" ui-sref="credits({filmId: filmCtrl.filmContent.id})" class="cast__element cast__element--more" >
+            <span class="cast__content">
+              <span class="cast__more">All cast & crew</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </div>
-  <ng-image-gallery images="filmCtrl.photos" bg-close="true"></ng-image-gallery>
+
 </div>

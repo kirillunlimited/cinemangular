@@ -1,0 +1,7 @@
+.link {
+  color: $brand_color;
+  text-decoration: underline;
+  &:hover {
+    color: #fff;
+  }
+}
