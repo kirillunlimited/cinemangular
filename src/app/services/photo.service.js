@@ -29,7 +29,7 @@ module.exports = function photoService(PATH) {
   }
 
   function getBackdropPath(imgPath) {
-    return PATH.IMG.replace('{size}', '1920') + imgPath;
+    return PATH.IMG.replace('{size}', 'w1920') + imgPath;
   }
 
   function getPhotoArray(content) {
@@ -41,11 +41,21 @@ module.exports = function photoService(PATH) {
     return photoArray;
   };
 
+  function getCreditsPortrait(imgPath) {
+    if (imgPath) {
+      return PATH.IMG.replace('{size}', 'w90_and_h90_bestv2') + imgPath;
+    }
+    else {
+      return 'img/no_portrait.jpg';
+    }
+  }
+
   return {
     switchPosterSize: switchPosterSize,
     getBackdropPath: getBackdropPath,
     getPosterPhoto: getPosterPhoto,
-    getPhotoArray: getPhotoArray
+    getPhotoArray: getPhotoArray,
+    getCreditsPortrait: getCreditsPortrait
   };
 
 };

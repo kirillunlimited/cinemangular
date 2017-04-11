@@ -16,8 +16,4 @@ module.exports = function CreditsController(jsonFactory, photoService, dateServi
     });
   });
 
-  vm.getPoster = function(posterURL) {
-    return photoService.getPosterPhoto(posterURL, 'small');
-  };
-
 };

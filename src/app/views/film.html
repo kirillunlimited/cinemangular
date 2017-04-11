@@ -4,7 +4,7 @@
 
 <div class="film" ng-if="filmCtrl.filmStatus == 'Ready'">
 
-  <backdrop path="{{filmCtrl.filmContent.backdrop_path}}"></backdrop>
+  <backdrop path="{{filmCtrl.filmContent.backdrop_path}}" class="backdrop--film"></backdrop>
 
   <div class="film__content">
     <header class="film__header">
@@ -122,7 +122,7 @@
           </a>
           <a ng-if="filmCtrl.creditsContent.cast.length > 5" ui-sref="credits({filmId: filmCtrl.filmContent.id})" class="cast__element cast__element--more" >
             <span class="cast__content">
-              <span class="cast__more">All cast & crew</span>
+              <span class="cast__more">Full cast & crew</span>
             </span>
           </a>
         </div>

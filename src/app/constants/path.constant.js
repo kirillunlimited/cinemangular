@@ -14,7 +14,7 @@ module.exports = {
   'IMG_OLD': 'https://st.kp.yandex.net/images/',
 
   'API': 'https://api.themoviedb.org/3/',
-  'IMG': 'https://image.tmdb.org/t/p/w{size}',
+  'IMG': 'https://image.tmdb.org/t/p/{size}',
   'METHODS': {
     // afisha
     nowPlayingMovies: 'movie/now_playing',

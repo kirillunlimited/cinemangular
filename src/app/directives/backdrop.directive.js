@@ -10,6 +10,6 @@ module.exports = function backdrop(photoService, PATH) {
         'background-image': 'url(' + scope.url + ')'
       });
     },
-    template: '<div class="film__backdrop">'
+    template: '<div class="backdrop">'
   }
 }

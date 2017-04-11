@@ -24,6 +24,7 @@
       width: 100%;
       height: 100%;
       opacity: 0;
+      background-color: $brand_color;
       transition: opacity .1s ease-in-out;
     }
     &--more {
@@ -78,7 +79,6 @@
   }
 
   &__element:hover:before {
-    background-color: $brand_color;
     opacity: .9;
   }
 
