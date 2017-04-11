@@ -11,3 +11,9 @@ require('./config');
 require('./services');
 require('./directives');
 require('./controllers');
+
+app.run(function($rootScope, $anchorScroll){
+  $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    $anchorScroll();
+  });
+});
