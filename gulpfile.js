@@ -98,6 +98,7 @@ gulp.task('watch', function(){
   gulp.watch('src/**/*.html', {cwd: './'}, ['html']);
   gulp.watch('src/app/**/*.js', {cwd: './'}, ['bundle']);
   gulp.watch('src/sass/**/*.{sass,scss}', {cwd: './'}, ['sass']);
+  gulp.watch('src/img/*.{jpg,png,svg,gif}', ['img']);
 });
 
 gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'gallery-icons', 'watch']);
