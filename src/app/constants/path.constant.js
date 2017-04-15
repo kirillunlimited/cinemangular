@@ -24,6 +24,7 @@ module.exports = {
     // movie
     movie: 'movie/{id}',
     movieCredits: 'movie/{id}/credits',
+    movieGallery: 'movie/{id}/images',
 
     // cast and crew
     person: 'person/{id}',

@@ -31,7 +31,6 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
         })
       }
     });
-    console.log(creditsContent);
     return creditsContent;
   }
 
@@ -44,5 +43,18 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.creditsContent = getCreditsByJob('Story', 'story', vm.creditsContent);
 
   });
+
+  var galleryFetchParams = {
+    id:$state.params.filmId,
+    getParams: {
+      include_image_language: 'null'
+    }
+  };
+
+  jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(movieGalleryResponse){
+    vm.movieGalleryContent = movieGalleryResponse.data;
+    vm.gallery = photoService.getGalleryArray(vm.movieGalleryContent);
+  });
+
 
 };

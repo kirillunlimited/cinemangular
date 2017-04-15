@@ -50,12 +50,36 @@ module.exports = function photoService(PATH) {
     }
   }
 
+  function getGalleryImagePreviewPath(imgPath) {
+    return PATH.IMG.replace('{size}', 'w300') + imgPath;
+  }
+
+  function getGalleryImageFullPath(imgPath) {
+    return PATH.IMG.replace('{size}', 'w1280') + imgPath;
+  }
+
+  function getGalleryArray(data) {
+
+    console.log(data);
+
+    var galleryArray = [];
+
+    data.backdrops.forEach(function(element) {
+      galleryArray.push({
+        thumbUr: getGalleryImagePreviewPath(element.file_path),
+        url: getGalleryImageFullPath(element.file_path)
+      });
+    });
+    return galleryArray;
+  }
+
   return {
     switchPosterSize: switchPosterSize,
     getBackdropPath: getBackdropPath,
     getPosterPhoto: getPosterPhoto,
     getPhotoArray: getPhotoArray,
-    getCreditsPortrait: getCreditsPortrait
+    getCreditsPortrait: getCreditsPortrait,
+    getGalleryArray: getGalleryArray
   };
 
 };

@@ -129,6 +129,14 @@
       </div>
     </section>
 
+    <div class="gallery" ng-if="filmCtrl.gallery">
+      <div class="gallery__wrapper">
+        <h3 class="gallery__title">Gallery</h3>
+        <ng-image-gallery images="filmCtrl.gallery" bg-close="true"></ng-image-gallery>
+      </div>
+    </div>
+
+
   </div>
 
 </div>

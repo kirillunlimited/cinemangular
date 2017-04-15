@@ -4,7 +4,12 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY) {
    function fetch(method, params){
     var action = (params) ? PATH.METHODS[method].replace('{id}',params.id) : PATH.METHODS[method];
     var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=ru-RU';
-    (params) ? requestUrl += '&query=' + params.query : '';
+
+    if (params) {
+      requestUrl += '&query=' + params.query;
+      (params.getParams) ? requestUrl += '&' + serialize(params.getParams) : '';
+    }
+
     return $http.get(requestUrl);
   }
 
