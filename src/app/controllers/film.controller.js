@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function FilmController(jsonFactory, photoService, dateService, $state) {
+module.exports = function FilmController(jsonFactory, photoService, dateService, $state, $sce) {
   var vm = this;
 
   vm.filmStatus = 'Loading';
@@ -56,5 +56,19 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.gallery = photoService.getGalleryArray(vm.movieGalleryContent);
   });
 
+  function getVideos(videoObjects) {
+    return videoObjects.map(function(element) {
+      if (element.site == 'YouTube') {
+        return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + element.key);
+      }
+    });
+  }
+
+  jsonFactory.fetch('movieVideos', fetchParams).then(function(movieVideosResponse){
+    vm.movieVideosContent = movieVideosResponse.data;
+    if (vm.movieVideosContent.results) {
+      vm.videos = getVideos(vm.movieVideosContent.results);
+    }
+  });
 
 };

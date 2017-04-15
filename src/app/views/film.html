@@ -136,6 +136,14 @@
       </div>
     </div>
 
+    <div class="video" ng-if="filmCtrl.videos.length">
+      <div class="video__wrapper">
+        <div class="video__title">Videos</div>
+        <div class="video__item" ng-repeat="video in filmCtrl.videos">
+          <iframe class="video__iframe" ng-src="{{video}}" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
 
   </div>
 

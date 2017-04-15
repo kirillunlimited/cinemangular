@@ -1,0 +1,26 @@
+.video {
+  padding-bottom: 1em;
+  &__wrapper {
+    @extend %wrapper;
+  }
+  &__title {
+    font-size: 1.5em;
+    padding-bottom: .25rem;
+    font-weight: normal;
+  }
+  &__item {
+    position: relative;
+    width: 70%;
+    padding-bottom: 40%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__iframe {
+    position: absolute;;
+    width: 100%;
+    height: 100%;
+  }
+}
