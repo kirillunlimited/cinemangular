@@ -1,9 +1,17 @@
 'use strict';
 module.exports = function jsonFactory($http, dateService, PATH, KEY) {
 
-   function fetch(method, params){
+   function fetch(method, params, lang){
     var action = (params) ? PATH.METHODS[method].replace('{id}',params.id) : PATH.METHODS[method];
-    var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=ru-RU';
+
+    var languages = {
+      en: 'en-EN',
+      ru: 'ru-RU'
+    };
+
+    var language = (lang) ? languages[lang] : languages['en'];
+
+    var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=' + language;
 
     if (params) {
       requestUrl += '&query=' + params.query;

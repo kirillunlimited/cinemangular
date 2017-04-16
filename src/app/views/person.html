@@ -3,71 +3,24 @@
 </div>
 
 <div class="person" ng-if="personCtrl.status == 'Ready'">
-  <div class="subject">
-    <h1 class="subject__title subject__title_main">{{personCtrl.personContent.name}}</h1>
-  </div>
-
-  <div class="person__content">
-    <img class="person__poster" ng-src="{{personCtrl.personContent.profile_path_full}}" alt="Постер {{personCtrl.personContent.name}}" />
-    <table class="person__details details">
-      <tr class="details__element">
-        <td class="details__title">
-          Пол
-        </td>
-        <td class="details__value">
-         {{personCtrl.genderText}}
-        </td>
-      </tr>
-      <tr ng-if="personCtrl.personContent.birthday" class="details__element">
-        <td class="details__title">
-          Дата рождения
-        </td>
-        <td class="details__value">
-         {{personCtrl.personContent.birthday}}
-         <span ng-if="!personCtrl.personContent.deathday">
-         </span>
-        </td>
-      </tr>
-      <tr ng-if="personCtrl.personContent.place_of_birth" class="details__element">
-        <td class="details__title">
-          Место рождения
-        </td>
-        <td class="details__value">
-         {{personCtrl.personContent.place_of_birth}}
-        </td>
-      </tr>
-      <tr ng-if="personCtrl.personContent.deathday" class="details__element">
-        <td class="details__title">
-          Дата смерти
-        </td>
-        <td class="details__value">
-         {{personCtrl.personContent.deathday}}
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <!--<ng-image-gallery class="gallery_person" images="personCtrl.photos" bg-close="true"></ng-image-gallery>-->
-
-  <div ng-repeat="(type, filmsGroup) in personCtrl.personCreditsContent" ng-if="type !== 'id' && filmsGroup.length" class="person__filmsGroup">
-    <h3 class="person__filmsGroupTitle">{{type}} ({{filmsGroup.length}})</h3>
-    <table class="person__filmTable">
-      <tr class="person__film" ng-repeat="film in filmsGroup | orderBy: 'release_date || first_air_date':true">
-        <td class="person__filmCell person__filmCounter">
-          {{$index + 1}}
-        </td>
-        <td class="person__filmCell">
-          <div>
-            <a ui-sref="film({filmId: film.id})" class="person__filmTitle person__filmTitle_main link">
-              {{film.title || film.name}}
-              <span class="person__filmYear" ng-if="film.release_date || film.first_air_date">({{film.release_date || film.first_air_date}})</span>
-            </a>
+  <div class="person__wrapper">
+    <div class="person__details">
+      <img ng-src="{{personCtrl.personPortrait}}" alt="" class="person__portrait">
+      <div class="person__info">
+        <div class="person__infoElement" ng-repeat="(key,value) in personCtrl.personInfo" ng-if="value">
+          <div class="person__infoKey">{{key}}</div>
+          <div class="person__infoValue" ng-if="key == 'homepage'">
+            <a href="{{value}}" target="_blank" class="link">{{value}}</a>
           </div>
-          <span class="person__filmTitle person__filmTitle_sub" ng-if="film.title !== film.original_title || film.name !== film.original_name">{{film.original_title || film.original_name}}</span>
-          <span class="person__job" ng-if="film.character || film.job">... {{film.character || film.job}}</span>
-        </td>
-      </tr>
-    </table>
+          <div class="person__infoValue" ng-if="key != 'homepage'">
+            {{value}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="person__main">
+      <h1 class="person__name">{{personCtrl.personContent.name}}</h1>
+      <p class="person__biography" ng-if="personCtrl.personBiography">{{personCtrl.personBiography}}</p>
+    </div>
   </div>
-
 </div>

@@ -1,0 +1,42 @@
+.person {
+  &__wrapper {
+    @extend %wrapper;
+  }
+  &__details {
+    width: 300px;
+    float: left;
+    border: 2px solid $brand_color;
+  }
+  &__portrait {
+    display: block;
+    width: 100%;
+  }
+  &__info {
+    padding: 1em;
+    color: $bg_color;
+    background-color: #fff;
+  }
+  &__infoElement {
+
+  }
+  &__infoKey {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  &__infoValue {
+    margin-bottom: 1em;
+  }
+  &__main {
+    padding-left: 300px;
+    margin-left: 1em;
+  }
+  &__name {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    font-weight: normal;
+  }
+  &__biography {
+    white-space: pre-wrap;
+  }
+}

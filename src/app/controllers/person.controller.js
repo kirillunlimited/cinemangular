@@ -8,12 +8,25 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
     id: $state.params.personId
   };
 
-  jsonFactory.fetch('person', fetchParams).then(function(personResponse) {
+  jsonFactory.fetch('person', fetchParams, 'ru').then(function(personResponse) {
     vm.personContent = personResponse.data;
-    vm.personContent.profile_path_full = photoService.getPosterPhoto(vm.personContent.profile_path, 'medium');
-    vm.personContent.birthday = jsonFactory.formatDate(vm.personContent.birthday);
-    vm.personContent.deathday = jsonFactory.formatDate(vm.personContent.deathday);
-    vm.genderText = (vm.personContent.gender === 1) ? 'Женский' : 'Мужской';
+    vm.personPortrait = photoService.getPersonPortrait(vm.personContent.profile_path);
+
+    vm.personInfo = {
+      gender: (vm.personContent.gender === 1) ? 'Женский' : 'Мужской',
+      birthday: jsonFactory.formatDate(vm.personContent.birthday),
+      birthplace: vm.personContent.place_of_birth,
+      deathday: jsonFactory.formatDate(vm.personContent.deathday),
+      homepage:  vm.personContent.homepage
+    };
+
+    vm.personBiography = vm.personContent.biography;
+    if (!vm.personBiography) {
+      jsonFactory.fetch('person', fetchParams, 'en').then(function(personBiographyResponse) {
+        vm.personBiography = personBiographyResponse.data.biography;
+      });
+    }
+
     vm.status = 'Ready';
   });
 

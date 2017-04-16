@@ -59,9 +59,6 @@ module.exports = function photoService(PATH) {
   }
 
   function getGalleryArray(data) {
-
-    console.log(data);
-
     var galleryArray = [];
 
     data.backdrops.forEach(function(element) {
@@ -73,13 +70,18 @@ module.exports = function photoService(PATH) {
     return galleryArray;
   }
 
+  function getPersonPortrait(imgPath) {
+    return PATH.IMG.replace('{size}', 'w300') + imgPath;
+  }
+
   return {
     switchPosterSize: switchPosterSize,
     getBackdropPath: getBackdropPath,
     getPosterPhoto: getPosterPhoto,
     getPhotoArray: getPhotoArray,
     getCreditsPortrait: getCreditsPortrait,
-    getGalleryArray: getGalleryArray
+    getGalleryArray: getGalleryArray,
+    getPersonPortrait: getPersonPortrait
   };
 
 };
