@@ -29,7 +29,7 @@ module.exports = {
 
     // cast and crew
     person: 'person/{id}',
-    personCredits: 'person/{id}/combined_credits',
+    personCredits: 'person/{id}/movie_credits',
 
     // search
     searchMovies: 'search/movie',

@@ -74,6 +74,10 @@ module.exports = function photoService(PATH) {
     return PATH.IMG.replace('{size}', 'w300') + imgPath;
   }
 
+  function getPersonMoviePoster(imgPath) {
+    return PATH.IMG.replace('{size}', 'w45') + imgPath;
+  }
+
   return {
     switchPosterSize: switchPosterSize,
     getBackdropPath: getBackdropPath,
@@ -81,7 +85,8 @@ module.exports = function photoService(PATH) {
     getPhotoArray: getPhotoArray,
     getCreditsPortrait: getCreditsPortrait,
     getGalleryArray: getGalleryArray,
-    getPersonPortrait: getPersonPortrait
+    getPersonPortrait: getPersonPortrait,
+    getPersonMoviePoster: getPersonMoviePoster
   };
 
 };

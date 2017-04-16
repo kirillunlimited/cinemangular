@@ -4,7 +4,7 @@
 
 <div class="person" ng-if="personCtrl.status == 'Ready'">
   <div class="person__wrapper">
-    <div class="person__details">
+    <section class="person__details">
       <img ng-src="{{personCtrl.personPortrait}}" alt="" class="person__portrait">
       <div class="person__info">
         <div class="person__infoElement" ng-repeat="(key,value) in personCtrl.personInfo" ng-if="value">
@@ -17,10 +17,28 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="person__main">
+    </section>
+    <section class="person__main">
       <h1 class="person__name">{{personCtrl.personContent.name}}</h1>
       <p class="person__biography" ng-if="personCtrl.personBiography">{{personCtrl.personBiography}}</p>
-    </div>
+      <section class="person__credits">
+        <h2 class="person__creditsTitle">Credits</h2>
+        <article class="person__movie" ng-repeat="movie in personCtrl.personCreditsContent.cast">
+          <a class="person__moviePosterLink" ui-sref="film({filmId: movie.id})">
+            <img class="person__moviePoster" ng-src="{{personCtrl.getPersonMoviePoster(movie.poster_path)}}" alt="">
+          </a>
+          <div class="person__movieDetails">
+            <a class="person__movieHeadline" ui-sref="film({filmId: movie.id})">
+              <h3 class="person__movieTitle">{{movie.title}}</h3>
+              <span class="person__movieYear" ng-if="movie.release_date"> ({{personCtrl.getPersonMovieYear(movie.release_date)}})</span>
+            </a>
+            <div class="person__movieSub">
+              <span class="person__movieCharacter" ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
+              <span class="person__movieRole" ng-if="movie.character">... {{movie.character}}</span>
+            </div>
+          </div>
+        </article>
+      </section>
+    </section>
   </div>
 </div>
