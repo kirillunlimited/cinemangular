@@ -30,6 +30,11 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
     vm.status = 'Ready';
   });
 
+  jsonFactory.fetch('personPhotos', fetchParams).then(function(personPhotosResponse) {
+    vm.personPhotosContent = personPhotosResponse.data;
+    vm.personGallery = photoService.getGalleryArray(vm.personPhotosContent.profiles, 'person');
+  });
+
   jsonFactory.fetch('personCredits', fetchParams, 'ru').then(function(personCreditsResponse) {
     vm.personCreditsContent = personCreditsResponse.data;
   });

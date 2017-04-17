@@ -129,10 +129,10 @@
       </div>
     </section>
 
-    <div class="gallery" ng-if="filmCtrl.gallery">
+    <div class="gallery" ng-if="filmCtrl.gallery.length">
       <div class="gallery__wrapper">
         <h3 class="gallery__title">Gallery</h3>
-        <ng-image-gallery images="filmCtrl.gallery" bg-close="true"></ng-image-gallery>
+        <ng-image-gallery class="gallery__content gallery__content--film" images="filmCtrl.gallery" bg-close="true"></ng-image-gallery>
       </div>
     </div>
 

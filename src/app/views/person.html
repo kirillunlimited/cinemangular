@@ -7,6 +7,7 @@
     <section class="person__details">
       <img ng-src="{{personCtrl.personPortrait}}" alt="" class="person__portrait">
       <div class="person__info">
+        <h2 class="person__infoTitle">Info</h2>
         <div class="person__infoElement" ng-repeat="(key,value) in personCtrl.personInfo" ng-if="value">
           <div class="person__infoKey">{{key}}</div>
           <div class="person__infoValue" ng-if="key == 'homepage'">
@@ -16,6 +17,12 @@
             {{value}}
           </div>
         </div>
+
+        <div class="gallery gallery--person" ng-if="personCtrl.personGallery.length">
+          <h2 class="gallery__title">Photos</h2>
+          <ng-image-gallery class="gallery__content gallery__content--person" images="personCtrl.personGallery" bg-close="true"></ng-image-gallery>
+        </div>
+
       </div>
     </section>
     <section class="person__main">

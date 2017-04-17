@@ -51,20 +51,24 @@ module.exports = function photoService(PATH) {
   }
 
   function getGalleryImagePreviewPath(imgPath) {
-    return PATH.IMG.replace('{size}', 'w300') + imgPath;
+    return PATH.IMG.replace('{size}', 'w185') + imgPath;
   }
 
-  function getGalleryImageFullPath(imgPath) {
-    return PATH.IMG.replace('{size}', 'w1280') + imgPath;
+  function getGalleryImageFullPath(imgPath, type) {
+    if (type == 'person') {
+      return PATH.IMG.replace('{size}', 'w640') + imgPath;
+    }
+    else {
+      return PATH.IMG.replace('{size}', 'w1280') + imgPath;
+    }
   }
 
-  function getGalleryArray(data) {
+  function getGalleryArray(data, type) {
     var galleryArray = [];
-
-    data.backdrops.forEach(function(element) {
+    data.forEach(function(element) {
       galleryArray.push({
-        thumbUr: getGalleryImagePreviewPath(element.file_path),
-        url: getGalleryImageFullPath(element.file_path)
+        thumbUrl: getGalleryImagePreviewPath(element.file_path),
+        url: getGalleryImageFullPath(element.file_path, type)
       });
     });
     return galleryArray;

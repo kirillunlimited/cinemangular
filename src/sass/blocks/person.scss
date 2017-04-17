@@ -5,6 +5,8 @@
   &__details {
     width: 300px;
     float: left;
+    padding-right: 1em;
+    border-right: 1px solid $brand_color;
   }
   &__portrait {
     display: block;
@@ -12,6 +14,11 @@
   }
   &__info {
     padding: 1em 0;
+  }
+  &__infoTitle {
+    font-size: 1.5em;
+    padding-bottom: .25rem;
+    font-weight: normal;
   }
   &__infoElement {
 
@@ -25,7 +32,7 @@
   }
   &__main {
     padding-left: 300px;
-    margin-left: 1em;
+    margin-left: 2em;
   }
   &__name {
     display: inline-block;

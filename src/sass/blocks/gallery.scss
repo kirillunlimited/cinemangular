@@ -1,4 +1,5 @@
 .gallery {
+  padding-bottom: 1em;
   &__wrapper {
     @extend %wrapper;
   }
@@ -11,10 +12,9 @@
 
 .ng-image-gallery .ng-image-gallery-thumbnails .thumb {
   position: relative;
-  width: 16.66%;
   height: 0;
-  padding-bottom: 10%;
   border-radius: 0;
+  margin: 0;
   &:before {
     content: '';
     position: absolute;
@@ -36,4 +36,20 @@
 
 .ng-image-gallery .ng-image-gallery-thumbnails .thumb:not(:last-child) {
   margin: 0;
+}
+
+// movie page
+.gallery__content--film .ng-image-gallery-thumbnails .thumb {
+  width: 16.66%;
+  padding-bottom: 10%;
+}
+
+// person page
+.gallery--person {
+  padding-top: 1em;
+  border-top: 1px solid $brand_color;
+}
+.gallery__content--person .ng-image-gallery-thumbnails .thumb {
+  width: 33.33%;
+  padding-bottom: 33.33%;
 }
