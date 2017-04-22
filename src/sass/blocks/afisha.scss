@@ -1,0 +1,22 @@
+.afisha {
+  &__wrapper {
+    @extend %wrapper;
+  }
+  &__title {
+    font-size: 2em;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  &__menu {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 4px solid $brand_color;
+  }
+  &__button {
+    width: 33.33%;
+    padding: 1em;
+    border: 0;
+  }
+}

@@ -11,19 +11,19 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
     })
     .state('afisha.today', {
       url: '/today',
-      templateUrl: 'app/views/afisha_content.html',
+      templateUrl: 'app/views/posters.html',
       controller: 'AfishaController',
       controllerAs: 'afishaCtrl'
     })
     .state('afisha.upcoming', {
       url: '/upcoming',
-      templateUrl: 'app/views/afisha_content.html',
+      templateUrl: 'app/views/posters.html',
       controller: 'AfishaController',
       controllerAs: 'afishaCtrl'
     })
     .state('afisha.popular', {
       url: '/popular',
-      templateUrl: 'app/views/afisha_content.html',
+      templateUrl: 'app/views/posters.html',
       controller: 'AfishaController',
       controllerAs: 'afishaCtrl'
     })

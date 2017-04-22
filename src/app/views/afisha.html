@@ -3,15 +3,15 @@
 </div>
 
 <div class="afisha" ng-if="afishaCtrl.status == 'Ready'">
-  <div class="subject">
-    <h1 class="subject__title subject__title_main">Афиша</h1>
-  </div>
-  <nav class="afisha__buttons">
-    <a ui-sref="afisha.today" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}">В кино</a>
-    <a ui-sref="afisha.upcoming" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.upcoming')}">Скоро</a>
-    <a ui-sref="afisha.popular" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.popular')}">Популярное</a>
-  </nav>
+  <div class="afisha__wrapper">
+    <h1 class="afisha__title">Афиша</h1>
+    <nav class="afisha__menu">
+      <a ui-sref="afisha.today" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}">В кино</a>
+      <a ui-sref="afisha.upcoming" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.upcoming')}">Скоро</a>
+      <a ui-sref="afisha.popular" class="afisha__button button" ng-class="{button_active: afishaCtrl.getClass('afisha.popular')}">Популярное</a>
+    </nav>
 
-  <div class="afisha__content" ui-view></div>
+    <div class="afisha__content" ui-view></div>
+  </div>
 
 </div>

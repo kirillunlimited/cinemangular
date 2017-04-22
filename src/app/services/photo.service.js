@@ -28,6 +28,24 @@ module.exports = function photoService(PATH) {
     }
   }
 
+  function getAfishaPoster(imgPath) {
+    if (imgPath) {
+      return PATH.IMG.replace('{size}', 'w300') + imgPath;
+    }
+    else {
+      return 'img/no_poster.png';
+    }
+  }
+
+  function getAfishaBackdrop(imgPath) {
+    if (imgPath) {
+      return PATH.IMG.replace('{size}', 'w1000') + imgPath;
+    }
+    else {
+      return 'img/no_poster.png';
+    }
+  }
+
   function getBackdropPath(imgPath) {
     return PATH.IMG.replace('{size}', 'w1920') + imgPath;
   }
@@ -56,7 +74,7 @@ module.exports = function photoService(PATH) {
 
   function getGalleryImageFullPath(imgPath, type) {
     if (type == 'person') {
-      return PATH.IMG.replace('{size}', 'w640') + imgPath;
+      return PATH.IMG.replace('{size}', 'w500') + imgPath;
     }
     else {
       return PATH.IMG.replace('{size}', 'w1280') + imgPath;
@@ -82,6 +100,10 @@ module.exports = function photoService(PATH) {
     return PATH.IMG.replace('{size}', 'w45') + imgPath;
   }
 
+  function getAfishaMainPoster(imgPath) {
+    return PATH.IMG.replace('{size}', 'w1280') + imgPath;
+  }
+
   return {
     switchPosterSize: switchPosterSize,
     getBackdropPath: getBackdropPath,
@@ -90,7 +112,10 @@ module.exports = function photoService(PATH) {
     getCreditsPortrait: getCreditsPortrait,
     getGalleryArray: getGalleryArray,
     getPersonPortrait: getPersonPortrait,
-    getPersonMoviePoster: getPersonMoviePoster
+    getPersonMoviePoster: getPersonMoviePoster,
+    getAfishaMainPoster: getAfishaMainPoster,
+    getAfishaPoster: getAfishaPoster,
+    getAfishaBackdrop: getAfishaBackdrop
   };
 
 };
