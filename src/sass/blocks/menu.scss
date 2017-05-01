@@ -1,0 +1,17 @@
+.menu {
+  @extend %wrapper;
+  display: flex;
+  list-style: none;
+  &__item {
+    width: 100%;
+    text-align: center;
+  }
+  &__link {
+    display: block;
+    padding: 0 2em;
+    line-height: 4em;
+    &:hover {
+      background-color: $brand_color;
+    }
+  }
+}
