@@ -53,7 +53,7 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
 
   jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(movieGalleryResponse){
     vm.movieGalleryContent = movieGalleryResponse.data;
-    vm.gallery = photoService.getGalleryArray(vm.movieGalleryContent);
+    vm.gallery = photoService.getGalleryArray(vm.movieGalleryContent.backdrops, 'movie');
   });
 
   function getVideos(videoObjects) {

@@ -2,45 +2,102 @@
 module.exports = function SearchController(jsonFactory, photoService, $state) {
   var vm = this;
 
-  vm.searchString = $state.params.value;
-  vm.status = 'Ready';
+  vm.searchString = $state.params.query;
 
-  vm.filmsLimit = 3;
-  vm.peopleLimit = 3;
+  vm.getClass = function(currentState) {
+    return $state.current.name === currentState;
+  };
 
-  vm.findFilm = function() {
+  var searchStates = {
+    'search.movies': {
+      method: 'searchMovies',
+      var: 'moviesResults',
+      countVar: 'moviesResultsCount'
+    },
+    'search.tv': {
+      method: 'searchTv',
+      var: 'tvResults',
+      countVar: 'tvResultsCount'
+    },
+    'search.people': {
+      method: 'searchPeople',
+      var: 'peopleResults',
+      countVar: 'peopleResultsCount'
+    }
+  };
+
+  var statesCount = Object.keys(searchStates).length;
+
+  vm.tabsInit = function(statesWithResult, queryString) {
+    // если на текущей вкладке нет результатов (иначе остаемся на текущей вкладке)
+    if (statesWithResult.indexOf($state.current.name) == -1) {
+      // перебор вкладок с результатами (слева направо)
+      for (var state in searchStates) {
+        if (statesWithResult.indexOf(state) != -1) {
+          $state.go(state, {query: queryString});
+          return;
+        }
+      }
+    }
+  }
+
+  vm.fetchInit = function(fetchParams, lang) {
+    var searchTabCounter = 0;
+    var statesWithResult = [];
+
+    angular.forEach(searchStates, function(stateValue, stateIndex){
+      jsonFactory.fetch(stateValue.method, fetchParams, lang).then(function(response) {
+
+        vm[stateValue.var] = response.data.results;
+        vm[stateValue.countVar] = response.data.total_results || 0;
+
+        searchTabCounter++;
+
+        if (vm[stateValue.countVar]) {
+          statesWithResult.push(stateIndex);
+        }
+
+        if (searchTabCounter == statesCount) {
+          vm.tabsInit(statesWithResult, vm.searchString);
+        }
+
+      });
+    });
+  };
+
+  vm.searchInit = function() {
+
     if (vm.searchString != null) {
-      $state.transitionTo('search.results', {value: vm.searchString});
-      vm.status = 'Loading';
       var fetchParams = {
         query: vm.searchString
       };
-      jsonFactory.fetch('searchMovies',fetchParams).then(function(searchMoviesResponse) {
-        vm.searchMoviesContent = searchMoviesResponse.data.results;
-        jsonFactory.fetch('searchPeople', fetchParams).then(function(searchPeopleResponse) {
-          vm.searchPeopleContent = searchPeopleResponse.data.results;
-          vm.status = 'Ready';
-        });
-      });
+
+      vm.fetchInit(fetchParams, 'ru');
     }
   };
 
   vm.getPoster = function(posterURL) {
-    return photoService.getPosterPhoto(posterURL, 'small');
-  };
-
-  vm.moreFilms = function(limit) {
-    vm.filmsLimit = limit;
-  };
-
-  vm.morePeople = function(limit) {
-    vm.peopleLimit = limit;
+    return photoService.getSearchPhoto(posterURL);
   };
 
   vm.formatDate = function(releaseDate) {
     return jsonFactory.getYear(releaseDate);
   }
 
-  vm.findFilm();
+  vm.getMovieYear = function(date) {
+    return jsonFactory.getYear(date);
+  };
+
+  vm.getKnownFor = function(person) {
+    var myArr = person.known_for.map(function(movie) {
+      var title = movie.title || movie.name;
+      if (!title) {
+        title = movie.original_title || movie.original_name;
+      }
+      return title;
+    });
+  };
+
+  vm.searchInit();
 
 };

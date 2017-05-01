@@ -1,14 +1,23 @@
 .button {
   position: relative;
   display: inline-block;
-  padding: .2em 1em;
+  padding: .25em 1em;
   color: $brand_color;
+  background-color: transparent;
   border: 1px solid $brand_color;
   text-align: center;
-  transition: background-color .1s ease-in-out;
+  transition: color .1s ease-in-out, background-color .1s ease-in-out;
+  cursor: pointer;
   &:hover {
     color: #fff;
     background-color: $brand_color;
+  }
+  &[disabled] {
+    color: $passive_color;
+    border-color: $passive_color;
+    &:hover {
+      background-color: transparent;
+    }
   }
   &_active {
     color: #fff;

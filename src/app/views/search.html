@@ -1,15 +1,33 @@
 <div class="search">
-  <div class="subject">
-    <h1 class="subject__title subject__title_main">Поиск</h1>
-  </div>
-  <form class="search__form" name="search_form" ng-submit="searchCtrl.findFilm()">
-    <input type="text" class="search__textbox textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
-    <button class="button search__button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
-  </form>
+  <div class="search__wrapper">
+    <h1 class="search__title">Поиск</h1>
+    <form class="search__form" name="search_form" ng-submit="searchCtrl.searchInit()">
+      <input type="text" class="search__textbox textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
+      <button class="button search__button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
+    </form>
 
-  <div ng-if="searchCtrl.status == 'Loading'">
-    <div class="loader loader_inner"></div>
-  </div>
+    <nav class="search__menu">
+      <a
+        ui-sref="search.movies({query: searchCtrl.searchString})"
+        class="search__navButton button"
+        ng-class="{button_active: searchCtrl.getClass('search.movies')}">
+          Кино <span ng-if="searchCtrl.moviesResultsCount">({{searchCtrl.moviesResultsCount}})</span>
+      </a>
+      <a
+        ui-sref="search.tv({query: searchCtrl.searchString})"
+        class="search__navButton button"
+        ng-class="{button_active: searchCtrl.getClass('search.tv')}">
+          ТВ <span ng-if="searchCtrl.tvResultsCount">({{searchCtrl.tvResultsCount}})</span>
+      </a>
+      <a
+        ui-sref="search.people({query: searchCtrl.searchString})"
+        class="search__navButton button"
+        ng-class="{button_active: searchCtrl.getClass('search.people')}">
+          Люди <span ng-if="searchCtrl.peopleResultsCount">({{searchCtrl.peopleResultsCount}})</span>
+        </a>
+    </nav>
 
-  <div class="search__results" ng-if="searchCtrl.status == 'Ready'" ui-view></div>
+    <div class="search__results" ui-view></div>
+
+  </div>
 </div>

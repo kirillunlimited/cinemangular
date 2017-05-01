@@ -1,7 +1,9 @@
 .link {
+  display: inline-block;
   color: $brand_color;
   text-decoration: underline;
   &:hover {
     color: #fff;
+    text-decoration: none;
   }
 }

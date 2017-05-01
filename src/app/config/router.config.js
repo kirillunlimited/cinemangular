@@ -28,14 +28,22 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'afishaCtrl'
     })
     .state('search', {
-      url: '/search/',
+      url: '/search',
       templateUrl: 'app/views/search.html',
       controller: 'SearchController',
       controllerAs: 'searchCtrl'
     })
-    .state('search.results', {
-      url: ':value',
-      templateUrl: 'app/views/search_results.html'
+    .state('search.movies', {
+      url: '/movies/:query',
+      templateUrl: 'app/views/results/movies.html',
+    })
+    .state('search.tv', {
+      url: '/tv/:query',
+      templateUrl: 'app/views/results/tv.html',
+    })
+    .state('search.people', {
+      url: '/people/:query',
+      templateUrl: 'app/views/results/people.html',
     })
     .state('film', {
       url: '/film/:filmId',

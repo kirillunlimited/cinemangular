@@ -28,7 +28,7 @@
   }
 
   &__group {
-    border-bottom: 1px solid $brand_color;
+    border-top: 1px solid $brand_color;
   }
 
   &__groupTitle {
@@ -43,14 +43,14 @@
   &__person {
     width: 25%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 1em;
   }
   &__portrait {
     position: relative;
     width: 90px;
     min-width: 90px;
-    height: 90px;
+    // height: 90px;
     &:before {
       content: '';
       position: absolute;
@@ -64,6 +64,7 @@
     }
   }
   &__photo {
+    display: block;
     width: 100%;
     height: 100%;
   }

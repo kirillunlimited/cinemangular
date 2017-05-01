@@ -104,18 +104,28 @@ module.exports = function photoService(PATH) {
     return PATH.IMG.replace('{size}', 'w1280') + imgPath;
   }
 
+  function getSearchPhoto(imgPath, size) {
+    if (imgPath) {
+      return PATH.IMG.replace('{size}', 'w45') + imgPath;
+    }
+    else {
+      return 'img/no_poster.jpg';
+    }
+  }
+
   return {
-    switchPosterSize: switchPosterSize,
-    getBackdropPath: getBackdropPath,
-    getPosterPhoto: getPosterPhoto,
-    getPhotoArray: getPhotoArray,
-    getCreditsPortrait: getCreditsPortrait,
-    getGalleryArray: getGalleryArray,
-    getPersonPortrait: getPersonPortrait,
+    switchPosterSize:     switchPosterSize,
+    getBackdropPath:      getBackdropPath,
+    getPosterPhoto:       getPosterPhoto,
+    getPhotoArray:        getPhotoArray,
+    getCreditsPortrait:   getCreditsPortrait,
+    getGalleryArray:      getGalleryArray,
+    getPersonPortrait:    getPersonPortrait,
     getPersonMoviePoster: getPersonMoviePoster,
-    getAfishaMainPoster: getAfishaMainPoster,
-    getAfishaPoster: getAfishaPoster,
-    getAfishaBackdrop: getAfishaBackdrop
+    getAfishaMainPoster:  getAfishaMainPoster,
+    getAfishaPoster:      getAfishaPoster,
+    getAfishaBackdrop:    getAfishaBackdrop,
+    getSearchPhoto:       getSearchPhoto
   };
 
 };

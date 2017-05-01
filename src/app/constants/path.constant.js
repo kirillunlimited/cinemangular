@@ -34,6 +34,7 @@ module.exports = {
 
     // search
     searchMovies: 'search/movie',
+    searchTv: 'search/tv',
     searchPeople: 'search/person',
 
     // credits

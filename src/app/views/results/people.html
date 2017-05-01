@@ -1,0 +1,20 @@
+<section class="results" ng-if="searchCtrl.peopleResults.length">
+  <article class="results__element" ng-repeat="person in searchCtrl.peopleResults">
+    <a class="results__photoLink" ui-sref="person({personId: person.id})">
+      <img class="results__photo" ng-src="{{searchCtrl.getPoster(person.profile_path)}}" alt="">
+    </a>
+    <div class="results__info">
+      <a class="results__headline" ui-sref="person({personId: person.id})">
+        <h3 class="results__title">{{person.name}}</h3>
+      </a>
+      <div class="results__extra" ng-if="person.known_for.length">
+        Known for:
+        <span ng-repeat="movie in person.known_for">
+          <a class="link" ui-sref="film({filmId: movie.id})">{{movie.title || movie.original_title || movie.name || movie.original_name}}</a>{{$last ? '' : ', '}}
+        </span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<p class="results" ng-if="!searchCtrl.peopleResults.length">No results</p>

@@ -1,0 +1,18 @@
+<section class="results" ng-if="searchCtrl.tvResults.length">
+  <article class="results__element" ng-repeat="tv in searchCtrl.tvResults">
+    <a class="results__photoLink" ui-sref="#">
+      <img class="results__photo" ng-src="{{searchCtrl.getPoster(tv.poster_path)}}" alt="">
+    </a>
+    <div class="results__info">
+      <a class="results__headline" ui-sref="#">
+        <h3 class="results__title">{{tv.name}}</h3>
+        <span ng-if="tv.first_air_date">({{searchCtrl.getMovieYear(tv.first_air_date)}})</span>
+      </a>
+      <div class="results__extra">
+        <span ng-if="tv.original_name != tv.name">{{tv.original_name}}</span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<p class="results" ng-if="!searchCtrl.tvResults.length">No results</p>

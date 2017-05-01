@@ -1,0 +1,41 @@
+.search {
+  &__wrapper {
+    @extend %wrapper;
+  }
+  &__title {
+    font-size: 2em;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  &__form {
+    margin-bottom: 1em;
+  }
+  &__textbox {
+    background-color: transparent;
+    border: 1px solid $brand_color;
+    font-size: 1em;
+    padding: .25em .5em;
+    line-height: 1.6;
+  }
+  &__button {
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 4px solid $brand_color;
+    margin-bottom: 1em;
+  }
+  &__navButton {
+    width: 33.33%;
+    padding: 1em;
+    border: 0;
+  }
+
+  &__results {
+    position: relative;
+  }
+
+}

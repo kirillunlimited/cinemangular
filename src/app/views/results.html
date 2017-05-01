@@ -1,0 +1,56 @@
+<section class="results" ng-if="searchCtrl.searchMoviesContent.length">
+  <h2 class="results__topic">Фильмы</h2>
+  <article class="results__element" ng-repeat="movie in searchCtrl.searchMoviesContent">
+    <a class="results__photoLink" ui-sref="film({filmId: movie.id})">
+      <img class="results__photo" ng-src="{{searchCtrl.getPoster(movie.poster_path)}}" alt="">
+    </a>
+    <div class="results__info">
+      <a class="results__headline" ui-sref="film({filmId: movie.id})">
+        <h3 class="results__title">{{movie.title}}</h3>
+        <span ng-if="movie.release_date"> ({{searchCtrl.getMovieYear(movie.release_date)}})</span>
+      </a>
+      <div class="results__extra">
+        <span ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!--<section class="results" ng-if="searchCtrl.searchPeopleContent.length">
+  <h2 class="results__topic">Люди</h2>
+  <article class="results__element" ng-repeat="person in searchCtrl.searchPeopleContent | limitTo:searchCtrl.peopleLimit">
+    <a class="results__photoLink" ui-sref="person({personId: person.id})">
+      <img class="results__photo" ng-src="{{searchCtrl.getPoster(person.profile_path)}}" alt="">
+    </a>
+    <div class="results__info">
+      <a class="results__headline" ui-sref="person({personId: person.id})">
+        <h3 class="results__title">{{person.name}}</h3>
+      </a>
+      <div class="results__extra" ng-if="person.known_for.length">
+        Known for:
+        <span ng-repeat="movie in person.known_for">
+          <a class="link" ui-sref="film({filmId: movie.id})">{{movie.title || movie.original_title || movie.name || movie.original_name}}</a>{{$last ? '' : ', '}}
+        </span>
+      </div>
+    </div>
+  </article>
+  <button class="button" ng-click="searchCtrl.morePeople(searchCtrl.searchPeopleContent.length)" ng-if="searchCtrl.searchPeopleContent.length > searchCtrl.peopleLimit">Показать всех людей</button>
+</section>-->
+
+<!--
+<section ng-if="searchCtrl.searchPeopleContent.length" class="search__section">
+  <h2 class="search__subtitle">Люди</h2>
+  <div class="search__element" ng-repeat="person in searchCtrl.searchPeopleContent | limitTo:searchCtrl.peopleLimit">
+    <a ui-sref="person({personId: person.id})">
+      <img class="search__img" ng-src="{{searchCtrl.getPoster(person.profile_path)}}" alt="" />
+    </a>
+    <div class="search__content">
+      <div ng-if="person.name" class="search__main">
+        <div>
+          <a ui-sref="person({personId: person.id})" class="search__value link">{{person.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="button" ng-click="searchCtrl.morePeople(searchCtrl.searchPeopleContent.length)" ng-if="searchCtrl.searchPeopleContent.length > searchCtrl.peopleLimit">Показать всех людей</button>
+</section>-->
