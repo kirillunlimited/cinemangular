@@ -31,23 +31,25 @@
       <h1 class="person__name">{{personCtrl.personContent.name}}</h1>
       <p class="person__biography" ng-if="personCtrl.personBiography">{{personCtrl.personBiography}}</p>
 
-      <section class="person__credits results">
-        <h2 class="results__topic">Credits</h2>
-        <article class="results__element" ng-repeat="movie in personCtrl.personCreditsContent.cast">
-          <a class="results__photoLink" ui-sref="film({filmId: movie.id})">
-            <img class="results__photo" ng-src="{{personCtrl.getPersonMoviePoster(movie.poster_path)}}" alt="">
-          </a>
-          <div class="results__info">
-            <a class="results__headline" ui-sref="film({filmId: movie.id})">
-              <h3 class="results__title">{{movie.title}}</h3>
-              <span ng-if="movie.release_date"> ({{personCtrl.getPersonMovieYear(movie.release_date)}})</span>
+      <section class="person__credits">
+        <div class="results">
+          <h2 class="results__topic">Credits</h2>
+          <article class="results__element" ng-repeat="movie in personCtrl.personCreditsContent.cast">
+            <a class="results__photoLink" ui-sref="film({filmId: movie.id})">
+              <img class="results__photo" ng-src="{{personCtrl.getPersonMoviePoster(movie.poster_path)}}" alt="">
             </a>
-            <div class="results__extra">
-              <span ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
-              <span ng-if="movie.character">... {{movie.character}}</span>
+            <div class="results__info">
+              <a class="results__headline" ui-sref="film({filmId: movie.id})">
+                <h3 class="results__title">{{movie.title}}</h3>
+                <span ng-if="movie.release_date"> ({{personCtrl.getPersonMovieYear(movie.release_date)}})</span>
+              </a>
+              <div class="results__extra">
+                <span ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
+                <span ng-if="movie.character">... {{movie.character}}</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </section>
 
     </section>
