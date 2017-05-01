@@ -5,8 +5,10 @@
       <input type="text" class="search__textbox textbox" placeholder="Что ищем?" ng-model="searchCtrl.searchString" required />
       <button class="button search__button" type="submit" ng-disabled="search_form.$invalid">Найти</button>
     </form>
+  </div>
 
-    <nav class="search__menu">
+  <nav class="search__navigation">
+    <div class="search__menu">
       <a
         ui-sref="search.movies({query: searchCtrl.searchString})"
         class="search__navButton button"
@@ -24,10 +26,12 @@
         class="search__navButton button"
         ng-class="{button_active: searchCtrl.getClass('search.people')}">
           Люди <span ng-if="searchCtrl.peopleResultsCount">({{searchCtrl.peopleResultsCount}})</span>
-        </a>
-    </nav>
+      </a>
+    </div>
+  </nav>
 
+  <div class="search__wrapper">
     <div class="search__results" ui-view></div>
-
-  </div>
+  </div
+  >
 </div>

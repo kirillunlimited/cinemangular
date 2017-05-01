@@ -22,11 +22,15 @@
   &__button {
   }
 
-  &__menu {
-    display: flex;
-    justify-content: flex-end;
+  &__navigation {
     border-bottom: 4px solid $brand_color;
     margin-bottom: 1em;
+  }
+
+  &__menu {
+    @extend %wrapper;
+    display: flex;
+    justify-content: flex-end;
   }
   &__navButton {
     width: 33.33%;
