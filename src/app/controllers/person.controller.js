@@ -32,14 +32,14 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
 
   jsonFactory.fetch('personPhotos', fetchParams).then(function(personPhotosResponse) {
     vm.personPhotosContent = personPhotosResponse.data;
-    vm.personGallery = photoService.getGalleryArray(vm.personPhotosContent.profiles, 'person');
+    vm.personGallery = photoService.getPersonGallery(vm.personPhotosContent.profiles);
   });
 
   jsonFactory.fetch('personCredits', fetchParams, 'ru').then(function(personCreditsResponse) {
     vm.personCreditsContent = personCreditsResponse.data;
   });
 
-  vm.getPersonMoviePoster = function(imgPath) {
+  vm.getMoviePoster = function(imgPath) {
     return photoService.getPersonMoviePoster(imgPath);
   };
 

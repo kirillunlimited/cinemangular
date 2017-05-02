@@ -12,7 +12,6 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.filmContent = filmResponse.data;
     vm.filmContent.genres.content = jsonFactory.extractObjectArray(vm.filmContent.genres);
     vm.filmContent.production_countries.content = jsonFactory.extractObjectArray(vm.filmContent.production_countries);
-    vm.filmContent.poster_path_full = photoService.getPosterPhoto(vm.filmContent.poster_path, 'medium');
     vm.filmContent.release_date = jsonFactory.formatDate(vm.filmContent.release_date);
     vm.filmContent.runtime = jsonFactory.formatRuntime(vm.filmContent.runtime);
     vm.filmContent.budget = jsonFactory.formatMoney(vm.filmContent.budget);
@@ -20,6 +19,10 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
 
     vm.filmStatus = 'Ready';
   });
+
+  vm.getPoster = function(url) {
+    return photoService.getMoviePoster(url)
+  };
 
   var getCreditsByJob = function(job, jobProp, creditsContent) {
     creditsContent[jobProp] = [];
@@ -53,7 +56,7 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
 
   jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(movieGalleryResponse){
     vm.movieGalleryContent = movieGalleryResponse.data;
-    vm.gallery = photoService.getGalleryArray(vm.movieGalleryContent.backdrops, 'movie');
+    vm.gallery = photoService.getMovieGallery(vm.movieGalleryContent.backdrops);
   });
 
   function getVideos(videoObjects) {
@@ -70,5 +73,9 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
       vm.videos = getVideos(vm.movieVideosContent.results);
     }
   });
+
+  vm.getCastPortrait = function(photoURL) {
+    return photoService.getCastPortrait(photoURL);
+  };
 
 };

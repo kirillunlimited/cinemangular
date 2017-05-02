@@ -4,10 +4,6 @@ module.exports = function AfishaController(jsonFactory, dateService, photoServic
 
   vm.status = 'Loading';
 
-  vm.switchPosterSize = function(imgPath, imgWidth) {
-    return photoService.switchPosterSize(imgPath, imgWidth);
-  };
-
   vm.getClass = function(currentState) {
     return $state.current.name === currentState;
   };

@@ -76,9 +76,12 @@ module.exports = function SearchController(jsonFactory, photoService, $state) {
     }
   };
 
-  vm.getPoster = function(posterURL) {
-    return photoService.getSearchPhoto(posterURL);
+  vm.getPoster = function(url) {
+    return photoService.getResultPoster(url);
   };
+  vm.getPortrait = function(url) {
+    return photoService.getResultPortrait(url);
+  }
 
   vm.formatDate = function(releaseDate) {
     return jsonFactory.getYear(releaseDate);
