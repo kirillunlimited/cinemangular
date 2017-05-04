@@ -62,6 +62,11 @@ gulp.task('img', function() {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('fonts', function() {
+  return gulp.src('node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest('./dist/fonts'))
+})
+
 gulp.task('gallery-icons', function() {
   return gulp.src('./node_modules/ng-image-gallery/res/icons/**/*.{jpg,png,svg,gif}')
     .pipe(gulp.dest('./dist/res/icons'));
@@ -88,7 +93,8 @@ gulp.task('copy', function() {
     '!./src/sass', '!./src/sass/**',
     '!./src/js', '!./src/js/**',
     '!./src/app', '!./src/app/**',
-    '!./src/img', '!./src/img/**'
+    '!./src/img', '!./src/img/**',
+    '!./src/fonts', '!./src/fonts/**'
   ];
   return gulp.src(objects, {dot: true})
     .pipe(gulp.dest('./dist'));
@@ -101,4 +107,4 @@ gulp.task('watch', function(){
   gulp.watch('src/img/*.{jpg,png,svg,gif}', ['img']);
 });
 
-gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'gallery-icons', 'watch']);
+gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'fonts', 'gallery-icons', 'watch']);
