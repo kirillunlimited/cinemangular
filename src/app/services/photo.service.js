@@ -6,16 +6,10 @@ module.exports = function photoService(PATH) {
     if (imgPath) {
       return PATH.IMG.replace('{size}', imgSize) + imgPath;
     }
-    else {
-      return 'img/no_portrait.jpg';
-    }
   }
   function getPoster(imgPath, imgSize) {
     if (imgPath) {
       return PATH.IMG.replace('{size}', imgSize) + imgPath;
-    }
-    else {
-      return 'img/no_poster.jpg';
     }
   }
 

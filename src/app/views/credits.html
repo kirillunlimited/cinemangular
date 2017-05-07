@@ -16,15 +16,17 @@
       <section class="credits__group" ng-repeat="(type, creatorsGroup) in creditsCtrl.creditsContent" ng-if="type !== 'id'">
         <h2 class="credits__groupTitle">{{type}}</h2>
         <div class="credits__groupContent">
+
           <div class="credits__person" ng-repeat="person in creatorsGroup">
-            <a class="credits__portrait" ui-sref="person({personId: person.id})">
-              <credit-photo path="{{person.profile_path}}"></credit-photo>
+            <a class="credits__photo" ui-sref="person({personId: person.id})">
+              <cover path="{{person.profile_path}}" view="credit" type="profile"></cover>
             </a>
             <div class="credits__info">
               <a ui-sref="person({personId: person.id})" class="credits__name link">{{person.name}}</a><br/>
               <span class="credits__role">{{person.character || person.job}}</span>
             </div>
           </div>
+
         </div>
       </section>
     </div>

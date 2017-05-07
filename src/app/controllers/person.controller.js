@@ -10,7 +10,6 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
 
   jsonFactory.fetch('person', fetchParams, 'ru').then(function(personResponse) {
     vm.personContent = personResponse.data;
-    vm.personPortrait = photoService.getPersonPortrait(vm.personContent.profile_path);
 
     vm.personInfo = {
       gender: (vm.personContent.gender === 1) ? 'Женский' : 'Мужской',
@@ -38,10 +37,6 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
   jsonFactory.fetch('personCredits', fetchParams, 'ru').then(function(personCreditsResponse) {
     vm.personCreditsContent = personCreditsResponse.data;
   });
-
-  vm.getMoviePoster = function(imgPath) {
-    return photoService.getPersonMoviePoster(imgPath);
-  };
 
   vm.getPersonMovieYear = function(date) {
     return jsonFactory.getYear(date);

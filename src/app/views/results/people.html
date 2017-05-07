@@ -1,7 +1,7 @@
 <section class="results" ng-if="searchCtrl.peopleResults.length">
   <article class="results__element" ng-repeat="person in searchCtrl.peopleResults">
     <a class="results__photoLink" ui-sref="person({personId: person.id})">
-      <img class="results__photo" ng-src="{{searchCtrl.getPortrait(person.profile_path)}}" alt="">
+      <cover path="{{person.profile_path}}" view="result" type="profile"></cover>
     </a>
     <div class="results__info">
       <a class="results__headline" ui-sref="person({personId: person.id})">

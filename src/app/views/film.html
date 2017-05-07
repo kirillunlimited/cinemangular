@@ -10,7 +10,9 @@
     <header class="film__header">
       <section class="film__headerTop">
         <div class="film__wrapper">
-          <img class="film__poster" ng-src="{{filmCtrl.getPoster(filmCtrl.filmContent.poster_path)}}" alt="Постер {{filmCtrl.filmContent.title}}" />
+          <div class="film__poster">
+            <cover path="{{filmCtrl.filmContent.poster_path}}" view="movie" type="poster"></cover>
+          </div>
 
           <div class="film__main">
             <h1 class="film__title">{{filmCtrl.filmContent.title}}</h1>
@@ -114,14 +116,14 @@
         <h3 class="cast__title">Cast</h3>
         <div class="cast__grid">
           <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in filmCtrl.creditsContent.cast | limitTo:5">
-            <img class="cast__portrait" ng-src="{{filmCtrl.getCastPortrait(person.profile_path)}}" alt="">
-            <span class="cast__content">
+            <cover path="{{person.profile_path}}" view="cast" type="profile"></cover>
+            <span class="cast__info">
               <span class="cast__name">{{person.name}}</span><br/>
               <span class="cast__character">as<br/>{{person.character}}</span>
             </span>
           </a>
           <a ng-if="filmCtrl.creditsContent.cast.length > 5" ui-sref="credits({filmId: filmCtrl.filmContent.id})" class="cast__element cast__element--more" >
-            <span class="cast__content">
+            <span class="cast__info">
               <span class="cast__more">Full cast & crew</span>
             </span>
           </a>

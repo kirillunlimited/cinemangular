@@ -6,7 +6,7 @@
   <div class="person__wrapper">
 
     <section class="person__details">
-      <img ng-src="{{personCtrl.personPortrait}}" alt="" class="person__portrait">
+      <cover path="{{personCtrl.personContent.profile_path}}" view="person" type="profile"></cover>
       <div class="person__info">
         <h2 class="person__infoTitle">Info</h2>
         <div class="person__infoElement" ng-repeat="(key,value) in personCtrl.personInfo" ng-if="value">
@@ -36,7 +36,7 @@
           <h2 class="results__topic">Credits</h2>
           <article class="results__element" ng-repeat="movie in personCtrl.personCreditsContent.cast">
             <a class="results__photoLink" ui-sref="film({filmId: movie.id})">
-              <img class="results__photo" ng-src="{{personCtrl.getMoviePoster(movie.poster_path)}}" alt="">
+              <cover path="{{movie.poster_path}}" view="result" type="poster"></cover>
             </a>
             <div class="results__info">
               <a class="results__headline" ui-sref="film({filmId: movie.id})">

@@ -1,7 +1,7 @@
 <section class="results" ng-if="searchCtrl.tvResults.length">
   <article class="results__element" ng-repeat="tv in searchCtrl.tvResults">
     <a class="results__photoLink" ui-sref="#">
-      <img class="results__photo" ng-src="{{searchCtrl.getPoster(tv.poster_path)}}" alt="">
+      <cover path="{{tv.poster_path}}" view="result" type="poster"></cover>
     </a>
     <div class="results__info">
       <a class="results__headline" ui-sref="#">

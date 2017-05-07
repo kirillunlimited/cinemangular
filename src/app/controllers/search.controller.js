@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function SearchController(jsonFactory, photoService, $state) {
+module.exports = function SearchController(jsonFactory, $state) {
   var vm = this;
 
   vm.searchString = $state.params.query;
@@ -75,13 +75,6 @@ module.exports = function SearchController(jsonFactory, photoService, $state) {
       vm.fetchInit(fetchParams, 'ru');
     }
   };
-
-  vm.getPoster = function(url) {
-    return photoService.getResultPoster(url);
-  };
-  vm.getPortrait = function(url) {
-    return photoService.getResultPortrait(url);
-  }
 
   vm.formatDate = function(releaseDate) {
     return jsonFactory.getYear(releaseDate);

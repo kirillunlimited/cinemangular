@@ -20,10 +20,6 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.filmStatus = 'Ready';
   });
 
-  vm.getPoster = function(url) {
-    return photoService.getMoviePoster(url)
-  };
-
   var getCreditsByJob = function(job, jobProp, creditsContent) {
     creditsContent[jobProp] = [];
     creditsContent.crew.forEach(function(person){
@@ -73,9 +69,5 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
       vm.videos = getVideos(vm.movieVideosContent.results);
     }
   });
-
-  vm.getCastPortrait = function(photoURL) {
-    return photoService.getCastPortrait(photoURL);
-  };
 
 };

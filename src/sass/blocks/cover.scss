@@ -1,0 +1,50 @@
+.cover {
+  width: 100%;
+  height: 100%;
+
+  &__blank {
+  display: table;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: $passive_color;
+  font-size: 1em;
+  }
+  .fa {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: $neutral_color;
+
+    &--view-movie {
+      font-size: 8em;
+      height: 450px;
+    }
+    &--view-person {
+      font-size: 12em;
+      height: 450px;
+    }
+    &--view-credit {
+        font-size: 4em;
+        height: 135px;
+    }
+    &--view-cast {
+        font-size: 6em;
+    }
+    &--view-result {
+      font-size: 1.5em;
+      height: 68px;
+    }
+
+    &--type-profile {
+      @extend .fa-user;
+    }
+    &--type-poster {
+      @extend .fa-video-camera;
+    }
+  }
+  &__photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}

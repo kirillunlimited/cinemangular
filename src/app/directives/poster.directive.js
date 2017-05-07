@@ -3,7 +3,9 @@ module.exports = function poster(photoService, PATH) {
   return {
     restrict: 'EA',
     replace: 'true',
-    scope: { film: '=' },
+    scope: {
+      film: '='
+    },
     link: function(scope, el, attr){
       // каждые (10n + 1) и (10n + 7) - backdrop
       if (attr.index == 0 || attr.index == 6 ||
