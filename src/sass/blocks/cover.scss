@@ -10,7 +10,7 @@
   color: $passive_color;
   font-size: 1em;
   }
-  .fa {
+  .zmdi {
     display: table-cell;
     vertical-align: middle;
     background-color: $neutral_color;
@@ -36,10 +36,10 @@
     }
 
     &--type-profile {
-      @extend .fa-user;
+      @extend .zmdi-account;
     }
     &--type-poster {
-      @extend .fa-video-camera;
+      @extend .zmdi-movie-alt;
     }
   }
   &__photo {

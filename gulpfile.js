@@ -63,7 +63,7 @@ gulp.task('img', function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('node_modules/font-awesome/fonts/*')
+  return gulp.src('node_modules/material-design-iconic-font/dist/fonts/*')
     .pipe(gulp.dest('./dist/fonts'))
 })
 
