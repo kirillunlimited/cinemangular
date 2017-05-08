@@ -3,6 +3,11 @@
   &__wrapper {
     @extend %wrapper;
   }
+  &__headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   &__title {
     font-size: 1.5em;
     padding-bottom: .25rem;
@@ -10,8 +15,8 @@
   }
   &__item {
     position: relative;
-    width: 70%;
-    padding-bottom: 40%;
+    width: 100%;
+    padding-bottom: 56.3%;
     margin: 0 auto;
     margin-bottom: 1em;
     &:last-child {
