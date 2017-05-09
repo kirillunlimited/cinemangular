@@ -55,18 +55,34 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     vm.gallery = photoService.getMovieGallery(vm.movieGalleryContent.backdrops.slice(0,6));
   });
 
-  function getVideos(videoObjects) {
-    return videoObjects.map(function(element) {
-      if (element.site == 'YouTube') {
-        return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + element.key);
+  function getTrailer(videoObjects) {
+    for (var i in videoObjects) {
+      if (videoObjects[i].site == 'YouTube' && videoObjects[i].type == 'Trailer') {
+        return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + videoObjects[i].key);
       }
-    });
+    }
+  }
+
+  // TODO: move to service
+  function getVideos(videoObjects) {
+    return videoObjects
+      .map(function(element) {
+        if (element.site == 'YouTube' && element.type == 'Trailer') {
+          return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + element.key);
+        }
+        else {
+          return null;
+        }
+      }).filter(function(element) {
+        return element; // return not null elements
+      });
   }
 
   jsonFactory.fetch('movieVideos', fetchParams).then(function(movieVideosResponse){
     vm.movieVideosContent = movieVideosResponse.data;
     if (vm.movieVideosContent.results) {
       vm.videos = getVideos(vm.movieVideosContent.results);
+      vm.trailer = getTrailer(vm.movieVideosContent.results);
     }
   });
 

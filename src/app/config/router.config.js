@@ -69,4 +69,10 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'CreditsController',
       controllerAs: 'creditsCtrl'
     })
+    .state('videos', {
+      url: '/film/:filmId/videos',
+      templateUrl: 'app/views/videos.html',
+      controller: 'VideosController',
+      controllerAs: 'videosCtrl'
+    })
 };
