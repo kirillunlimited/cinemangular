@@ -54,9 +54,12 @@
   }
   &__genres {
     padding: 1em 0;
+    padding-bottom: 0;
   }
   &__genre {
     margin-right: 1em;
+    margin-bottom: 1em;
+    background-color: rgba(0,0,0,.33);
     &:last-child {
       margin-right: 0;
     }
@@ -95,5 +98,10 @@
   &__headerBottom {
     padding: 1em 0;
     background-color: $bg_color;
+  }
+  &__descriptionTitle {
+    font-size: 1.5em;
+    padding-bottom: .25rem;
+    font-weight: normal;
   }
 }

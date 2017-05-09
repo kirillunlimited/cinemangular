@@ -103,15 +103,16 @@
       </section>
     </header>
 
-    <section class="film__headerBottom">
+    <section class="film__headerBottom" ng-if="filmCtrl.filmContent.overview">
       <div class="film__wrapper">
+        <h3 class="film__descriptionTitle">Description</h3>
         <p class="film__description">
           {{filmCtrl.filmContent.overview}}
         </p>
       </div>
     </section>
 
-    <section class="cast">
+    <section class="cast" ng-if="filmCtrl.creditsContent.cast.length">
       <div class="cast__wrapper">
         <div class="cast__headline">
           <h3 class="cast__title">Cast</h3>
