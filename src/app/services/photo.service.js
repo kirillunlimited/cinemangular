@@ -51,7 +51,7 @@ module.exports = function photoService(PATH) {
 
   // gallery methods
   function getGalleryImagePreviewPath(imgPath) {
-    return PATH.IMG.replace('{size}', 'w185') + imgPath;
+    return PATH.IMG.replace('{size}', 'w300') + imgPath;
   }
   function getGalleryImageFullPath(imgPath, type) {
     if (type == 'person') {

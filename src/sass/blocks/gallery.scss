@@ -13,6 +13,14 @@
     padding-bottom: .25rem;
     font-weight: normal;
   }
+  &__filmLink {
+    color: $brand_color;
+    text-decoration: underline;
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 }
 
 .ng-image-gallery .ng-image-gallery-thumbnails .thumb {
@@ -48,7 +56,11 @@
   width: 16.66%;
   padding-bottom: 10%;
 }
-
+// gallery page
+.gallery__content--gallery .ng-image-gallery-thumbnails .thumb {
+  width: 25%;
+  padding-bottom: 14%;
+}
 // person page
 .gallery--person {
   padding-top: 1em;
