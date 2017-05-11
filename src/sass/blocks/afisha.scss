@@ -10,10 +10,14 @@
     display: flex;
     justify-content: flex-end;
   }
-  &__button {
+  &__tab {
     width: 33.33%;
     padding: 1em;
     border: 0;
+  }
+  &__tabTitle {
+    font-size: 1em;
+    font-weight: normal;
   }
   &__content {
     position: relative;

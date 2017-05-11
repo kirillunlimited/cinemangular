@@ -12,9 +12,6 @@
     padding: .25em .5em;
     line-height: 1.6;
   }
-  &__button {
-  }
-
   &__navigation {
     border-bottom: 4px solid $brand_color;
     margin-bottom: 1em;
@@ -25,10 +22,15 @@
     display: flex;
     justify-content: flex-end;
   }
-  &__navButton {
+  &__tab {
     width: 33.33%;
     padding: 1em;
     border: 0;
+  }
+  &__tabTitle {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: normal;
   }
 
   &__results {

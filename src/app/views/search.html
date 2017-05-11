@@ -11,21 +11,21 @@
     <div class="search__menu">
       <a
         ui-sref="search.movies({query: searchCtrl.searchString})"
-        class="search__navButton button"
+        class="search__tab button"
         ng-class="{button_active: searchCtrl.getClass('search.movies')}">
-          Кино <span ng-if="searchCtrl.moviesResultsCount">({{searchCtrl.moviesResultsCount}})</span>
+          <h2 class="search__tabTitle">Кино</h2> <span ng-if="searchCtrl.moviesResultsCount">({{searchCtrl.moviesResultsCount}})</span>
       </a>
       <a
         ui-sref="search.tv({query: searchCtrl.searchString})"
-        class="search__navButton button"
+        class="search__tab button"
         ng-class="{button_active: searchCtrl.getClass('search.tv')}">
-          ТВ <span ng-if="searchCtrl.tvResultsCount">({{searchCtrl.tvResultsCount}})</span>
+          <h2 class="search__tabTitle">ТВ</h2> <span ng-if="searchCtrl.tvResultsCount">({{searchCtrl.tvResultsCount}})</span>
       </a>
       <a
         ui-sref="search.people({query: searchCtrl.searchString})"
-        class="search__navButton button"
+        class="search__tab button"
         ng-class="{button_active: searchCtrl.getClass('search.people')}">
-          Люди <span ng-if="searchCtrl.peopleResultsCount">({{searchCtrl.peopleResultsCount}})</span>
+          <h2 class="search__tabTitle">Люди</h2> <span ng-if="searchCtrl.peopleResultsCount">({{searchCtrl.peopleResultsCount}})</span>
       </a>
     </div>
   </nav>
