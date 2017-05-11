@@ -2,13 +2,6 @@
   &__wrapper {
     @extend %wrapper;
   }
-  &__title {
-    font-size: 2em;
-    font-weight: 400;
-    margin: 0;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
   &__form {
     margin-bottom: 1em;
   }

@@ -15,8 +15,10 @@
           </div>
 
           <div class="film__main">
-            <h1 class="film__title">{{filmCtrl.filmContent.title}}</h1>
-            <h2 class="film__title film__title--original">{{filmCtrl.filmContent.original_title}}</h2>
+            <div class="film__titles">
+              <h1 class="title title--main film__title">{{filmCtrl.filmContent.title}}</h1>
+              <span ng-if="filmCtrl.filmContent.original_title != filmCtrl.filmContent.title" class="title film__title film__title--original">{{filmCtrl.filmContent.original_title}}</span>
+            </div>
             <div class="film__genres">
               <a class="film__genre button" ng-repeat="genre in filmCtrl.filmContent.genres" href="#">{{genre.name}}</a>
             </div>
@@ -105,7 +107,7 @@
 
     <section class="film__headerBottom" ng-if="filmCtrl.filmContent.overview">
       <div class="film__wrapper">
-        <h3 class="film__descriptionTitle">Description</h3>
+        <h2 class="title">Description</h2>
         <p class="film__description">
           {{filmCtrl.filmContent.overview}}
         </p>
@@ -115,7 +117,7 @@
     <section class="cast" ng-if="filmCtrl.creditsContent.cast.length">
       <div class="cast__wrapper">
         <div class="cast__headline">
-          <h3 class="cast__title">Cast</h3>
+          <h2 class="title">Cast</h2>
           <a ui-sref="credits({filmId: filmCtrl.filmContent.id})" class="button">Full Cast & Crew</a>
         </div>
         <div class="cast__grid">
@@ -133,7 +135,7 @@
     <section class="gallery" ng-if="filmCtrl.gallery.length">
       <div class="gallery__wrapper">
         <div class="gallery__headline">
-          <h3 class="gallery__title">Gallery</h3>
+          <h2 class="title">Gallery</h2>
           <a ng-if="filmCtrl.movieGalleryContent.backdrops.length > 5" ui-sref="gallery({filmId: filmCtrl.filmContent.id})" class="button">Full Gallery</a>
         </div>
         <ng-image-gallery class="gallery__content gallery__content--film" images="filmCtrl.gallery" bg-close="true"></ng-image-gallery>
@@ -143,7 +145,7 @@
     <section class="videos" ng-if="filmCtrl.trailer">
       <div class="videos__wrapper">
         <div class="videos__headline">
-          <h3 class="videos__title">Trailer</h3>
+          <h2 class="title">Trailer</h2>
           <a ng-if="filmCtrl.videos.length > 1" ui-sref="videos({filmId: filmCtrl.filmContent.id})" class="button">More Videos</a>
         </div>
         <div class="videos__item">

@@ -13,12 +13,11 @@
   }
   &__title {
     position: absolute;
-    font-size: 1.5em;
-    bottom: 1rem;
-    left: 1rem;
+    margin: 0;
+    font-size: 1.25em;
+    bottom: 1em;
+    left: 1em;
     opacity: 0;
-    font-weight: normal;
-    text-align: left;
     transition: opacity .1s ease-in-out;
   }
 

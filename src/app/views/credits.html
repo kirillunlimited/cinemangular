@@ -8,13 +8,13 @@
 
   <div class="credits__wrapper">
 
-    <h1 class="credits__title">
+    <h1 class="title title--main">
       <a class="credits__filmLink" ui-sref="film({filmId: creditsCtrl.filmContent.id})">{{creditsCtrl.filmContent.title}}</a> → Credits
     </h1>
 
     <div class="credits__people">
       <section class="credits__group" ng-repeat="(type, creatorsGroup) in creditsCtrl.creditsContent" ng-if="type !== 'id'">
-        <h2 class="credits__groupTitle">{{type}}</h2>
+        <h2 class="title credits__groupTitle">{{type}}</h2>
         <div class="credits__groupContent">
 
           <div class="credits__person" ng-repeat="person in creatorsGroup">

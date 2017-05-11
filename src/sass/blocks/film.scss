@@ -42,19 +42,15 @@
     padding-right: 8em;
     padding-bottom: 1em;
   }
+  &__titles {
+    margin-bottom: 1em;
+  }
   &__title {
-    font-size: 2em;
-    font-weight: normal;
-    margin: 0;
-    line-height: 1.4;
+    margin-bottom: 0;
     &--original {
       font-size: 1rem;
       color: $passive_color;
     }
-  }
-  &__genres {
-    padding: 1em 0;
-    padding-bottom: 0;
   }
   &__genre {
     margin-right: 1em;
@@ -98,10 +94,5 @@
   &__headerBottom {
     padding: 1em 0;
     background-color: $bg_color;
-  }
-  &__descriptionTitle {
-    font-size: 1.5em;
-    padding-bottom: .25rem;
-    font-weight: normal;
   }
 }

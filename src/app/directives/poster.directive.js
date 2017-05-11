@@ -20,6 +20,6 @@ module.exports = function poster(photoService, PATH) {
         'background-image': 'url(' + scope.url + ')'
       });
     },
-    template: '<a><h3 class="poster__title">{{film.title}}</h3></a>'
+    template: '<a><span class="poster__title">{{film.title}}</span></a>'
   }
 }

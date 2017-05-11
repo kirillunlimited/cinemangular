@@ -5,11 +5,11 @@
     </a>
     <div class="results__info">
       <a class="results__headline" ui-sref="film({filmId: movie.id})">
-        <h3 class="results__title">{{movie.title}}</h3>
+        <span class="results__title">{{movie.title}}</span>
         <span ng-if="movie.release_date"> ({{searchCtrl.getMovieYear(movie.release_date)}})</span>
       </a>
       <div class="results__extra">
-        <span ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
+        <span class="results__title" ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
       </div>
     </div>
   </article>

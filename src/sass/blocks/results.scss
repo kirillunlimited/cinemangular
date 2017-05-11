@@ -3,15 +3,9 @@
   top: 0;
   left: 0;
   width: 100%;
-
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: 0;
-  &__topic {
-    font-size: 1.5em;
-    padding-bottom: .25rem;
-    font-weight: normal;
-  }
   &__element {
     padding: .5em 0;
     border-top: 1px dotted $brand_color;
@@ -52,9 +46,7 @@
     @extend .link;
   }
   &__title {
-    display: inline-block;
     font-size: 1em;
-    font-weight: normal;
     text-decoration: inherit;
   }
   &__extra {
