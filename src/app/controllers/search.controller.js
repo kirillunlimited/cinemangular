@@ -29,6 +29,7 @@ module.exports = function SearchController(jsonFactory, $state) {
   var statesCount = Object.keys(searchStates).length;
 
   vm.tabsInit = function(statesWithResult, queryString) {
+    console.log('tabsInit');
     // если на текущей вкладке нет результатов (иначе остаемся на текущей вкладке)
     if (statesWithResult.indexOf($state.current.name) == -1) {
       // перебор вкладок с результатами (слева направо)
@@ -38,6 +39,10 @@ module.exports = function SearchController(jsonFactory, $state) {
           return;
         }
       }
+    }
+    else {
+      $state.go($state.current.name, {query: queryString});
+      return;
     }
   }
 
@@ -66,12 +71,10 @@ module.exports = function SearchController(jsonFactory, $state) {
   };
 
   vm.searchInit = function() {
-
     if (vm.searchString != null) {
       var fetchParams = {
         query: vm.searchString
       };
-
       vm.fetchInit(fetchParams, 'ru');
     }
   };
