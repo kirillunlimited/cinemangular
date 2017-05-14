@@ -1,10 +1,10 @@
 <section class="results" ng-if="searchCtrl.tvResults.length">
   <article class="results__element" ng-repeat="tv in searchCtrl.tvResults">
-    <a class="results__photoLink" ui-sref="#">
+    <a class="results__photoLink" ui-sref="tv({id: tv.id})">
       <cover path="{{tv.poster_path}}" view="result" type="poster"></cover>
     </a>
     <div class="results__info">
-      <a class="results__headline" ui-sref="#">
+      <a class="results__headline" ui-sref="tv({id: tv.id})">
         <span class="results__title">{{tv.name}}</span>
         <span ng-if="tv.first_air_date">({{searchCtrl.getMovieYear(tv.first_air_date)}})</span>
       </a>

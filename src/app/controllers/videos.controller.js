@@ -5,8 +5,28 @@ module.exports = function VideosController(jsonFactory, $state, $sce) {
   vm.status = 'Loading';
 
   var fetchParams = {
-    id:$state.params.filmId
+    id: $state.params.id
   };
+
+  var subjectFetchMethods = {
+    videos_movie: 'movie',
+    videos_tv: 'tv'
+  };
+
+  var videosFetchMethods = {
+    videos_movie: 'movieVideos',
+    videosTv: 'tvVideos'
+  };
+
+  var parentStates = {
+    videos_movie: 'film',
+    videosTv: 'tv'
+  };
+
+  // move to service
+  vm.getParentUrl = function() {
+    return $state.href(parentStates[$state.current.name], {id: $state.params.id});
+  }
 
   // TODO: add video categories (now there are only trailers)
   // TODO: move to service
@@ -24,10 +44,11 @@ module.exports = function VideosController(jsonFactory, $state, $sce) {
       });
   }
 
-  jsonFactory.fetch('movie', fetchParams).then(function(filmResponse) {
-    vm.filmContent = filmResponse.data;
-    jsonFactory.fetch('movieVideos', fetchParams).then(function(videosResponse){
-      vm.videosContent = videosResponse.data;
+  jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
+    // film -> subject
+    vm.film = response.data;
+    jsonFactory.fetch(videosFetchMethods[$state.current.name], fetchParams).then(function(response){
+      vm.videosContent = response.data;
       if (vm.videosContent.results) {
         vm.videos = getVideos(vm.videosContent.results);
       }

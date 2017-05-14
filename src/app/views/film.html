@@ -118,7 +118,7 @@
       <div class="cast__wrapper">
         <div class="cast__headline">
           <h2 class="title">Cast</h2>
-          <a ui-sref="credits({filmId: filmCtrl.filmContent.id})" class="button">Full Cast & Crew</a>
+          <a ui-sref="credits_movie({id: filmCtrl.filmContent.id})" ng-if="filmCtrl.creditsContent.cast.length + filmCtrl.creditsContent.crew.length > 6" class="button">Full Cast & Crew</a>
         </div>
         <div class="cast__grid">
           <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in filmCtrl.creditsContent.cast | limitTo:6">
@@ -136,7 +136,7 @@
       <div class="gallery__wrapper">
         <div class="gallery__headline">
           <h2 class="title">Gallery</h2>
-          <a ng-if="filmCtrl.movieGalleryContent.backdrops.length > 5" ui-sref="gallery({filmId: filmCtrl.filmContent.id})" class="button">Full Gallery</a>
+          <a ui-sref="gallery_movie({id: filmCtrl.filmContent.id})" ng-if="filmCtrl.movieGalleryContent.backdrops.length > 6" class="button">Full Gallery</a>
         </div>
         <ng-image-gallery class="gallery__content gallery__content--film" images="filmCtrl.gallery" bg-close="true"></ng-image-gallery>
       </div>
@@ -146,7 +146,7 @@
       <div class="videos__wrapper">
         <div class="videos__headline">
           <h2 class="title">Trailer</h2>
-          <a ng-if="filmCtrl.videos.length > 1" ui-sref="videos({filmId: filmCtrl.filmContent.id})" class="button">More Videos</a>
+          <a ng-if="filmCtrl.videos.length > 1" ui-sref="videos({id: filmCtrl.filmContent.id})" class="button">More Videos</a>
         </div>
         <div class="videos__item">
           <iframe class="videos__iframe" ng-src="{{filmCtrl.trailer}}" frameborder="0"></iframe>

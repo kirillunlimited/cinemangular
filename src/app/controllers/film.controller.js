@@ -5,17 +5,19 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
   vm.filmStatus = 'Loading';
 
   var fetchParams = {
-    id:$state.params.filmId
+    id:$state.params.id
   };
 
   jsonFactory.fetch('movie', fetchParams).then(function(filmResponse) {
     vm.filmContent = filmResponse.data;
-    vm.filmContent.genres.content = jsonFactory.extractObjectArray(vm.filmContent.genres);
-    vm.filmContent.production_countries.content = jsonFactory.extractObjectArray(vm.filmContent.production_countries);
+    // vm.filmContent.genres.content = jsonFactory.extractObjectArray(vm.filmContent.genres);
+    // vm.filmContent.production_countries.content = jsonFactory.extractObjectArray(vm.filmContent.production_countries);
     vm.filmContent.release_date = jsonFactory.formatDate(vm.filmContent.release_date);
     vm.filmContent.runtime = jsonFactory.formatRuntime(vm.filmContent.runtime);
     vm.filmContent.budget = jsonFactory.formatMoney(vm.filmContent.budget);
     vm.filmContent.revenue = jsonFactory.formatMoney(vm.filmContent.revenue);
+
+    console.log(vm.filmContent);
 
     vm.filmStatus = 'Ready';
   });
@@ -36,6 +38,8 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
   jsonFactory.fetch('movieCredits', fetchParams).then(function(movieCreditsResponse) {
     vm.creditsContent = movieCreditsResponse.data;
 
+    console.log(vm.creditsContent);
+
     vm.creditsContent = getCreditsByJob('Director', 'directors', vm.creditsContent);
     vm.creditsContent = getCreditsByJob('Producer', 'producers', vm.creditsContent);
     vm.creditsContent = getCreditsByJob('Screenplay', 'screenplay', vm.creditsContent);
@@ -44,7 +48,7 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
   });
 
   var galleryFetchParams = {
-    id:$state.params.filmId,
+    id:$state.params.id,
     getParams: {
       include_image_language: 'null'
     }

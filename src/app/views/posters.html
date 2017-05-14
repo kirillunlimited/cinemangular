@@ -4,7 +4,7 @@
       class="posters__element poster"
       ng-repeat="film in afishaCtrl.films track by $index"
       index={{$index}}
-      ui-sref="film({filmId: film.id})"
+      ui-sref="film({id: film.id})"
       film=film>
     </poster>
   </div>

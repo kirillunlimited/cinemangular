@@ -1,9 +1,9 @@
 <section class="gallery" ng-if="galleryCtrl.gallery.length">
-  <backdrop path="{{galleryCtrl.filmContent.backdrop_path}}" class="backdrop--credits"></backdrop>
+  <backdrop path="{{galleryCtrl.film.backdrop_path}}" class="backdrop--credits"></backdrop>
   <div class="gallery__wrapper">
 
     <h1 class="title title--main">
-      <a class="gallery__filmLink" ui-sref="film({filmId: galleryCtrl.filmContent.id})">{{galleryCtrl.filmContent.title}}</a> → Gallery
+      <a class="gallery__filmLink" ng-href="{{galleryCtrl.getParentUrl()}}">{{galleryCtrl.film.title || galleryCtrl.film.name}}</a> → Gallery
     </h1>
 
     <ng-image-gallery class="gallery__content gallery__content--gallery" images="galleryCtrl.gallery" bg-close="true"></ng-image-gallery>

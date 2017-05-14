@@ -46,7 +46,7 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/views/results/people.html',
     })
     .state('film', {
-      url: '/film/:filmId',
+      url: '/film/:id',
       templateUrl: 'app/views/film.html',
       controller: 'FilmController',
       controllerAs: 'filmCtrl'
@@ -57,28 +57,46 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controller: 'PersonController',
       controllerAs: 'personCtrl'
     })
-    .state('cinema', {
-      url: '/cinema/:cinemaId',
-      templateUrl: 'app/views/cinema.html',
-      controller: 'CinemaController',
-      controllerAs: 'cinemaCtrl'
-    })
-    .state('credits', {
-      url: '/film/:filmId/credits',
+    .state('credits_movie', {
+      url: '/film/:id/credits',
       templateUrl: 'app/views/credits.html',
       controller: 'CreditsController',
       controllerAs: 'creditsCtrl'
     })
-    .state('gallery', {
-      url: '/film/:filmId/gallery',
+    .state('credits_tv', {
+      url: '/tv/:id/credits',
+      templateUrl: 'app/views/credits.html',
+      controller: 'CreditsController',
+      controllerAs: 'creditsCtrl'
+    })
+    .state('gallery_movie', {
+      url: '/film/:id/gallery',
       templateUrl: 'app/views/gallery.html',
       controller: 'GalleryController',
       controllerAs: 'galleryCtrl'
     })
-    .state('videos', {
-      url: '/film/:filmId/videos',
+    .state('gallery_tv', {
+      url: '/tv/:id/gallery',
+      templateUrl: 'app/views/gallery.html',
+      controller: 'GalleryController',
+      controllerAs: 'galleryCtrl'
+    })
+    .state('videos_movie', {
+      url: '/film/:id/videos',
       templateUrl: 'app/views/videos.html',
       controller: 'VideosController',
       controllerAs: 'videosCtrl'
+    })
+    .state('videos_tv', {
+      url: '/tv/:id/videos',
+      templateUrl: 'app/views/videos.html',
+      controller: 'VideosController',
+      controllerAs: 'videosCtrl'
+    })
+    .state('tv', {
+      url: '/tv/:id',
+      templateUrl: 'app/views/tv.html',
+      controller: 'TvController',
+      controllerAs: 'tvCtrl'
     })
 };

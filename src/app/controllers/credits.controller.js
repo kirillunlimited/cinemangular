@@ -5,13 +5,34 @@ module.exports = function CreditsController(jsonFactory, photoService, dateServi
   vm.status = 'Loading';
 
   var fetchParams = {
-    id:$state.params.filmId
+    id: $state.params.id
   };
 
-  jsonFactory.fetch('movie', fetchParams).then(function(filmResponse) {
-    vm.filmContent = filmResponse.data;
-    jsonFactory.fetch('credits', fetchParams).then(function(creditsResponse) {
-      vm.creditsContent = creditsResponse.data;
+  var subjectFetchMethods = {
+    credits_movie: 'movie',
+    credits_tv: 'tv'
+  };
+
+  var creditsFetchMethods = {
+    credits_movie: 'movieCredits',
+    credits_tv: 'tvCredits'
+  };
+
+  var parentStates = {
+    credits_movie: 'film',
+    credits_tv: 'tv'
+  };
+
+  // move to service
+  vm.getParentUrl = function() {
+    return $state.href(parentStates[$state.current.name], {id: $state.params.id});
+  };
+
+  jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
+    // film -> subject
+    vm.film = response.data;
+    jsonFactory.fetch(creditsFetchMethods[$state.current.name], fetchParams).then(function(response) {
+      vm.credits = response.data;
       vm.status = 'Ready';
     });
   });

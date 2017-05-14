@@ -37,7 +37,10 @@ module.exports = {
     searchTv: 'search/tv',
     searchPeople: 'search/person',
 
-    // credits
-    credits: 'movie/{id}/credits'
+    // tv
+    tv: 'tv/{id}',
+    tvCredits: 'tv/{id}/credits',
+    tvGallery: 'tv/{id}/images',
+    tvVideos: 'tv/{id}/videos',
   }
 };

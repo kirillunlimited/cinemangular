@@ -5,21 +5,40 @@ module.exports = function GalleryController(jsonFactory, photoService, $state) {
   vm.status = 'Loading';
 
   var fetchParams = {
-    id:$state.params.filmId
+    id: $state.params.id
   };
-
   var galleryFetchParams = {
-    id:$state.params.filmId,
+    id: $state.params.id,
     getParams: {
       include_image_language: 'null'
     }
   };
 
-  jsonFactory.fetch('movie', fetchParams).then(function(filmResponse) {
-    vm.filmContent = filmResponse.data;
-    jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(movieGalleryResponse){
-      vm.movieGalleryContent = movieGalleryResponse.data;
-      vm.gallery = photoService.getMovieGallery(vm.movieGalleryContent.backdrops);
+  var subjectFetchMethods = {
+    gallery_movie: 'movie',
+    gallery_tv: 'tv'
+  };
+  var galleryFetchMethods = {
+    gallery_movie: 'movieGallery',
+    gallery_tv: 'tvGallery'
+  };
+
+  var parentStates = {
+    gallery_movie: 'film',
+    gallery_tv: 'tv'
+  };
+
+  // move to service
+  vm.getParentUrl = function() {
+    return $state.href(parentStates[$state.current.name], {id: $state.params.id});
+  };
+
+  jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
+    // film -> subject
+    vm.film = response.data;
+    jsonFactory.fetch(galleryFetchMethods[$state.current.name], galleryFetchParams).then(function(response){
+      vm.galleryContent = response.data;
+      vm.gallery = photoService.getMovieGallery(vm.galleryContent.backdrops);
       vm.status = 'Ready';
     });
   });

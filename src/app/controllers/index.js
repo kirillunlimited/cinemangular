@@ -8,3 +8,4 @@ app.controller('SearchController', require('./search.controller.js'));
 app.controller('CreditsController', require('./credits.controller.js'));
 app.controller('GalleryController', require('./gallery.controller.js'));
 app.controller('VideosController', require('./videos.controller.js'));
+app.controller('TvController', require('./tv.controller.js'));

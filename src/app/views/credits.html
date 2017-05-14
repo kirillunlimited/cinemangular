@@ -4,16 +4,17 @@
 
 <div class="credits" ng-if="creditsCtrl.status == 'Ready'">
 
-  <backdrop path="{{creditsCtrl.filmContent.backdrop_path}}" class="backdrop--credits"></backdrop>
+  <backdrop path="{{creditsCtrl.film.backdrop_path}}" class="backdrop--credits"></backdrop>
 
   <div class="credits__wrapper">
 
     <h1 class="title title--main">
-      <a class="credits__filmLink" ui-sref="film({filmId: creditsCtrl.filmContent.id})">{{creditsCtrl.filmContent.title}}</a> → Credits
+      <!--<a class="credits__filmLink" ui-sref="film({filmId: creditsCtrl.film.id})">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → Credits-->
+      <a class="credits__filmLink" ng-href="{{creditsCtrl.getParentUrl()}}">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → Credits
     </h1>
 
     <div class="credits__people">
-      <section class="credits__group" ng-repeat="(type, creatorsGroup) in creditsCtrl.creditsContent" ng-if="type !== 'id'">
+      <section class="credits__group" ng-repeat="(type, creatorsGroup) in creditsCtrl.credits" ng-if="type !== 'id' && creatorsGroup.length">
         <h2 class="title credits__groupTitle">{{type}}</h2>
         <div class="credits__groupContent">
 

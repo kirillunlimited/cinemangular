@@ -14,11 +14,11 @@
         <div class="results">
           <h2 class="title">Credits</h2>
           <article class="results__element" ng-repeat="movie in personCtrl.personCreditsContent.cast">
-            <a class="results__photoLink" ui-sref="film({filmId: movie.id})">
+            <a class="results__photoLink" ui-sref="film({id: movie.id})">
               <cover path="{{movie.poster_path}}" view="result" type="poster"></cover>
             </a>
             <div class="results__info">
-              <a class="results__headline" ui-sref="film({filmId: movie.id})">
+              <a class="results__headline" ui-sref="film({id: movie.id})">
                 <span class="results__title">{{movie.title}}</span>
                 <span ng-if="movie.release_date"> ({{personCtrl.getPersonMovieYear(movie.release_date)}})</span>
               </a>
