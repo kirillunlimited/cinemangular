@@ -22,7 +22,14 @@
             <div class="film__genres">
               <a class="film__genre button" ng-repeat="genre in filmCtrl.filmContent.genres" href="#">{{genre.name}}</a>
             </div>
+
             <table>
+              <tr ng-if="filmCtrl.filmContent.production_countries">
+                <td>Countries</td>
+                <td class="film__info">
+                  <div ng-repeat="country in filmCtrl.filmContent.production_countries" class="film__infoItem famfamfam-flags {{country.iso_3166_1 | lowercase}} flag" title="{{country.name}}"></div>
+                </td>
+              </tr>
               <tr ng-if="filmCtrl.filmContent.runtime">
                 <td>Runtime</td>
                 <td class="film__info">

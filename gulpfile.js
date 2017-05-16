@@ -63,10 +63,16 @@ gulp.task('img', function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('node_modules/material-design-iconic-font/dist/fonts/*')
+  return gulp.src('./node_modules/material-design-iconic-font/dist/fonts/*')
     .pipe(gulp.dest('./dist/fonts'))
-})
+});
 
+gulp.task('flags', function() {
+  return gulp.src('./node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.png')
+    .pipe(gulp.dest('./dist/img'))
+});
+
+// TODO: move to img folder
 gulp.task('gallery-icons', function() {
   return gulp.src('./node_modules/ng-image-gallery/res/icons/**/*.{jpg,png,svg,gif}')
     .pipe(gulp.dest('./dist/res/icons'));
@@ -107,4 +113,4 @@ gulp.task('watch', function(){
   gulp.watch('src/img/*.{jpg,png,svg,gif}', ['img']);
 });
 
-gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'fonts', 'gallery-icons', 'watch']);
+gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'fonts', 'flags', 'gallery-icons', 'watch']);
