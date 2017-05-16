@@ -53,9 +53,15 @@
     }
   }
   &__genre {
+    display: inline-block;
+    vertical-align: top;
+    padding: .25em 1em;
     margin-right: 1em;
     margin-bottom: 1em;
-    background-color: rgba(0,0,0,.33);
+    background-color: $brand_color;
+    color: #fff;
+    font-size: .75em;
+    cursor: default;
     &:last-child {
       margin-right: 0;
     }

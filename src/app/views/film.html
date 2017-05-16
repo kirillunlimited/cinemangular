@@ -20,7 +20,7 @@
               <span ng-if="filmCtrl.filmContent.original_title != filmCtrl.filmContent.title" class="title film__title film__title--original">{{filmCtrl.filmContent.original_title}}</span>
             </div>
             <div class="film__genres">
-              <a class="film__genre button" ng-repeat="genre in filmCtrl.filmContent.genres" href="#">{{genre.name}}</a>
+              <div class="film__genre" ng-repeat="genre in filmCtrl.filmContent.genres">{{genre.name}}</div>
             </div>
 
             <table>
