@@ -4,14 +4,14 @@
 
 <div class="afisha" ng-if="afishaCtrl.status == 'Ready'">
   <div class="afisha__wrapper">
-    <h1 class="title title--main">Афиша</h1>
+    <h1 class="title title--main">{{'MOVIES' | translate}}</h1>
   </div>
 
   <nav class="afisha__navigation">
     <div class="afisha__menu">
-      <a ui-sref="afisha.today" class="afisha__tab button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}"><h2 class="afisha__tabTitle">В кино</h2></a>
-      <a ui-sref="afisha.upcoming" class="afisha__tab button" ng-class="{button_active: afishaCtrl.getClass('afisha.upcoming')}"><h2 class="afisha__tabTitle">Скоро</h2></a>
-      <a ui-sref="afisha.popular" class="afisha__tab button" ng-class="{button_active: afishaCtrl.getClass('afisha.popular')}"><h2 class="afisha__tabTitle">Популярное</h2></a>
+      <a ui-sref="afisha.today" class="afisha__tab button" ng-class="{button_active: afishaCtrl.getClass('afisha.today')}"><h2 class="afisha__tabTitle">{{'IN_THEATRES' | translate}}</h2></a>
+      <a ui-sref="afisha.upcoming" class="afisha__tab button" ng-class="{button_active: afishaCtrl.getClass('afisha.upcoming')}"><h2 class="afisha__tabTitle">{{'SOON' | translate}}</h2></a>
+      <a ui-sref="afisha.popular" class="afisha__tab button" ng-class="{button_active: afishaCtrl.getClass('afisha.popular')}"><h2 class="afisha__tabTitle">{{'POPULAR' | translate}}</h2></a>
     </div>
   </nav>
 

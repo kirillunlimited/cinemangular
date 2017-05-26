@@ -15,12 +15,12 @@ module.exports = function VideosController(jsonFactory, $state, $sce) {
 
   var videosFetchMethods = {
     videos_movie: 'movieVideos',
-    videosTv: 'tvVideos'
+    videos_tv: 'tvVideos'
   };
 
   var parentStates = {
     videos_movie: 'film',
-    videosTv: 'tv'
+    videos_tv: 'tv'
   };
 
   // move to service

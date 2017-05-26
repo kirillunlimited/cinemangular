@@ -8,13 +8,13 @@
         <span class="results__title">{{person.name}}</span>
       </a>
       <div class="results__extra" ng-if="person.known_for.length">
-        Known for:
+        {{'KNOWN_FOR' | translate}}:
         <span ng-repeat="movie in person.known_for">
-          <a class="link" ui-sref="film({filmId: movie.id})">{{movie.title || movie.original_title || movie.name || movie.original_name}}</a>{{$last ? '' : ', '}}
+          <a class="link" ui-sref="film({id: movie.id})">{{movie.title || movie.original_title || movie.name || movie.original_name}}</a>{{$last ? '' : ', '}}
         </span>
       </div>
     </div>
   </article>
 </section>
 
-<p class="results" ng-if="!searchCtrl.peopleResults.length">No results</p>
+<p class="results" ng-if="!searchCtrl.peopleResults.length">{{'NO_RESULTS' | translate}}</p>

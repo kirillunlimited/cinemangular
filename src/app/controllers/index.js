@@ -1,6 +1,7 @@
 'use strict';
 var app = require('angular').module('app');
 
+app.controller('LanguageController', require('./language.controller.js'));
 app.controller('AfishaController', require('./afisha.controller.js'));
 app.controller('FilmController', require('./film.controller.js'));
 app.controller('PersonController', require('./person.controller.js'));

@@ -24,7 +24,7 @@
             </div>
             <table>
               <tr ng-if="tvCtrl.tvContent.runtime">
-                <td>Runtime</td>
+                <td>{{'RUNTIME' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem">
                     {{tvCtrl.tvContent.runtime}}
@@ -32,7 +32,7 @@
                 </td>
               </tr>
               <tr ng-if="tvCtrl.tvContent.first_air_date">
-                <td>First air date</td>
+                <td>{{'FIRST_AIR_DATE' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem">
                     {{tvCtrl.tvContent.first_air_date}}
@@ -40,7 +40,7 @@
                 </td>
               </tr>
               <tr ng-if="tvCtrl.tvContent.last_air_date">
-                <td>Last air date</td>
+                <td>{{'LAST_AIR_DATE' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem">
                     {{tvCtrl.tvContent.last_air_date}}
@@ -48,7 +48,7 @@
                 </td>
               </tr>
               <tr ng-if="tvCtrl.tvContent.number_of_seasons">
-                <td>Number of seasons</td>
+                <td>{{'NUMBER_OF_SEASONS' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem">
                     {{tvCtrl.tvContent.number_of_seasons}}
@@ -56,7 +56,7 @@
                 </td>
               </tr>
               <tr ng-if="tvCtrl.tvContent.number_of_episodes">
-                <td>Number of episodes</td>
+                <td>{{'NUMBER_OF_EPISODES' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem">
                     {{tvCtrl.tvContent.number_of_episodes}}
@@ -64,7 +64,7 @@
                 </td>
               </tr>
               <tr ng-if="tvCtrl.tvContent.status">
-                <td>Status</td>
+                <td>{{'STATUS' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem">
                     {{tvCtrl.tvContent.status}}
@@ -72,7 +72,7 @@
                 </td>
               </tr>
               <tr ng-if="tvCtrl.tvContent.created_by.length">
-                <td>Creators</td>
+                <td>{{'CREATORS' | translate}}</td>
                 <td class="film__info">
                   <span class="film__infoItem" ng-repeat="person in tvCtrl.tvContent.created_by">
                     <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
@@ -91,7 +91,7 @@
 
     <section class="film__headerBottom" ng-if="tvCtrl.tvContent.overview">
       <div class="film__wrapper">
-        <h2 class="title">Description</h2>
+        <h2 class="title">{{'DESCRIPTION' | translate}}</h2>
         <p class="film__description">
           {{tvCtrl.tvContent.overview}}
         </p>
@@ -101,8 +101,8 @@
     <section class="cast" ng-if="tvCtrl.creditsContent.cast.length">
       <div class="cast__wrapper">
         <div class="cast__headline">
-          <h2 class="title">Cast</h2>
-          <a ui-sref="credits_tv({id: tvCtrl.tvContent.id})" ng-if="tvCtrl.creditsContent.cast.length + tvCtrl.creditsContent.crew.length > 6" class="button">Full Cast & Crew</a>
+          <h2 class="title">{{'CAST' | translate}}</h2>
+          <a ui-sref="credits_tv({id: tvCtrl.tvContent.id})" ng-if="tvCtrl.creditsContent.cast.length + tvCtrl.creditsContent.crew.length > 6" class="button">{{'FULL_CAST_CREW' | translate}}</a>
         </div>
         <div class="cast__grid">
           <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in tvCtrl.creditsContent.cast | limitTo:6">
@@ -119,8 +119,8 @@
     <section class="gallery" ng-if="tvCtrl.gallery.length">
       <div class="gallery__wrapper">
         <div class="gallery__headline">
-          <h2 class="title">Gallery</h2>
-          <a ui-sref="gallery_tv({id: tvCtrl.tvContent.id})" ng-if="tvCtrl.tvGalleryContent.backdrops.length > 6" class="button">Full Gallery</a>
+          <h2 class="title">{{'GALLERY' | translate}}</h2>
+          <a ui-sref="gallery_tv({id: tvCtrl.tvContent.id})" ng-if="tvCtrl.tvGalleryContent.backdrops.length > 6" class="button">{{'FULL_GALLERY' | translate}}</a>
         </div>
         <ng-image-gallery class="gallery__content gallery__content--film" images="tvCtrl.gallery" bg-close="true"></ng-image-gallery>
       </div>
@@ -129,8 +129,8 @@
     <section class="videos" ng-if="tvCtrl.trailer">
       <div class="videos__wrapper">
         <div class="videos__headline">
-          <h2 class="title">Trailer</h2>
-          <a ng-if="tvCtrl.videos.length > 1" ui-sref="videos({id: tvCtrl.tvContent.id})" class="button">More Videos</a>
+          <h2 class="title">{{'TRAILER' | translate}}</h2>
+          <a ng-if="tvCtrl.videos.length > 1" ui-sref="videos_tv({id: tvCtrl.tvContent.id})" class="button">{{'MORE_VIDEOS' | translate}}</a>
         </div>
         <div class="videos__item">
           <iframe class="videos__iframe" ng-src="{{tvCtrl.trailer}}" frameborder="0"></iframe>

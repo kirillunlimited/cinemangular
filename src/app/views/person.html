@@ -12,7 +12,7 @@
 
       <section class="person__credits">
         <div class="results">
-          <h2 class="title">Credits</h2>
+          <h2 class="title">{{'FILMOGRAPHY' | translate }}</h2>
           <article class="results__element" ng-repeat="movie in personCtrl.personCreditsContent.cast">
             <a class="results__photoLink" ui-sref="film({id: movie.id})">
               <cover path="{{movie.poster_path}}" view="result" type="poster"></cover>
@@ -36,9 +36,9 @@
     <section class="person__details">
       <cover path="{{personCtrl.personContent.profile_path}}" view="person" type="profile"></cover>
       <div class="person__info">
-        <h2 class="title">Info</h2>
+        <h2 class="title">{{'INFO' | translate }}</h2>
         <div class="person__infoElement" ng-repeat="(key,value) in personCtrl.personInfo" ng-if="value">
-          <div class="person__infoKey">{{key}}</div>
+          <div class="person__infoKey">{{key | uppercase | translate}}</div>
           <div class="person__infoValue" ng-if="key == 'homepage'">
             <a href="{{value}}" target="_blank" class="link">{{value}}</a>
           </div>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="gallery gallery--person" ng-if="personCtrl.personGallery.length">
-          <h2 class="title">Photos</h2>
+          <h2 class="title">{{'PHOTOS' | translate }}</h2>
           <ng-image-gallery class="gallery__content gallery__content--person" images="personCtrl.personGallery" bg-close="true"></ng-image-gallery>
         </div>
 

@@ -78,6 +78,11 @@ gulp.task('gallery-icons', function() {
     .pipe(gulp.dest('./dist/res/icons'));
 });
 
+gulp.task('l10n', function() {
+  return gulp.src('./src/app/translations/*')
+    .pipe(gulp.dest('./dist/app/translations'));
+});
+
 gulp.task('serve', ['default'], function() {
   browserSync.init({
     server: {
@@ -113,4 +118,4 @@ gulp.task('watch', function(){
   gulp.watch('src/img/*.{jpg,png,svg,gif}', ['img']);
 });
 
-gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'fonts', 'flags', 'gallery-icons', 'watch']);
+gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'fonts', 'flags', 'gallery-icons', 'l10n', 'watch']);

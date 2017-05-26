@@ -3,7 +3,7 @@
   <div class="gallery__wrapper">
 
     <h1 class="title title--main">
-      <a class="gallery__filmLink" ng-href="{{galleryCtrl.getParentUrl()}}">{{galleryCtrl.film.title || galleryCtrl.film.name}}</a> → Gallery
+      <a class="gallery__filmLink" ng-href="{{galleryCtrl.getParentUrl()}}">{{galleryCtrl.film.title || galleryCtrl.film.name}}</a> → {{'GALLERY' | translate }}
     </h1>
 
     <ng-image-gallery class="gallery__content gallery__content--gallery" images="galleryCtrl.gallery" bg-close="true"></ng-image-gallery>

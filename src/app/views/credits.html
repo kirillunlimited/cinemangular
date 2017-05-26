@@ -10,12 +10,12 @@
 
     <h1 class="title title--main">
       <!--<a class="credits__filmLink" ui-sref="film({filmId: creditsCtrl.film.id})">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → Credits-->
-      <a class="credits__filmLink" ng-href="{{creditsCtrl.getParentUrl()}}">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → Credits
+      <a class="credits__filmLink" ng-href="{{creditsCtrl.getParentUrl()}}">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → {{'CREDITS' | translate}}
     </h1>
 
     <div class="credits__people">
       <section class="credits__group" ng-repeat="(type, creatorsGroup) in creditsCtrl.credits" ng-if="type !== 'id' && creatorsGroup.length">
-        <h2 class="title credits__groupTitle">{{type}}</h2>
+        <h2 class="title credits__groupTitle">{{type | uppercase | translate}}</h2>
         <div class="credits__groupContent">
 
           <div class="credits__person" ng-repeat="person in creatorsGroup">
