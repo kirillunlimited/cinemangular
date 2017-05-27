@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function LanguageController($translate) {
+module.exports = function LanguageController($translate, $state) {
   var vm = this;
 
   vm.changeLanguage = function() {
@@ -9,6 +9,7 @@ module.exports = function LanguageController($translate) {
     else {
       $translate.use('en');
     }
+    $state.reload();
   };
 
 };

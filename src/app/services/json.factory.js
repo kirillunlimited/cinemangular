@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function jsonFactory($http, dateService, PATH, KEY) {
+module.exports = function jsonFactory($http, dateService, PATH, KEY, $translate) {
 
    function fetch(method, params, lang){
     var action = (params) ? PATH.METHODS[method].replace('{id}',params.id) : PATH.METHODS[method];
@@ -9,7 +9,7 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY) {
       ru: 'ru-RU'
     };
 
-    var language = (lang) ? languages[lang] : languages['en'];
+    var language = languages[$translate.use()];
 
     var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=' + language;
 
