@@ -116,6 +116,7 @@ gulp.task('watch', function(){
   gulp.watch('src/app/**/*.js', {cwd: './'}, ['bundle']);
   gulp.watch('src/sass/**/*.{sass,scss}', {cwd: './'}, ['sass']);
   gulp.watch('src/img/*.{jpg,png,svg,gif}', ['img']);
+  gulp.watch('src/app/translations/*', ['l10n']);
 });
 
 gulp.task('default', ['copy', 'html', 'sass', 'bundle', 'img', 'fonts', 'flags', 'gallery-icons', 'l10n', 'watch']);
