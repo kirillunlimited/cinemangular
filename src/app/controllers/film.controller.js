@@ -8,43 +8,70 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     id:$state.params.id
   };
 
-  jsonFactory.fetch('movie', fetchParams).then(function(filmResponse) {
-    vm.filmContent = filmResponse.data;
-    // vm.filmContent.genres.content = jsonFactory.extractObjectArray(vm.filmContent.genres);
-    // vm.filmContent.production_countries.content = jsonFactory.extractObjectArray(vm.filmContent.production_countries);
-    vm.filmContent.release_date = jsonFactory.formatDate(vm.filmContent.release_date);
-    vm.filmContent.runtime = jsonFactory.formatRuntime(vm.filmContent.runtime);
-    vm.filmContent.budget = jsonFactory.formatMoney(vm.filmContent.budget);
-    vm.filmContent.revenue = jsonFactory.formatMoney(vm.filmContent.revenue);
+  var getFilmParams = function(filmObject) {
+    var paramKeys = [
+      'production_countries',
+      'runtime',
+      'release_date',
+      'status',
+      'budget',
+      'revenue'
+    ];
 
-    console.log(vm.filmContent);
+    filmObject.release_date = jsonFactory.formatDate(filmObject.release_date);
+    filmObject.runtime      = jsonFactory.formatRuntime(filmObject.runtime);
+    filmObject.budget       = jsonFactory.formatMoney(filmObject.budget);
+    filmObject.revenue      = jsonFactory.formatMoney(filmObject.revenue);
 
+    // make array (not object) to keep own order
+    // [0] - key, [1] - value
+    return paramKeys.map(function(element) {
+      return [element,filmObject[element]];
+    });
+
+  };
+
+  jsonFactory.fetch('movie', fetchParams).then(function(response) {
+    vm.film = response.data;
+    vm.filmParams = getFilmParams(jsonFactory.cloneObject(vm.film));
     vm.filmStatus = 'Ready';
   });
 
-  var getCreditsByJob = function(job, jobProp, creditsContent) {
-    creditsContent[jobProp] = [];
-    creditsContent.crew.forEach(function(person){
+  var getCredits = function(creditsObject) {
+    var crewKeys = [
+      'Director',
+      'Producer',
+      'Screenplay',
+      'Story'
+    ];
+
+    // // make array (not object) to keep own order
+    // // [0] - key, [1] - value
+    return crewKeys.map(function(element) {
+      return getCreditsByJob(element, creditsObject);
+    });
+
+  };
+
+  var getCreditsByJob = function(job, creditsObject) {
+    var crewObject = [];
+    crewObject[0] = job;
+    crewObject[1] = [];
+
+    creditsObject.crew.forEach(function(person){
       if (person.job == job) {
-        creditsContent[jobProp].push({
+        crewObject[1].push({
           id: person.id,
           name: person.name
         })
       }
     });
-    return creditsContent;
-  }
+    return crewObject;
+  };
 
-  jsonFactory.fetch('movieCredits', fetchParams).then(function(movieCreditsResponse) {
-    vm.creditsContent = movieCreditsResponse.data;
-
-    console.log(vm.creditsContent);
-
-    vm.creditsContent = getCreditsByJob('Director', 'directors', vm.creditsContent);
-    vm.creditsContent = getCreditsByJob('Producer', 'producers', vm.creditsContent);
-    vm.creditsContent = getCreditsByJob('Screenplay', 'screenplay', vm.creditsContent);
-    vm.creditsContent = getCreditsByJob('Story', 'story', vm.creditsContent);
-
+  jsonFactory.fetch('movieCredits', fetchParams).then(function(response) {
+    vm.credits = response.data;
+    vm.crew = getCredits(jsonFactory.cloneObject(vm.credits));
   });
 
   var galleryFetchParams = {
@@ -65,7 +92,7 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
         return $sce.trustAsResourceUrl('//www.youtube.com/embed/' + videoObjects[i].key);
       }
     }
-  }
+  };
 
   // TODO: move to service
   function getVideos(videoObjects) {
@@ -80,7 +107,7 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
       }).filter(function(element) {
         return element; // return not null elements
       });
-  }
+  };
 
   jsonFactory.fetch('movieVideos', fetchParams).then(function(movieVideosResponse){
     vm.movieVideosContent = movieVideosResponse.data;

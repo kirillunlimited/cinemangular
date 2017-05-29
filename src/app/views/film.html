@@ -4,131 +4,71 @@
 
 <div class="film" ng-if="filmCtrl.filmStatus == 'Ready'">
 
-  <backdrop path="{{filmCtrl.filmContent.backdrop_path}}" class="backdrop--film"></backdrop>
+  <backdrop path="{{filmCtrl.film.backdrop_path}}" class="backdrop--film"></backdrop>
 
   <div class="film__content">
     <header class="film__header">
       <section class="film__headerTop">
         <div class="film__wrapper">
           <div class="film__poster">
-            <cover path="{{filmCtrl.filmContent.poster_path}}" view="movie" type="poster"></cover>
+            <cover path="{{filmCtrl.film.poster_path}}" view="movie" type="poster"></cover>
           </div>
 
           <div class="film__main">
             <div class="film__titles">
-              <h1 class="title title--main film__title">{{filmCtrl.filmContent.title}}</h1>
-              <span ng-if="filmCtrl.filmContent.original_title != filmCtrl.filmContent.title" class="title film__title film__title--original">{{filmCtrl.filmContent.original_title}}</span>
+              <h1 class="title title--main film__title">{{filmCtrl.film.title}}</h1>
+              <span ng-if="filmCtrl.film.original_title != filmCtrl.film.title" class="title film__title film__title--original">{{filmCtrl.film.original_title}}</span>
             </div>
             <div class="film__genres">
-              <div class="film__genre" ng-repeat="genre in filmCtrl.filmContent.genres">{{genre.name}}</div>
+              <div class="film__genre" ng-repeat="genre in filmCtrl.film.genres">{{genre.name}}</div>
             </div>
 
             <table>
-              <tr ng-if="filmCtrl.filmContent.production_countries">
-                <td>{{'COUNTRIES' | translate }}</td>
+              <tr ng-repeat="param in filmCtrl.filmParams" ng-if="param[1]">
+                <td>{{param[0] | uppercase | translate}}</td>
                 <td class="film__info">
-                  <div ng-repeat="country in filmCtrl.filmContent.production_countries" class="film__infoItem famfamfam-flags {{country.iso_3166_1 | lowercase}} flag" title="{{country.name}}"></div>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.filmContent.runtime">
-                <td>{{'RUNTIME' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem">
-                    {{filmCtrl.filmContent.runtime}}
+                  <span ng-if="param[0]!='production_countries'" class="film__infoItem">
+                    {{param[1]}}
                   </span>
+                  <div ng-if="param[0]=='production_countries'" ng-repeat="country in param[1] track by $index" class="film__infoItem famfamfam-flags {{country.iso_3166_1 | lowercase}} flag" title="{{country.name}}"></div>
                 </td>
               </tr>
-              <tr ng-if="filmCtrl.filmContent.release_date">
-                <td>{{'RELEASE_DATE' | translate }}</td>
+              <tr ng-repeat="crewGroup in filmCtrl.crew" ng-if="crewGroup[1].length">
+                <td>{{crewGroup[0] | uppercase | translate}}</td>
                 <td class="film__info">
-                  <span class="film__infoItem">
-                    {{filmCtrl.filmContent.release_date}}
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.filmContent.status">
-                <td>{{'STATUS' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem">
-                    {{filmCtrl.filmContent.status}}
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.filmContent.budget">
-                <td>{{'BUDGET' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem">
-                    {{filmCtrl.filmContent.budget}}
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.filmContent.revenue">
-                <td>{{'REVENUE' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem">
-                    {{filmCtrl.filmContent.revenue}}
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.creditsContent.directors.length">
-                <td>{{'DIRECTORS' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.directors">
-                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.creditsContent.producers.length">
-                <td>{{'PRODUCERS' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.producers">
-                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.creditsContent.screenplay.length">
-                <td>{{'SCREENPLAY' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.screenplay">
-                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
-                  </span>
-                </td>
-              </tr>
-              <tr ng-if="filmCtrl.creditsContent.story.length">
-                <td>{{'STORY' | translate }}</td>
-                <td class="film__info">
-                  <span class="film__infoItem" ng-repeat="person in filmCtrl.creditsContent.story">
+                  <span class="film__infoItem" ng-repeat="person in crewGroup[1]">
                     <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
                   </span>
                 </td>
               </tr>
             </table>
+
           </div>
           <div class="film__rating">
-            <span class="film__voteContent">{{filmCtrl.filmContent.vote_average}}</span>
-            <span class="film__voteCount">{{filmCtrl.filmContent.vote_count}}</span>
+            <span class="film__voteContent">{{filmCtrl.film.vote_average}}</span>
+            <span class="film__voteCount">{{filmCtrl.film.vote_count}}</span>
           </div>
         </div>
       </section>
     </header>
 
-    <section class="film__headerBottom" ng-if="filmCtrl.filmContent.overview">
+    <section class="film__headerBottom" ng-if="filmCtrl.film.overview">
       <div class="film__wrapper">
         <h2 class="title">{{'DESCRIPTION' | translate }}</h2>
         <p class="film__description">
-          {{filmCtrl.filmContent.overview}}
+          {{filmCtrl.film.overview}}
         </p>
       </div>
     </section>
 
-    <section class="cast" ng-if="filmCtrl.creditsContent.cast.length">
+    <section class="cast" ng-if="filmCtrl.credits.cast.length">
       <div class="cast__wrapper">
         <div class="cast__headline">
           <h2 class="title">{{'CAST' | translate }}</h2>
-          <a ui-sref="credits_movie({id: filmCtrl.filmContent.id})" ng-if="filmCtrl.creditsContent.cast.length + filmCtrl.creditsContent.crew.length > 6" class="button">{{'FULL_CREDITS' | translate }}</a>
+          <a ui-sref="credits_movie({id: filmCtrl.film.id})" ng-if="filmCtrl.credits.cast.length + filmCtrl.credits.crew.length > 6" class="button">{{'FULL_CREDITS' | translate }}</a>
         </div>
         <div class="cast__grid">
-          <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in filmCtrl.creditsContent.cast | limitTo:6">
+          <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in filmCtrl.credits.cast | limitTo:6">
             <cover path="{{person.profile_path}}" view="cast" type="profile"></cover>
             <span class="cast__info">
               <span class="cast__name">{{person.name}}</span><br/>
@@ -144,7 +84,7 @@
       <div class="gallery__wrapper">
         <div class="gallery__headline">
           <h2 class="title">{{'GALLERY' | translate }}</h2>
-          <a ui-sref="gallery_movie({id: filmCtrl.filmContent.id})" ng-if="filmCtrl.movieGalleryContent.backdrops.length > 6" class="button">{{'FULL_GALLERY' | translate }}</a>
+          <a ui-sref="gallery_movie({id: filmCtrl.film.id})" ng-if="filmCtrl.movieGalleryContent.backdrops.length > 6" class="button">{{'FULL_GALLERY' | translate }}</a>
         </div>
         <ng-image-gallery class="gallery__content gallery__content--film" images="filmCtrl.gallery" bg-close="true"></ng-image-gallery>
       </div>
@@ -154,7 +94,7 @@
       <div class="videos__wrapper">
         <div class="videos__headline">
           <h2 class="title">{{'TRAILER' | translate }}</h2>
-          <a ng-if="filmCtrl.videos.length > 1" ui-sref="videos_movie({id: filmCtrl.filmContent.id})" class="button">{{'MORE_VIDEOS' | translate }}</a>
+          <a ng-if="filmCtrl.videos.length > 1" ui-sref="videos_movie({id: filmCtrl.film.id})" class="button">{{'MORE_VIDEOS' | translate }}</a>
         </div>
         <div class="videos__item">
           <iframe class="videos__iframe" ng-src="{{filmCtrl.trailer}}" frameborder="0"></iframe>

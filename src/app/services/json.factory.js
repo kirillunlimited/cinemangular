@@ -113,7 +113,10 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY, $translate)
 
     var outputYear = dateObject.getUTCFullYear();
     return outputYear;
+  }
 
+  function cloneObject(object) {
+    return JSON.parse(JSON.stringify(object));
   }
 
   return {
@@ -123,6 +126,7 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY, $translate)
     formatDate: formatDate,
     formatRuntime: formatRuntime,
     formatMoney: formatMoney,
-    getYear: getYear
+    getYear: getYear,
+    cloneObject: cloneObject
   };
 };
