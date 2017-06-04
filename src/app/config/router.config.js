@@ -1,8 +1,18 @@
 'use strict';
 module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/movies/today');
+
+  $urlRouterProvider.otherwise(function($injector, $location){
+    var state = $injector.get('$state');
+    state.go('404');
+    return $location.path();
+  });
+
+  $urlRouterProvider.when('', '/movies/today');
 
   $stateProvider
+    .state('404', {
+      templateUrl: 'app/views/page404.html',
+    })
     .state('movies', {
       url: '/movies',
       templateUrl: 'app/views/movies.html',
@@ -98,5 +108,5 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/views/tv.html',
       controller: 'TvController',
       controllerAs: 'tvCtrl'
-    })
+    });
 };
