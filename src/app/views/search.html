@@ -13,19 +13,19 @@
         ui-sref="search.movies({query: searchCtrl.searchString})"
         class="search__tab button"
         ng-class="{button_active: searchCtrl.getClass('search.movies')}">
-          <h2 class="search__tabTitle">{{'MOVIES' | translate }}</h2> <span ng-if="searchCtrl.moviesResultsCount">({{searchCtrl.moviesResultsCount}})</span>
+          <h2 class="search__tabTitle">{{'MOVIES' | translate }}</h2> <!--<span ng-if="searchCtrl.moviesResultsCount">({{searchCtrl.moviesResultsCount}})</span>-->
       </a>
       <a
         ui-sref="search.tv({query: searchCtrl.searchString})"
         class="search__tab button"
         ng-class="{button_active: searchCtrl.getClass('search.tv')}">
-          <h2 class="search__tabTitle">{{'TV' | translate }}</h2> <span ng-if="searchCtrl.tvResultsCount">({{searchCtrl.tvResultsCount}})</span>
+          <h2 class="search__tabTitle">{{'TV' | translate }}</h2> <!--<span ng-if="searchCtrl.tvResultsCount">({{searchCtrl.tvResultsCount}})</span>-->
       </a>
       <a
         ui-sref="search.people({query: searchCtrl.searchString})"
         class="search__tab button"
         ng-class="{button_active: searchCtrl.getClass('search.people')}">
-          <h2 class="search__tabTitle">{{'PEOPLE' | translate }}</h2> <span ng-if="searchCtrl.peopleResultsCount">({{searchCtrl.peopleResultsCount}})</span>
+          <h2 class="search__tabTitle">{{'PEOPLE' | translate }}</h2> <!--<span ng-if="searchCtrl.peopleResultsCount">({{searchCtrl.peopleResultsCount}})</span>-->
       </a>
     </div>
   </nav>
