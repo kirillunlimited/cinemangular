@@ -33,8 +33,13 @@ module.exports = function PersonController(jsonService, photoService, $state, $s
     vm.gallery = photoService.getPersonGallery(vm.photos.profiles);
   });
 
-  jsonService.fetch('personCredits', fetchParams).then(function(response) {
-    vm.credits = response.data;
+  jsonService.fetch('personMovieCredits', fetchParams).then(function(response) {
+    vm.movieCredits = response.data;
+  });
+
+  jsonService.fetch('personTvCredits', fetchParams).then(function(response) {
+    vm.tvCredits = response.data;
+    console.log(vm.tvCredits);
   });
 
   vm.getPersonMovieYear = function(date) {

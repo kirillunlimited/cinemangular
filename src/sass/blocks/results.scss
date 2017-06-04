@@ -6,6 +6,10 @@
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: 0;
+  &__group {
+    padding: 1em 0;
+    border-top: 1px solid $brand_color;
+  }
   &__element {
     padding: .5em 0;
     border-top: 1px dotted $brand_color;

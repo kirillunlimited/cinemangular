@@ -17,7 +17,8 @@ module.exports = {
     // cast and crew
     person: 'person/{id}',
     personPhotos: 'person/{id}/images',
-    personCredits: 'person/{id}/movie_credits',
+    personMovieCredits: 'person/{id}/movie_credits',
+    personTvCredits: 'person/{id}/tv_credits',
 
     // search
     searchMovies: 'search/movie',
