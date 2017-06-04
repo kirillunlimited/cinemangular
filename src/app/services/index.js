@@ -1,6 +1,6 @@
 'use strict';
 var app = require('angular').module('app');
 
-app.factory('jsonFactory', require('./json.factory.js'));
-app.service('dateService', require('./date.service.js'));
-app.service('photoService', require('./photo.service.js'));
+app.factory('jsonService', require('./json.service.js'));
+app.factory('dateService', require('./date.service.js'));
+app.factory('photoService', require('./photo.service.js'));

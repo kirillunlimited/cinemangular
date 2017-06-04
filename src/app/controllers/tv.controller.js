@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function TvController(jsonFactory, photoService, dateService, $state, $sce) {
+module.exports = function TvController(jsonService, photoService, dateService, $state, $sce) {
   var vm = this;
 
   vm.tvStatus = 'Loading';
@@ -18,9 +18,9 @@ module.exports = function TvController(jsonFactory, photoService, dateService, $
       'status'
     ];
 
-    tvObject.first_air_date = jsonFactory.formatDate(tvObject.first_air_date);
-    tvObject.last_air_date = jsonFactory.formatDate(tvObject.last_air_date);
-    tvObject.runtime = jsonFactory.formatRuntime(tvObject.episode_run_time[0]);
+    tvObject.first_air_date = jsonService.formatDate(tvObject.first_air_date);
+    tvObject.last_air_date = jsonService.formatDate(tvObject.last_air_date);
+    tvObject.runtime = jsonService.formatRuntime(tvObject.episode_run_time[0]);
 
     // make array (not object) to keep own order
     // [0] - key, [1] - value
@@ -29,13 +29,13 @@ module.exports = function TvController(jsonFactory, photoService, dateService, $
     });
   };
 
-  jsonFactory.fetch('tv', fetchParams).then(function(response) {
+  jsonService.fetch('tv', fetchParams).then(function(response) {
     vm.tv = response.data;
-    vm.tvParams = getTvParams(jsonFactory.cloneObject(vm.tv));
+    vm.tvParams = getTvParams(jsonService.cloneObject(vm.tv));
     vm.tvStatus = 'Ready';
   });
 
-  jsonFactory.fetch('tvCredits', fetchParams).then(function(response) {
+  jsonService.fetch('tvCredits', fetchParams).then(function(response) {
     vm.credits = response.data;
   });
 
@@ -46,7 +46,7 @@ module.exports = function TvController(jsonFactory, photoService, dateService, $
     }
   };
 
-  jsonFactory.fetch('tvGallery', galleryFetchParams).then(function(response){
+  jsonService.fetch('tvGallery', galleryFetchParams).then(function(response){
     vm.tvGalleryContent = response.data;
     vm.gallery = photoService.getMovieGallery(vm.tvGalleryContent.backdrops.slice(0,6));
   });
@@ -74,7 +74,7 @@ module.exports = function TvController(jsonFactory, photoService, dateService, $
       });
   }
 
-  jsonFactory.fetch('tvVideos', fetchParams).then(function(response){
+  jsonService.fetch('tvVideos', fetchParams).then(function(response){
     vm.videosContent = response.data;
     if (vm.videosContent.results) {
       vm.videos = getVideos(vm.videosContent.results);

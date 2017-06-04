@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function MoviesController(jsonFactory, dateService, photoService, $state, $location) {
+module.exports = function MoviesController(jsonService, dateService, photoService, $state, $location) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -15,7 +15,7 @@ module.exports = function MoviesController(jsonFactory, dateService, photoServic
   };
 
   vm.getContent = function() {
-    jsonFactory.fetch(moviesMethods[$state.current.name]).then(function(response) {
+    jsonService.fetch(moviesMethods[$state.current.name]).then(function(response) {
       vm.movies = response.data.results;
       vm.status = 'Ready';
     });

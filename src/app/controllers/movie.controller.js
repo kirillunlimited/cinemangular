@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function MovieController(jsonFactory, photoService, dateService, $state, $sce) {
+module.exports = function MovieController(jsonService, photoService, dateService, $state, $sce) {
   var vm = this;
 
   vm.movieStatus = 'Loading';
@@ -18,10 +18,10 @@ module.exports = function MovieController(jsonFactory, photoService, dateService
       'revenue'
     ];
 
-    movieObject.release_date = jsonFactory.formatDate(movieObject.release_date);
-    movieObject.runtime      = jsonFactory.formatRuntime(movieObject.runtime);
-    movieObject.budget       = jsonFactory.formatMoney(movieObject.budget);
-    movieObject.revenue      = jsonFactory.formatMoney(movieObject.revenue);
+    movieObject.release_date = jsonService.formatDate(movieObject.release_date);
+    movieObject.runtime      = jsonService.formatRuntime(movieObject.runtime);
+    movieObject.budget       = jsonService.formatMoney(movieObject.budget);
+    movieObject.revenue      = jsonService.formatMoney(movieObject.revenue);
 
     // make array (not object) to keep own order
     // [0] - key, [1] - value
@@ -31,9 +31,9 @@ module.exports = function MovieController(jsonFactory, photoService, dateService
 
   };
 
-  jsonFactory.fetch('movie', fetchParams).then(function(response) {
+  jsonService.fetch('movie', fetchParams).then(function(response) {
     vm.movie = response.data;
-    vm.movieParams = getMovieParams(jsonFactory.cloneObject(vm.movie));
+    vm.movieParams = getMovieParams(jsonService.cloneObject(vm.movie));
     vm.movieStatus = 'Ready';
   });
 
@@ -69,9 +69,9 @@ module.exports = function MovieController(jsonFactory, photoService, dateService
     return crewObject;
   };
 
-  jsonFactory.fetch('movieCredits', fetchParams).then(function(response) {
+  jsonService.fetch('movieCredits', fetchParams).then(function(response) {
     vm.credits = response.data;
-    vm.crew = getCredits(jsonFactory.cloneObject(vm.credits));
+    vm.crew = getCredits(jsonService.cloneObject(vm.credits));
   });
 
   var galleryFetchParams = {
@@ -81,7 +81,7 @@ module.exports = function MovieController(jsonFactory, photoService, dateService
     }
   };
 
-  jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(response){
+  jsonService.fetch('movieGallery', galleryFetchParams).then(function(response){
     vm.movieGalleryContent = response.data;
     vm.gallery = photoService.getMovieGallery(vm.movieGalleryContent.backdrops.slice(0,6));
   });
@@ -109,7 +109,7 @@ module.exports = function MovieController(jsonFactory, photoService, dateService
       });
   };
 
-  jsonFactory.fetch('movieVideos', fetchParams).then(function(response){
+  jsonService.fetch('movieVideos', fetchParams).then(function(response){
     vm.videosContent = response.data;
     if (vm.videosContent.results) {
       vm.videos = getVideos(vm.videosContent.results);

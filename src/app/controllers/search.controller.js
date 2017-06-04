@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function SearchController(jsonFactory, $state) {
+module.exports = function SearchController(jsonService, $state) {
   var vm = this;
 
   vm.searchString = $state.params.query;
@@ -50,7 +50,7 @@ module.exports = function SearchController(jsonFactory, $state) {
     var statesWithResult = [];
 
     angular.forEach(searchStates, function(stateValue, stateIndex){
-      jsonFactory.fetch(stateValue.method, fetchParams, lang).then(function(response) {
+      jsonService.fetch(stateValue.method, fetchParams, lang).then(function(response) {
 
         vm[stateValue.var] = response.data.results;
         vm[stateValue.countVar] = response.data.total_results || 0;
@@ -79,11 +79,11 @@ module.exports = function SearchController(jsonFactory, $state) {
   };
 
   vm.formatDate = function(releaseDate) {
-    return jsonFactory.getYear(releaseDate);
+    return jsonService.getYear(releaseDate);
   }
 
   vm.getMovieYear = function(date) {
-    return jsonFactory.getYear(date);
+    return jsonService.getYear(date);
   };
 
   vm.getKnownFor = function(person) {

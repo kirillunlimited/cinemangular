@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function CreditsController(jsonFactory, photoService, dateService, $state) {
+module.exports = function CreditsController(jsonService, photoService, dateService, $state) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -28,9 +28,9 @@ module.exports = function CreditsController(jsonFactory, photoService, dateServi
     return $state.href(parentStates[$state.current.name], {id: $state.params.id});
   };
 
-  jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
+  jsonService.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
     vm.subject = response.data;
-    jsonFactory.fetch(creditsFetchMethods[$state.current.name], fetchParams).then(function(response) {
+    jsonService.fetch(creditsFetchMethods[$state.current.name], fetchParams).then(function(response) {
       vm.credits = response.data;
       vm.status = 'Ready';
     });

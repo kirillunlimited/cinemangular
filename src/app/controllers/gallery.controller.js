@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function GalleryController(jsonFactory, photoService, $state) {
+module.exports = function GalleryController(jsonService, photoService, $state) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -33,9 +33,9 @@ module.exports = function GalleryController(jsonFactory, photoService, $state) {
     return $state.href(parentStates[$state.current.name], {id: $state.params.id});
   };
 
-  jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
+  jsonService.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
     vm.subject = response.data;
-    jsonFactory.fetch(galleryFetchMethods[$state.current.name], galleryFetchParams).then(function(response){
+    jsonService.fetch(galleryFetchMethods[$state.current.name], galleryFetchParams).then(function(response){
       vm.galleryContent = response.data;
       vm.gallery = photoService.getMovieGallery(vm.galleryContent.backdrops);
       vm.status = 'Ready';
