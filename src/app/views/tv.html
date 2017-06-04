@@ -2,32 +2,32 @@
   <div class="loader"></div>
 </div>
 
-<div class="film" ng-if="tvCtrl.tvStatus == 'Ready'">
+<div class="movie" ng-if="tvCtrl.tvStatus == 'Ready'">
 
-  <backdrop path="{{tvCtrl.tv.backdrop_path}}" class="backdrop--film"></backdrop>
+  <backdrop path="{{tvCtrl.tv.backdrop_path}}" class="backdrop--movie"></backdrop>
 
-  <div class="film__content">
-    <header class="film__header">
-      <section class="film__headerTop">
-        <div class="film__wrapper">
-          <div class="film__poster">
+  <div class="movie__content">
+    <header class="movie__header">
+      <section class="movie__headerTop">
+        <div class="movie__wrapper">
+          <div class="movie__poster">
             <cover path="{{tvCtrl.tv.poster_path}}" view="movie" type="poster"></cover>
           </div>
 
-          <div class="film__main">
-            <div class="film__titles">
-              <h1 class="title title--main film__title">{{tvCtrl.tv.name}}</h1>
-              <span ng-if="tvCtrl.tv.original_name != tvCtrl.tv.name" class="title film__title film__title--original">{{tvCtrl.tv.original_name}}</span>
+          <div class="movie__main">
+            <div class="movie__titles">
+              <h1 class="title title--main movie__title">{{tvCtrl.tv.name}}</h1>
+              <span ng-if="tvCtrl.tv.original_name != tvCtrl.tv.name" class="title movie__title movie__title--original">{{tvCtrl.tv.original_name}}</span>
             </div>
-            <div class="film__genres">
-              <a class="film__genre button" ng-repeat="genre in tvCtrl.tv.genres" href="#">{{genre.name}}</a>
+            <div class="movie__genres">
+              <a class="movie__genre button" ng-repeat="genre in tvCtrl.tv.genres" href="#">{{genre.name}}</a>
             </div>
             <table>
 
               <tr ng-repeat="param in tvCtrl.tvParams" ng-if="param[1]">
                 <td>{{param[0] | uppercase | translate}}</td>
-                <td class="film__info">
-                  <span class="film__infoItem">
+                <td class="movie__info">
+                  <span class="movie__infoItem">
                     {{param[1]}}
                   </span>
                 </td>
@@ -35,8 +35,8 @@
 
               <tr ng-if="tvCtrl.tv.created_by.length">
                 <td>{{'CREATORS' | translate}}</td>
-                <td class="film__info">
-                  <span class="film__infoItem" ng-repeat="person in tvCtrl.tv.created_by">
+                <td class="movie__info">
+                  <span class="movie__infoItem" ng-repeat="person in tvCtrl.tv.created_by">
                     <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
                   </span>
                 </td>
@@ -44,18 +44,18 @@
 
             </table>
           </div>
-          <div class="film__rating">
-            <span class="film__voteContent">{{tvCtrl.tv.vote_average}}</span>
-            <span class="film__voteCount">{{tvCtrl.tv.vote_count}}</span>
+          <div class="movie__rating">
+            <span class="movie__voteContent">{{tvCtrl.tv.vote_average}}</span>
+            <span class="movie__voteCount">{{tvCtrl.tv.vote_count}}</span>
           </div>
         </div>
       </section>
     </header>
 
-    <section class="film__headerBottom" ng-if="tvCtrl.tv.overview">
-      <div class="film__wrapper">
+    <section class="movie__headerBottom" ng-if="tvCtrl.tv.overview">
+      <div class="movie__wrapper">
         <h2 class="title">{{'DESCRIPTION' | translate}}</h2>
-        <p class="film__description">
+        <p class="movie__description">
           {{tvCtrl.tv.overview}}
         </p>
       </div>
@@ -85,7 +85,7 @@
           <h2 class="title">{{'GALLERY' | translate}}</h2>
           <a ui-sref="gallery_tv({id: tvCtrl.tv.id})" ng-if="tvCtrl.tvGalleryContent.backdrops.length > 6" class="button">{{'FULL_GALLERY' | translate}}</a>
         </div>
-        <ng-image-gallery class="gallery__content gallery__content--film" images="tvCtrl.gallery" bg-close="true"></ng-image-gallery>
+        <ng-image-gallery class="gallery__content gallery__content--movie" images="tvCtrl.gallery" bg-close="true"></ng-image-gallery>
       </div>
     </section>
 

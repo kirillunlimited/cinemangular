@@ -4,13 +4,13 @@
 
 <div class="credits" ng-if="creditsCtrl.status == 'Ready'">
 
-  <backdrop path="{{creditsCtrl.film.backdrop_path}}" class="backdrop--credits"></backdrop>
+  <backdrop path="{{creditsCtrl.subject.backdrop_path}}" class="backdrop--credits"></backdrop>
 
   <div class="credits__wrapper">
 
     <h1 class="title title--main">
-      <!--<a class="credits__filmLink" ui-sref="film({filmId: creditsCtrl.film.id})">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → Credits-->
-      <a class="credits__filmLink" ng-href="{{creditsCtrl.getParentUrl()}}">{{creditsCtrl.film.title || creditsCtrl.film.name}}</a> → {{'CREDITS' | translate}}
+      <!--<a class="credits__movieLink" ui-sref="movie({movieId: creditsCtrl.movie.id})">{{creditsCtrl.movie.title || creditsCtrl.movie.name}}</a> → Credits-->
+      <a class="credits__movieLink" ng-href="{{creditsCtrl.getParentUrl()}}">{{creditsCtrl.subject.title || creditsCtrl.subject.name}}</a> → {{'CREDITS' | translate}}
     </h1>
 
     <div class="credits__people">

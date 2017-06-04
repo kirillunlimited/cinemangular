@@ -19,7 +19,7 @@ module.exports = function VideosController(jsonFactory, $state, $sce) {
   };
 
   var parentStates = {
-    videos_movie: 'film',
+    videos_movie: 'movie',
     videos_tv: 'tv'
   };
 
@@ -45,8 +45,7 @@ module.exports = function VideosController(jsonFactory, $state, $sce) {
   }
 
   jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
-    // film -> subject
-    vm.film = response.data;
+    vm.subject = response.data;
     jsonFactory.fetch(videosFetchMethods[$state.current.name], fetchParams).then(function(response){
       vm.videosContent = response.data;
       if (vm.videosContent.results) {

@@ -1,11 +1,11 @@
-<div class="afisha__posters posters">
+<div class="movies__posters posters">
   <div class="posters__grid">
     <poster
       class="posters__element poster"
-      ng-repeat="film in afishaCtrl.films track by $index"
+      ng-repeat="movie in moviesCtrl.movies track by $index"
       index={{$index}}
-      ui-sref="film({id: film.id})"
-      film=film>
+      ui-sref="movie({id: movie.id})"
+      movie=movie>
     </poster>
   </div>
 </div>

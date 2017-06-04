@@ -1,9 +1,9 @@
 <section class="videos" ng-if="videosCtrl.status == 'Ready'">
-  <backdrop path="{{videosCtrl.film.backdrop_path}}" class="backdrop--credits"></backdrop>
+  <backdrop path="{{videosCtrl.subject.backdrop_path}}" class="backdrop--credits"></backdrop>
   <div class="videos__wrapper">
 
     <h1 class="title title--main">
-      <a class="videos__filmLink" ng-href="{{videosCtrl.getParentUrl()}}">{{videosCtrl.film.title || videosCtrl.film.name}}</a> → {{'VIDEOS' | translate}}
+      <a class="videos__movieLink" ng-href="{{videosCtrl.getParentUrl()}}">{{videosCtrl.subject.title || videosCtrl.subject.name}}</a> → {{'VIDEOS' | translate}}
     </h1>
 
     <div class="videos__item" ng-repeat="video in videosCtrl.videos">

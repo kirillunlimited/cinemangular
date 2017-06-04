@@ -1,5 +1,4 @@
 .videos {
-  padding-bottom: 1em;
   &__wrapper {
     @extend %wrapper;
   }
@@ -8,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  &__filmLink {
+  &__movieLink {
     color: $brand_color;
     text-decoration: underline;
     &:hover {

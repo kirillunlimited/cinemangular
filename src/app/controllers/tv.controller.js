@@ -46,8 +46,8 @@ module.exports = function TvController(jsonFactory, photoService, dateService, $
     }
   };
 
-  jsonFactory.fetch('tvGallery', galleryFetchParams).then(function(tvGalleryResponse){
-    vm.tvGalleryContent = tvGalleryResponse.data;
+  jsonFactory.fetch('tvGallery', galleryFetchParams).then(function(response){
+    vm.tvGalleryContent = response.data;
     vm.gallery = photoService.getMovieGallery(vm.tvGalleryContent.backdrops.slice(0,6));
   });
 
@@ -74,11 +74,11 @@ module.exports = function TvController(jsonFactory, photoService, dateService, $
       });
   }
 
-  jsonFactory.fetch('tvVideos', fetchParams).then(function(tvVideosResponse){
-    vm.tvVideosContent = tvVideosResponse.data;
-    if (vm.tvVideosContent.results) {
-      vm.videos = getVideos(vm.tvVideosContent.results);
-      vm.trailer = getTrailer(vm.tvVideosContent.results);
+  jsonFactory.fetch('tvVideos', fetchParams).then(function(response){
+    vm.videosContent = response.data;
+    if (vm.videosContent.results) {
+      vm.videos = getVideos(vm.videosContent.results);
+      vm.trailer = getTrailer(vm.videosContent.results);
     }
   });
 

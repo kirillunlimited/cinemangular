@@ -1,0 +1,107 @@
+<div ng-if="movieCtrl.movieStatus == 'Loading'">
+  <div class="loader"></div>
+</div>
+
+<div class="movie" ng-if="movieCtrl.movieStatus == 'Ready'">
+
+  <backdrop path="{{movieCtrl.movie.backdrop_path}}" class="backdrop--movie"></backdrop>
+
+  <div class="movie__content">
+    <header class="movie__header">
+      <section class="movie__headerTop">
+        <div class="movie__wrapper">
+          <div class="movie__poster">
+            <cover path="{{movieCtrl.movie.poster_path}}" view="movie" type="poster"></cover>
+          </div>
+
+          <div class="movie__main">
+            <div class="movie__titles">
+              <h1 class="title title--main movie__title">{{movieCtrl.movie.title}}</h1>
+              <span ng-if="movieCtrl.movie.original_title != movieCtrl.movie.title" class="title movie__title movie__title--original">{{movieCtrl.movie.original_title}}</span>
+            </div>
+            <div class="movie__genres">
+              <div class="movie__genre" ng-repeat="genre in movieCtrl.movie.genres">{{genre.name}}</div>
+            </div>
+
+            <table>
+              <tr ng-repeat="param in movieCtrl.movieParams" ng-if="param[1].length">
+                <td>{{param[0] | uppercase | translate}}</td>
+                <td class="movie__info">
+                  <span ng-if="param[0]!='production_countries'" class="movie__infoItem">
+                    {{param[1]}}
+                  </span>
+                  <div ng-if="param[0]=='production_countries'" ng-repeat="country in param[1] track by $index" class="movie__infoItem famfamfam-flags {{country.iso_3166_1 | lowercase}} flag" title="{{country.name}}"></div>
+                </td>
+              </tr>
+              <tr ng-repeat="crewGroup in movieCtrl.crew" ng-if="crewGroup[1].length">
+                <td>{{crewGroup[0] | uppercase | translate}}</td>
+                <td class="movie__info">
+                  <span class="movie__infoItem" ng-repeat="person in crewGroup[1]">
+                    <a ui-sref="person({personId: person.id})" class="link">{{person.name}}</a>
+                  </span>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+          <div class="movie__rating">
+            <span class="movie__voteContent">{{movieCtrl.movie.vote_average}}</span>
+            <span class="movie__voteCount">{{movieCtrl.movie.vote_count}}</span>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section class="movie__section" ng-if="movieCtrl.movie.overview">
+      <div class="movie__wrapper">
+        <h2 class="title">{{'DESCRIPTION' | translate }}</h2>
+        <p class="movie__description">
+          {{movieCtrl.movie.overview}}
+        </p>
+      </div>
+    </section>
+
+    <section class="movie__section cast" ng-if="movieCtrl.credits.cast.length">
+      <div class="cast__wrapper">
+        <div class="cast__headline">
+          <h2 class="title">{{'CAST' | translate }}</h2>
+          <a ui-sref="credits_movie({id: movieCtrl.movie.id})" ng-if="movieCtrl.credits.cast.length + movieCtrl.credits.crew.length > 6" class="button">{{'FULL_CREDITS' | translate }}</a>
+        </div>
+        <div class="cast__grid">
+          <a ui-sref="person({personId: person.id})" class="cast__element" ng-repeat="person in movieCtrl.credits.cast | limitTo:6">
+            <cover path="{{person.profile_path}}" view="cast" type="profile"></cover>
+            <span class="cast__info">
+              <span class="cast__name">{{person.name}}</span><br/>
+
+              <span class="cast__character" ng-if="person.character">as<br/>{{person.character}}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="movie__section gallery" ng-if="movieCtrl.gallery.length">
+      <div class="gallery__wrapper">
+        <div class="gallery__headline">
+          <h2 class="title">{{'GALLERY' | translate }}</h2>
+          <a ui-sref="gallery_movie({id: movieCtrl.movie.id})" ng-if="movieCtrl.movieGalleryContent.backdrops.length > 6" class="button">{{'FULL_GALLERY' | translate }}</a>
+        </div>
+        <ng-image-gallery class="gallery__content gallery__content--movie" images="movieCtrl.gallery" bg-close="true"></ng-image-gallery>
+      </div>
+    </section>
+
+    <section class="movie__section videos" ng-if="movieCtrl.trailer">
+      <div class="videos__wrapper">
+        <div class="videos__headline">
+          <h2 class="title">{{'TRAILER' | translate }}</h2>
+          <a ng-if="movieCtrl.videos.length > 1" ui-sref="videos_movie({id: movieCtrl.movie.id})" class="button">{{'MORE_VIDEOS' | translate }}</a>
+        </div>
+        <div class="videos__item">
+          <iframe class="videos__iframe" ng-src="{{movieCtrl.trailer}}" frameborder="0"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</div>

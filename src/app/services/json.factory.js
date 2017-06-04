@@ -9,7 +9,7 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY, $translate)
       ru: 'ru-RU'
     };
 
-    var language = languages[$translate.use()];
+    var language = lang || languages[$translate.use()];
 
     var requestUrl = PATH.API + action + '?api_key=' + KEY.VALUE + '&language=' + language;
 
@@ -34,13 +34,13 @@ module.exports = function jsonFactory($http, dateService, PATH, KEY, $translate)
   function parse(response, objKey) {
     // ответ содержит массив массивов фильмов
     if (Array.isArray(response.data[objKey][0])) {
-      var filmsOutput = [];
-      for (var filmsGroupId in response.data[objKey]) {
-        for (var filmId in response.data[objKey][filmsGroupId]) {
-          filmsOutput.push(response.data[objKey][filmsGroupId][filmId]);
+      var moviesOutput = [];
+      for (var moviesGroupId in response.data[objKey]) {
+        for (var movieId in response.data[objKey][moviesGroupId]) {
+          moviesOutput.push(response.data[objKey][moviesGroupId][movieId]);
         }
       }
-      return filmsOutput;
+      return moviesOutput;
     }
     // ответ содержит массив фильмов
     else {

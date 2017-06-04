@@ -10,7 +10,7 @@
       <div class="results__extra" ng-if="person.known_for.length">
         {{'KNOWN_FOR' | translate}}:
         <span ng-repeat="movie in person.known_for">
-          <a class="link" ui-sref="film({id: movie.id})">{{movie.title || movie.original_title || movie.name || movie.original_name}}</a>{{$last ? '' : ', '}}
+          <a class="link" ui-sref="movie({id: movie.id})">{{movie.title || movie.original_title || movie.name || movie.original_name}}</a>{{$last ? '' : ', '}}
         </span>
       </div>
     </div>

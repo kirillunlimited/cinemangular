@@ -2,7 +2,7 @@
   &__wrapper {
     @extend %wrapper;
   }
-  &__filmLink {
+  &__movieLink {
     color: $brand_color;
     text-decoration: underline;
     &:hover {
@@ -10,7 +10,7 @@
       text-decoration: none;
     }
   }
-  &__filmPoster {
+  &__moviePoster {
     display: block;
     width: 100%;
   }

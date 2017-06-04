@@ -19,7 +19,7 @@ module.exports = function CreditsController(jsonFactory, photoService, dateServi
   };
 
   var parentStates = {
-    credits_movie: 'film',
+    credits_movie: 'movie',
     credits_tv: 'tv'
   };
 
@@ -29,8 +29,7 @@ module.exports = function CreditsController(jsonFactory, photoService, dateServi
   };
 
   jsonFactory.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
-    // film -> subject
-    vm.film = response.data;
+    vm.subject = response.data;
     jsonFactory.fetch(creditsFetchMethods[$state.current.name], fetchParams).then(function(response) {
       vm.credits = response.data;
       vm.status = 'Ready';

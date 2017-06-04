@@ -1,4 +1,4 @@
-.film {
+.movie {
   &__content {
     width: 100%;
     position: absolute;
@@ -97,8 +97,10 @@
     right: 0;
   }
 
-  &__headerBottom {
-    padding: 1em 0;
-    background-color: $bg_color;
+  &__section {
+    padding-bottom: 1em;
+    &:first-of-type {
+      padding-top: 1em;
+    }
   }
 }

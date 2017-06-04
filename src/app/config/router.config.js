@@ -1,31 +1,31 @@
 'use strict';
 module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/afisha/today');
+  $urlRouterProvider.otherwise('/movies/today');
 
   $stateProvider
-    .state('afisha', {
-      url: '/afisha',
-      templateUrl: 'app/views/afisha.html',
-      controller: 'AfishaController',
-      controllerAs: 'afishaCtrl'
+    .state('movies', {
+      url: '/movies',
+      templateUrl: 'app/views/movies.html',
+      controller: 'MoviesController',
+      controllerAs: 'moviesCtrl'
     })
-    .state('afisha.today', {
+    .state('movies.today', {
       url: '/today',
       templateUrl: 'app/views/posters.html',
-      controller: 'AfishaController',
-      controllerAs: 'afishaCtrl'
+      controller: 'MoviesController',
+      controllerAs: 'moviesCtrl'
     })
-    .state('afisha.upcoming', {
+    .state('movies.upcoming', {
       url: '/upcoming',
       templateUrl: 'app/views/posters.html',
-      controller: 'AfishaController',
-      controllerAs: 'afishaCtrl'
+      controller: 'MoviesController',
+      controllerAs: 'moviesCtrl'
     })
-    .state('afisha.popular', {
+    .state('movies.popular', {
       url: '/popular',
       templateUrl: 'app/views/posters.html',
-      controller: 'AfishaController',
-      controllerAs: 'afishaCtrl'
+      controller: 'MoviesController',
+      controllerAs: 'moviesCtrl'
     })
     .state('search', {
       url: '/search',
@@ -45,11 +45,11 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       url: '/people/:query',
       templateUrl: 'app/views/results/people.html',
     })
-    .state('film', {
-      url: '/film/:id',
-      templateUrl: 'app/views/film.html',
-      controller: 'FilmController',
-      controllerAs: 'filmCtrl'
+    .state('movie', {
+      url: '/movie/:id',
+      templateUrl: 'app/views/movie.html',
+      controller: 'MovieController',
+      controllerAs: 'movieCtrl'
     })
     .state('person', {
       url: '/person/:personId',
@@ -58,7 +58,7 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'personCtrl'
     })
     .state('credits_movie', {
-      url: '/film/:id/credits',
+      url: '/movie/:id/credits',
       templateUrl: 'app/views/credits.html',
       controller: 'CreditsController',
       controllerAs: 'creditsCtrl'
@@ -70,7 +70,7 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'creditsCtrl'
     })
     .state('gallery_movie', {
-      url: '/film/:id/gallery',
+      url: '/movie/:id/gallery',
       templateUrl: 'app/views/gallery.html',
       controller: 'GalleryController',
       controllerAs: 'galleryCtrl'
@@ -82,7 +82,7 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
       controllerAs: 'galleryCtrl'
     })
     .state('videos_movie', {
-      url: '/film/:id/videos',
+      url: '/movie/:id/videos',
       templateUrl: 'app/views/videos.html',
       controller: 'VideosController',
       controllerAs: 'videosCtrl'

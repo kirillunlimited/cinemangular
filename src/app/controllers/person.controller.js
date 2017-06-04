@@ -8,34 +8,33 @@ module.exports = function PersonController(jsonFactory, photoService, $state, $s
     id: $state.params.personId
   };
 
-  jsonFactory.fetch('person', fetchParams, 'ru').then(function(personResponse) {
-    vm.personContent = personResponse.data;
+  jsonFactory.fetch('person', fetchParams).then(function(response) {
+    vm.person = response.data;
 
-    vm.personInfo = {
-      gender: (vm.personContent.gender === 1) ? 'Женский' : 'Мужской',
-      birthday: jsonFactory.formatDate(vm.personContent.birthday),
-      birthplace: vm.personContent.place_of_birth,
-      deathday: jsonFactory.formatDate(vm.personContent.deathday),
-      homepage:  vm.personContent.homepage
+    vm.info = {
+      gender: (vm.person.gender === 1) ? 'Женский' : 'Мужской',
+      birthday: jsonFactory.formatDate(vm.person.birthday),
+      birthplace: vm.person.place_of_birth,
+      deathday: jsonFactory.formatDate(vm.person.deathday),
+      homepage:  vm.person.homepage
     };
 
-    vm.personBiography = vm.personContent.biography;
-    if (!vm.personBiography) {
-      jsonFactory.fetch('person', fetchParams, 'en').then(function(personBiographyResponse) {
-        vm.personBiography = personBiographyResponse.data.biography;
+    vm.bio = vm.person.biography;
+    if (!vm.bio) {
+      jsonFactory.fetch('person', fetchParams, 'en').then(function(response) {
+        vm.bio = response.data.biography;
       });
     }
-
     vm.status = 'Ready';
   });
 
-  jsonFactory.fetch('personPhotos', fetchParams).then(function(personPhotosResponse) {
-    vm.personPhotosContent = personPhotosResponse.data;
-    vm.personGallery = photoService.getPersonGallery(vm.personPhotosContent.profiles);
+  jsonFactory.fetch('personPhotos', fetchParams).then(function(resposne) {
+    vm.photos = resposne.data;
+    vm.gallery = photoService.getPersonGallery(vm.photos.profiles);
   });
 
-  jsonFactory.fetch('personCredits', fetchParams, 'ru').then(function(personCreditsResponse) {
-    vm.personCreditsContent = personCreditsResponse.data;
+  jsonFactory.fetch('personCredits', fetchParams).then(function(response) {
+    vm.credits = response.data;
   });
 
   vm.getPersonMovieYear = function(date) {

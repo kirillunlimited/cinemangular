@@ -29,7 +29,6 @@ module.exports = function SearchController(jsonFactory, $state) {
   var statesCount = Object.keys(searchStates).length;
 
   vm.tabsInit = function(statesWithResult, queryString) {
-    console.log('tabsInit');
     // если на текущей вкладке нет результатов (иначе остаемся на текущей вкладке)
     if (statesWithResult.indexOf($state.current.name) == -1) {
       // перебор вкладок с результатами (слева направо)

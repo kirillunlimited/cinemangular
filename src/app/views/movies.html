@@ -1,0 +1,22 @@
+<div ng-if="moviesCtrl.status == 'Loading'">
+  <div class="loader"></div>
+</div>
+
+<div class="movies" ng-if="moviesCtrl.status == 'Ready'">
+  <div class="movies__wrapper">
+    <h1 class="title title--main">{{'MOVIES' | translate}}</h1>
+  </div>
+
+  <nav class="movies__navigation">
+    <div class="movies__menu">
+      <a ui-sref="movies.today" class="movies__tab button" ng-class="{button_active: moviesCtrl.getClass('movies.today')}"><h2 class="movies__tabTitle">{{'IN_THEATRES' | translate}}</h2></a>
+      <a ui-sref="movies.upcoming" class="movies__tab button" ng-class="{button_active: moviesCtrl.getClass('movies.upcoming')}"><h2 class="movies__tabTitle">{{'SOON' | translate}}</h2></a>
+      <a ui-sref="movies.popular" class="movies__tab button" ng-class="{button_active: moviesCtrl.getClass('movies.popular')}"><h2 class="movies__tabTitle">{{'POPULAR' | translate}}</h2></a>
+    </div>
+  </nav>
+
+  <div class="movies__wrapper">
+    <div class="movies__content" ui-view></div>
+  </div>
+
+</div>

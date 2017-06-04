@@ -1,14 +1,14 @@
 'use strict';
-module.exports = function FilmController(jsonFactory, photoService, dateService, $state, $sce) {
+module.exports = function MovieController(jsonFactory, photoService, dateService, $state, $sce) {
   var vm = this;
 
-  vm.filmStatus = 'Loading';
+  vm.movieStatus = 'Loading';
 
   var fetchParams = {
     id:$state.params.id
   };
 
-  var getFilmParams = function(filmObject) {
+  var getMovieParams = function(movieObject) {
     var paramKeys = [
       'production_countries',
       'runtime',
@@ -18,23 +18,23 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
       'revenue'
     ];
 
-    filmObject.release_date = jsonFactory.formatDate(filmObject.release_date);
-    filmObject.runtime      = jsonFactory.formatRuntime(filmObject.runtime);
-    filmObject.budget       = jsonFactory.formatMoney(filmObject.budget);
-    filmObject.revenue      = jsonFactory.formatMoney(filmObject.revenue);
+    movieObject.release_date = jsonFactory.formatDate(movieObject.release_date);
+    movieObject.runtime      = jsonFactory.formatRuntime(movieObject.runtime);
+    movieObject.budget       = jsonFactory.formatMoney(movieObject.budget);
+    movieObject.revenue      = jsonFactory.formatMoney(movieObject.revenue);
 
     // make array (not object) to keep own order
     // [0] - key, [1] - value
     return paramKeys.map(function(element) {
-      return [element,filmObject[element]];
+      return [element,movieObject[element]];
     });
 
   };
 
   jsonFactory.fetch('movie', fetchParams).then(function(response) {
-    vm.film = response.data;
-    vm.filmParams = getFilmParams(jsonFactory.cloneObject(vm.film));
-    vm.filmStatus = 'Ready';
+    vm.movie = response.data;
+    vm.movieParams = getMovieParams(jsonFactory.cloneObject(vm.movie));
+    vm.movieStatus = 'Ready';
   });
 
   var getCredits = function(creditsObject) {
@@ -81,8 +81,8 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
     }
   };
 
-  jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(movieGalleryResponse){
-    vm.movieGalleryContent = movieGalleryResponse.data;
+  jsonFactory.fetch('movieGallery', galleryFetchParams).then(function(response){
+    vm.movieGalleryContent = response.data;
     vm.gallery = photoService.getMovieGallery(vm.movieGalleryContent.backdrops.slice(0,6));
   });
 
@@ -109,11 +109,11 @@ module.exports = function FilmController(jsonFactory, photoService, dateService,
       });
   };
 
-  jsonFactory.fetch('movieVideos', fetchParams).then(function(movieVideosResponse){
-    vm.movieVideosContent = movieVideosResponse.data;
-    if (vm.movieVideosContent.results) {
-      vm.videos = getVideos(vm.movieVideosContent.results);
-      vm.trailer = getTrailer(vm.movieVideosContent.results);
+  jsonFactory.fetch('movieVideos', fetchParams).then(function(response){
+    vm.videosContent = response.data;
+    if (vm.videosContent.results) {
+      vm.videos = getVideos(vm.videosContent.results);
+      vm.trailer = getTrailer(vm.videosContent.results);
     }
   });
 
