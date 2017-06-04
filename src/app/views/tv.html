@@ -52,7 +52,7 @@
       </section>
     </header>
 
-    <section class="movie__headerBottom" ng-if="tvCtrl.tv.overview">
+    <section class="movie__section" ng-if="tvCtrl.tv.overview">
       <div class="movie__wrapper">
         <h2 class="title">{{'DESCRIPTION' | translate}}</h2>
         <p class="movie__description">
@@ -61,7 +61,7 @@
       </div>
     </section>
 
-    <section class="cast" ng-if="tvCtrl.credits.cast.length">
+    <section class="movie__section cast" ng-if="tvCtrl.credits.cast.length">
       <div class="cast__wrapper">
         <div class="cast__headline">
           <h2 class="title">{{'CAST' | translate}}</h2>
@@ -79,7 +79,7 @@
       </div>
     </section>
 
-    <section class="gallery" ng-if="tvCtrl.gallery.length">
+    <section class="movie__section gallery" ng-if="tvCtrl.gallery.length">
       <div class="gallery__wrapper">
         <div class="gallery__headline">
           <h2 class="title">{{'GALLERY' | translate}}</h2>
@@ -89,7 +89,7 @@
       </div>
     </section>
 
-    <section class="videos" ng-if="tvCtrl.trailer">
+    <section class="movie__section videos" ng-if="tvCtrl.trailer">
       <div class="videos__wrapper">
         <div class="videos__headline">
           <h2 class="title">{{'TRAILER' | translate}}</h2>
