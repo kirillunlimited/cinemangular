@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function PersonController(jsonService, photoService, $state, $scope) {
+module.exports = function PersonController(jsonService, photoService, $state, $scope, $rootScope) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -25,6 +25,9 @@ module.exports = function PersonController(jsonService, photoService, $state, $s
         vm.bio = response.data.biography;
       });
     }
+
+    $rootScope.pageTitle = vm.person.name;
+
     vm.status = 'Ready';
   });
 
@@ -39,7 +42,6 @@ module.exports = function PersonController(jsonService, photoService, $state, $s
 
   jsonService.fetch('personTvCredits', fetchParams).then(function(response) {
     vm.tvCredits = response.data;
-    console.log(vm.tvCredits);
   });
 
   vm.getPersonMovieYear = function(date) {

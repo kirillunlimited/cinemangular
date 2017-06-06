@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function TvController(jsonService, photoService, dateService, $state, $sce) {
+module.exports = function TvController(jsonService, photoService, dateService, $state, $sce, $rootScope) {
   var vm = this;
 
   vm.tvStatus = 'Loading';
@@ -33,6 +33,8 @@ module.exports = function TvController(jsonService, photoService, dateService, $
     vm.tv = response.data;
     vm.tvParams = getTvParams(jsonService.cloneObject(vm.tv));
     vm.tvStatus = 'Ready';
+
+    $rootScope.pageTitle = vm.tv.name;
   });
 
   jsonService.fetch('tvCredits', fetchParams).then(function(response) {

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function SearchController(jsonService, $state) {
+module.exports = function SearchController(jsonService, $state, $rootScope, $translate) {
   var vm = this;
 
   vm.searchString = $state.params.query;
@@ -74,7 +74,11 @@ module.exports = function SearchController(jsonService, $state) {
       var fetchParams = {
         query: vm.searchString
       };
-      vm.fetchInit(fetchParams, 'ru');
+      vm.fetchInit(fetchParams);
+
+      $translate('SEARCH').then(function(translation) {
+        $rootScope.pageTitle = translation + ' – ' + vm.searchString;
+      });
     }
   };
 

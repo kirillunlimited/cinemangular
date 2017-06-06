@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function CreditsController(jsonService, photoService, dateService, $state) {
+module.exports = function CreditsController(jsonService, photoService, dateService, $state, $rootScope, $translate) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -30,6 +30,12 @@ module.exports = function CreditsController(jsonService, photoService, dateServi
 
   jsonService.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
     vm.subject = response.data;
+
+    $rootScope.pageTitle = vm.subject.title || vm.subject.name;
+    $translate('CREDITS').then(function(translation) {
+      $rootScope.pageTitle += ' – ' + translation;
+    });
+
     jsonService.fetch(creditsFetchMethods[$state.current.name], fetchParams).then(function(response) {
       vm.credits = response.data;
       vm.status = 'Ready';

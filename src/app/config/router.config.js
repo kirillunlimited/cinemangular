@@ -12,48 +12,69 @@ module.exports = function routerConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('404', {
       templateUrl: 'app/views/page404.html',
+      title: {
+        main: '404'
+      }
     })
     .state('movies', {
       url: '/movies',
       templateUrl: 'app/views/movies.html',
       controller: 'MoviesController',
-      controllerAs: 'moviesCtrl'
+      controllerAs: 'moviesCtrl',
+      title: {
+        main: 'MOVIES'
+      }
     })
     .state('movies.today', {
       url: '/today',
       templateUrl: 'app/views/posters.html',
       controller: 'MoviesController',
-      controllerAs: 'moviesCtrl'
+      controllerAs: 'moviesCtrl',
+      title: {
+        main: 'MOVIES',
+        sub: 'IN_THEATRES'
+      }
     })
     .state('movies.upcoming', {
       url: '/upcoming',
       templateUrl: 'app/views/posters.html',
       controller: 'MoviesController',
-      controllerAs: 'moviesCtrl'
+      controllerAs: 'moviesCtrl',
+      title: {
+        main: 'MOVIES',
+        sub: 'SOON'
+      }
     })
     .state('movies.popular', {
       url: '/popular',
       templateUrl: 'app/views/posters.html',
       controller: 'MoviesController',
-      controllerAs: 'moviesCtrl'
+      controllerAs: 'moviesCtrl',
+      title: {
+        main: 'MOVIES',
+        sub: 'POPULAR'
+      }
     })
     .state('search', {
       url: '/search',
       templateUrl: 'app/views/search.html',
       controller: 'SearchController',
-      controllerAs: 'searchCtrl'
+      controllerAs: 'searchCtrl',
+      title: {
+        main: 'SEARCH'
+      }
     })
     .state('search.movies', {
       url: '/movies/:query',
-      templateUrl: 'app/views/results/movies.html',
+      templateUrl: 'app/views/results/movies.html'
     })
     .state('search.tv', {
       url: '/tv/:query',
-      templateUrl: 'app/views/results/tv.html',
+      templateUrl: 'app/views/results/tv.html'
     })
     .state('search.people', {
       url: '/people/:query',
-      templateUrl: 'app/views/results/people.html',
+      templateUrl: 'app/views/results/people.html'
     })
     .state('movie', {
       url: '/movie/:id',

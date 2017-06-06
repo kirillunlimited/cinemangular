@@ -22,3 +22,18 @@ app.run(function($rootScope, $anchorScroll){
     $anchorScroll();
   });
 });
+
+app.run(function($rootScope, $state, $stateParams, $translate){
+  $rootScope.$on('$stateChangeSuccess', function() {
+    if ($state.current.title) {
+      $translate($state.current.title.main).then(function(translation) {
+        $rootScope.pageTitle = translation;
+        if ($state.current.title.sub) {
+          $translate($state.current.title.sub).then(function(translation) {
+            $rootScope.pageTitle += ' – ' + translation;
+          });
+        }
+      });
+    }
+  })
+});

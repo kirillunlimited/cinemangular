@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function MovieController(jsonService, photoService, dateService, $state, $sce) {
+module.exports = function MovieController(jsonService, photoService, dateService, $state, $sce, $rootScope) {
   var vm = this;
 
   vm.movieStatus = 'Loading';
@@ -35,6 +35,8 @@ module.exports = function MovieController(jsonService, photoService, dateService
     vm.movie = response.data;
     vm.movieParams = getMovieParams(jsonService.cloneObject(vm.movie));
     vm.movieStatus = 'Ready';
+
+    $rootScope.pageTitle = vm.movie.title;
   });
 
   var getCredits = function(creditsObject) {

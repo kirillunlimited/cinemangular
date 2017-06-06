@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" ng-app="app" ng-cloak>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Киношка</title>
+  <title>{{pageTitle}} | Киношка</title>
   <link rel="stylesheet" href="css/main.css" />
   <script src="app/app.js"></script>
   <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
-<body class="page" ng-app="app" ng-cloak>
+<body class="page">
   <nav class="page__navigation navigation">
     <ul class="navigation__menu menu" ng-controller="LanguageController as langCtrl">
       <li class="menu__item"><a class="menu__link" ui-sref="movies.today">{{'MOVIES' | translate}}</a></li>

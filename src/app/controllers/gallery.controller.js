@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function GalleryController(jsonService, photoService, $state) {
+module.exports = function GalleryController(jsonService, photoService, $state, $rootScope, $translate) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -35,6 +35,12 @@ module.exports = function GalleryController(jsonService, photoService, $state) {
 
   jsonService.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
     vm.subject = response.data;
+
+    $rootScope.pageTitle = vm.subject.title || vm.subject.name;
+    $translate('GALLERY').then(function(translation) {
+      $rootScope.pageTitle += ' – ' + translation;
+    });
+
     jsonService.fetch(galleryFetchMethods[$state.current.name], galleryFetchParams).then(function(response){
       vm.galleryContent = response.data;
       vm.gallery = photoService.getMovieGallery(vm.galleryContent.backdrops);

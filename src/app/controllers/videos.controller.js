@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function VideosController(jsonService, $state, $sce) {
+module.exports = function VideosController(jsonService, $state, $sce, $rootScope, $translate) {
   var vm = this;
 
   vm.status = 'Loading';
@@ -46,6 +46,12 @@ module.exports = function VideosController(jsonService, $state, $sce) {
 
   jsonService.fetch(subjectFetchMethods[$state.current.name], fetchParams).then(function(response) {
     vm.subject = response.data;
+
+    $rootScope.pageTitle = vm.subject.title || vm.subject.name;
+    $translate('VIDEOS').then(function(translation) {
+      $rootScope.pageTitle += ' – ' + translation;
+    });
+
     jsonService.fetch(videosFetchMethods[$state.current.name], fetchParams).then(function(response){
       vm.videosContent = response.data;
       if (vm.videosContent.results) {
