@@ -11,9 +11,9 @@
 <body class="page">
   <nav class="page__navigation navigation">
     <ul class="navigation__menu menu" ng-controller="LanguageController as langCtrl">
-      <li class="menu__item"><a class="menu__link" ui-sref="movies.today">{{'MOVIES' | translate}}</a></li>
-      <li class="menu__item"><a class="menu__link" ui-sref="search">{{'SEARCH' | translate}}</a></li>
-      <li class="menu__item"><span class="menu__link" ng-click="langCtrl.changeLanguage()">{{'CHANGE_LANGUAGE' | translate}}</span></li>
+      <li class="menu__item"><a class="menu__link" ui-sref="movies.today"><i class="zmdi zmdi-movie menu__icon"></i> {{'MOVIES' | translate}}</a></li>
+      <li class="menu__item"><a class="menu__link " ui-sref="search"><i class="zmdi zmdi-search menu__icon"></i> {{'SEARCH' | translate}}</a></li>
+      <li class="menu__item"><span class="menu__link" ng-click="langCtrl.changeLanguage()"><i class="zmdi zmdi-globe menu__icon"></i> {{'CHANGE_LANGUAGE' | translate}}</span></li>
     </ul>
   </nav>
   <div class="page__content content">
