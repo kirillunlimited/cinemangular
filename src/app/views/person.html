@@ -13,42 +13,50 @@
       <section class="person__credits">
         <div class="results">
 
-          <div class="results__group">
+          <div class="results__group" ng-if="personCtrl.movieCredits.cast.length || personCtrl.movieCredits.crew.length">
+
             <h2 class="title">{{'FILMOGRAPHY' | translate }}</h2>
-            <article class="results__element" ng-repeat="movie in personCtrl.movieCredits.cast">
-              <a class="results__photoLink" ui-sref="movie({id: movie.id})">
-                <cover path="{{movie.poster_path}}" view="result" type="poster"></cover>
-              </a>
-              <div class="results__info">
-                <a class="results__headline" ui-sref="movie({id: movie.id})">
-                  <span class="results__title">{{movie.title}}</span>
-                  <span ng-if="movie.release_date"> ({{personCtrl.getPersonMovieYear(movie.release_date)}})</span>
+            <div ng-repeat="roleGroup in personCtrl.movieCredits">
+              <article class="results__element" ng-repeat="movie in roleGroup">
+                <a class="results__photoLink" ui-sref="movie({id: movie.id})">
+                  <cover path="{{movie.poster_path}}" view="result" type="poster"></cover>
                 </a>
-                <div class="results__extra">
-                  <span ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
-                  <span ng-if="movie.character">... {{movie.character}}</span>
+                <div class="results__info">
+                  <a class="results__headline" ui-sref="movie({id: movie.id})">
+                    <span class="results__title">{{movie.title}}</span>
+                    <span ng-if="movie.release_date"> ({{personCtrl.getPersonMovieYear(movie.release_date)}})</span>
+                  </a>
+                  <div class="results__extra">
+                    <span ng-if="movie.original_title != movie.title">{{movie.original_title}}</span>
+                    <span ng-if="movie.character || movie.job">... {{movie.character || movie.job}}</span>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
+
           </div>
 
-          <div class="results__group">
+          <div class="results__group" ng-if="personCtrl.tvCredits.cast.length || personCtrl.tvCredits.crew.length">
+
             <h2 class="title">{{'TV' | translate }}</h2>
-            <article class="results__element" ng-repeat="tv in personCtrl.tvCredits.cast">
-              <a class="results__photoLink" ui-sref="tv({id: tv.id})">
-                <cover path="{{tv.poster_path}}" view="result" type="poster"></cover>
-              </a>
-              <div class="results__info">
-                <a class="results__headline" ui-sref="tv({id: tv.id})">
-                  <span class="results__title">{{tv.name}}</span>
-                  <span ng-if="tv.first_air_date"> ({{personCtrl.getPersonMovieYear(tv.first_air_date)}})</span>
+            <div ng-repeat="roleGroup in personCtrl.tvCredits">
+              <article class="results__element" ng-repeat="tv in roleGroup">
+                <a class="results__photoLink" ui-sref="tv({id: tv.id})">
+                  <cover path="{{tv.poster_path}}" view="result" type="poster"></cover>
                 </a>
-                <div class="results__extra">
-                  <span ng-if="tv.original_name != tv.name">{{tv.original_name}}</span>
-                  <span ng-if="tv.character">... {{tv.character}}</span>
+                <div class="results__info">
+                  <a class="results__headline" ui-sref="tv({id: tv.id})">
+                    <span class="results__title">{{tv.name}}</span>
+                    <span ng-if="tv.first_air_date"> ({{personCtrl.getPersonMovieYear(tv.first_air_date)}})</span>
+                  </a>
+                  <div class="results__extra">
+                    <span ng-if="tv.original_name != tv.name">{{tv.original_name}}</span>
+                    <span ng-if="tv.character || tv.job">... {{tv.character || tv.job}}</span>
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
+
           </div>
 
         </div>
