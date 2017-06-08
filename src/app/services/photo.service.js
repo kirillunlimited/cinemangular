@@ -31,9 +31,6 @@ module.exports = function photoService(PATH) {
   function getMoviePoster(imgPath) {
     return getPoster(imgPath, 'w300');
   }
-  function getAfishaPoster(imgPath) {
-    return getPoster(imgPath, 'w300');
-  }
   function getPersonMoviePoster(imgPath) {
     return getPoster(imgPath, 'w45');
   }
@@ -42,9 +39,6 @@ module.exports = function photoService(PATH) {
   }
 
   // backdrop methods
-  function getAfishaBackdrop(imgPath) {
-    return getPoster(imgPath, 'w1000');
-  }
   function getBackdropPath(imgPath) {
     return getPoster(imgPath, 'w1920');
   }
@@ -86,11 +80,9 @@ module.exports = function photoService(PATH) {
     getResultPortrait:    getResultPortrait,
 
     getMoviePoster:       getMoviePoster,
-    getAfishaPoster:      getAfishaPoster,
     getPersonMoviePoster: getPersonMoviePoster,
     getResultPoster:      getResultPoster,
 
-    getAfishaBackdrop:    getAfishaBackdrop,
     getBackdropPath:      getBackdropPath,
 
     getMovieGallery:      getMovieGallery,

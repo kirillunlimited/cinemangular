@@ -5,14 +5,9 @@
     justify-content: flex-end;
   }
   &__element {
-    width: 33.33%;
-    padding-bottom: 49%;
+    width: 25%;
+    padding-bottom: 37%;
     background-position: center;
     background-size: cover;
-
-    &:nth-child(10n + 1),
-    &:nth-child(10n + 7), {
-      width: 66.66%;
-    }
   }
 }
