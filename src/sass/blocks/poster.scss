@@ -14,10 +14,11 @@
   &__title {
     position: absolute;
     margin: 0;
-    font-size: 1.25em;
+    font-size: 1em;
     bottom: 1em;
     left: 1em;
     opacity: 0;
+    line-height: 1.2;
     transition: opacity .1s ease-in-out;
   }
 
