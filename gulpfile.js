@@ -19,7 +19,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('sass', function () {
-  return gulp.src('./src/sass/main.sass')
+  return gulp.src('./src/sass/main.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({ browsers: [
       'Android >= 2.3',

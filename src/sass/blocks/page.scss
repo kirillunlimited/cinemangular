@@ -1,4 +1,11 @@
 .page {
+    // height: 100%;
+  font-family: $primary_font;
+  font-size: 100%;
+  line-height: 1.4;
+  color: #fff;
+  background-color: $bg_color;
+  min-width: $min_width;
   &__content {
     padding-top: 4em;
     margin-top: 2em;
