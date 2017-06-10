@@ -3,20 +3,28 @@
     @extend %wrapper;
   }
   &__form {
+    display: flex;
     margin-bottom: 1em;
   }
   &__textbox {
     background-color: transparent;
     border: 1px solid $brand_color;
     font-size: 1em;
+    color: #fff;
     padding: .25em .5em;
     line-height: 1.6;
+    flex-grow: 1;
+    margin-right: .5em;
+  }
+  &__button {
+    font-size: 1em;
+    line-height: 1.6;
+    flex-grow: 0;
   }
   &__navigation {
     border-bottom: 4px solid $brand_color;
     margin-bottom: 1em;
   }
-
   &__menu {
     @extend %wrapper;
     display: flex;
