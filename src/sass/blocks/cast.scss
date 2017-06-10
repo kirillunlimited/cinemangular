@@ -10,6 +10,8 @@
   &__grid {
     display: flex;
     justify-content: flex-start;
+    min-height: 165px;
+
   }
   &__element {
     display: inline-block;
