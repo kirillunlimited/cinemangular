@@ -1,49 +1,28 @@
 'use strict';
 module.exports = function photoService(PATH) {
 
-  // common methods
-  function getPortrait(imgPath, imgSize) {
-    if (imgPath) {
-      return PATH.IMG.replace('{size}', imgSize) + imgPath;
-    }
-  }
-  function getPoster(imgPath, imgSize) {
+  function getImage(imgPath, imgSize) {
     if (imgPath) {
       return PATH.IMG.replace('{size}', imgSize) + imgPath;
     }
   }
 
-  // portrait methods
-  function getPersonPortrait(imgPath) {
-    return getPortrait(imgPath, 'w300');
+  function getBigCover(imgPath) {
+    return getImage(imgPath, 'w300');
   }
-  function getCreditsPortrait(imgPath) {
-    return getPortrait(imgPath, 'w90');
+  function getMediumCover(imgPath) {
+    return getImage(imgPath, 'w90');
   }
-  function getCastPortrait(imgPath) {
-    return getPortrait(imgPath, 'w180_and_h180_bestv2');
+  function getSmallCover(imgPath) {
+    return getImage(imgPath, 'w45');
   }
-  function getResultPortrait(imgPath, size) {
-    return getPortrait(imgPath, 'w45');
+  function getSquareCover(imgPath) {
+    return getImage(imgPath, 'w180_and_h180_bestv2');
   }
-
-  // poster methods
-  function getMoviePoster(imgPath) {
-    return getPoster(imgPath, 'w300');
-  }
-  function getPersonMoviePoster(imgPath) {
-    return getPoster(imgPath, 'w45');
-  }
-  function getResultPoster(imgPath) {
-    return getPoster(imgPath, 'w45');
+  function getBackdrop(imgPath) {
+    return getImage(imgPath, 'w1920');
   }
 
-  // backdrop methods
-  function getBackdropPath(imgPath) {
-    return getPoster(imgPath, 'w1920');
-  }
-
-  // gallery methods
   function getGalleryImagePreviewPath(imgPath) {
     return PATH.IMG.replace('{size}', 'w300') + imgPath;
   }
@@ -74,19 +53,16 @@ module.exports = function photoService(PATH) {
   }
 
   return {
-    getPersonPortrait:    getPersonPortrait,
-    getCreditsPortrait:   getCreditsPortrait,
-    getCastPortrait:      getCastPortrait,
-    getResultPortrait:    getResultPortrait,
+    getPersonCover:   getBigCover,
+    getCreditsCover:  getMediumCover,
+    getCastCover:     getSquareCover,
+    getResultCover:   getSmallCover,
+    getMovieCover:    getBigCover,
 
-    getMoviePoster:       getMoviePoster,
-    getPersonMoviePoster: getPersonMoviePoster,
-    getResultPoster:      getResultPoster,
+    getBackdrop:      getBackdrop,
 
-    getBackdropPath:      getBackdropPath,
-
-    getMovieGallery:      getMovieGallery,
-    getPersonGallery:     getPersonGallery
+    getMovieGallery:  getMovieGallery,
+    getPersonGallery: getPersonGallery
   };
 
 };

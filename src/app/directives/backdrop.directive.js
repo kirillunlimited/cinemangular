@@ -5,7 +5,7 @@ module.exports = function backdrop(photoService, PATH) {
     replace: 'true',
     scope: false,
     link: function(scope, el, attr){
-      scope.url = photoService.getBackdropPath(attr.path);
+      scope.url = photoService.getBackdrop(attr.path);
       if (scope.url) {
         el.css({
           'background-image': 'url(' + scope.url + ')'

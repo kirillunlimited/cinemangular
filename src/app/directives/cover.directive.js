@@ -11,19 +11,19 @@ module.exports = function cover(photoService, PATH) {
 
       switch(attr.view) {
         case 'credit':
-          scope.photoUrl = photoService.getCreditsPortrait(attr.path);
+          scope.photoUrl = photoService.getCreditsCover(attr.path);
           break;
         case 'cast':
-          scope.photoUrl = photoService.getCastPortrait(attr.path);
+          scope.photoUrl = photoService.getCastCover(attr.path);
           break;
         case 'person':
-          scope.photoUrl = photoService.getPersonPortrait(attr.path);
+          scope.photoUrl = photoService.getPersonCover(attr.path);
           break;
         case 'result':
-          scope.photoUrl = photoService.getPersonMoviePoster(attr.path);
+          scope.photoUrl = photoService.getResultCover(attr.path);
           break;
         case 'movie':
-          scope.photoUrl = photoService.getMoviePoster(attr.path);
+          scope.photoUrl = photoService.getMovieCover(attr.path);
           break;
         default:
           scope.photoUrl = null;

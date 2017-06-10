@@ -7,7 +7,7 @@ module.exports = function poster(photoService, PATH) {
       movie: '='
     },
     link: function(scope, el, attr){
-      scope.url = photoService.getMoviePoster(scope.movie.poster_path);
+      scope.url = photoService.getMovieCover(scope.movie.poster_path);
       el.css({
         'background-image': 'url(' + scope.url + ')'
       });
