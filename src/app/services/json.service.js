@@ -57,28 +57,45 @@ module.exports = function jsonService($http, PATH, KEY, $translate) {
   }
 
   function formatDate(inputDate) {
+
     if (!inputDate) {
       return false;
     }
 
     var dateObject = new Date(inputDate);
 
-    var monthNames = [
-      "Января",
-      "Февраля",
-      "Марта",
-      "Апреля",
-      "Мая",
-      "Июня",
-      "Июля",
-      "Августа",
-      "Сентября",
-      "Октября",
-      "Ноября",
-      "Декабря"
-    ];
+    var monthTranslations = {
+      ru: [
+        "Янв",
+        "Фев",
+        "Мар",
+        "Апр",
+        "Мая",
+        "Июн",
+        "Июл",
+        "Авг",
+        "Сен",
+        "Окт",
+        "Ноя",
+        "Дек"
+      ],
+      en: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sen",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
+    };
 
-    var outputDate = dateObject.getUTCDate() + ' ' + monthNames[dateObject.getMonth()] + ' ' + dateObject.getUTCFullYear();
+    var outputDate = dateObject.getUTCDate() + ' ' + monthTranslations[$translate.use()][dateObject.getMonth()] + ', ' + dateObject.getUTCFullYear();
     return outputDate;
   }
 
@@ -87,10 +104,18 @@ module.exports = function jsonService($http, PATH, KEY, $translate) {
       return false;
     }
 
-    var hours = Math.floor( inputRuntime / 60);
-    var minutes = inputRuntime % 60;
+    var hours = Math.floor(inputRuntime / 60);
+    hours = (hours.toString().length == 1) ? '0'+hours : hours;
 
-    var outputRuntime = hours + ' ч. ' + minutes + ' мин.';
+    var minutes = inputRuntime % 60;
+    minutes = (minutes.toString().length == 1) ? '0'+minutes : minutes;
+
+    var minuteTranslations = {
+      ru: 'мин',
+      en: 'min'
+    };
+
+    var outputRuntime = inputRuntime + ' ' + minuteTranslations[$translate.use()] + '. / ' + hours + ':' + minutes;
 
     return outputRuntime;
   }
@@ -119,6 +144,46 @@ module.exports = function jsonService($http, PATH, KEY, $translate) {
     return JSON.parse(JSON.stringify(object));
   }
 
+  function getProductionStatus(inputStatus) {
+    if (!inputStatus) {
+      return false;
+    }
+    var statusTranslations = {
+      ru: {
+        "Ended": "Закончен",
+        "Planned": "Запланирован",
+        "Post Production": "Постпродакшн",
+        "Released": "Выпущен",
+        "Returning Series": "Продолжается",
+      },
+      en: {
+        "Ended": "Ended",
+        "Planned": "Planned",
+        "Post Production": "Post Production",
+        "Released": "Released",
+        "Returning Series": "Returning Series",
+      }
+    };
+    return statusTranslations[$translate.use()][inputStatus] || inputStatus;
+  }
+
+  function getGender(inputGender) {
+    if (!inputGender) {
+      return false;
+    }
+    var genderTranslations = {
+      ru: {
+        1: "Женский",
+        2: "Мужской",
+      },
+      en: {
+        1: "Female",
+        2: "Male",
+      }
+    };
+    return genderTranslations[$translate.use()][inputGender];
+  }
+
   return {
     fetch: fetch,
     parse: parse,
@@ -127,6 +192,8 @@ module.exports = function jsonService($http, PATH, KEY, $translate) {
     formatRuntime: formatRuntime,
     formatMoney: formatMoney,
     getYear: getYear,
-    cloneObject: cloneObject
+    cloneObject: cloneObject,
+    getProductionStatus: getProductionStatus,
+    getGender: getGender,
   };
 };

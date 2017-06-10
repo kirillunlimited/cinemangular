@@ -13,14 +13,15 @@ module.exports = function TvController(jsonService, photoService, $state, $sce, 
       'runtime',
       'first_air_date',
       'last_air_date',
+      'status',
       'number_of_seasons',
-      'number_of_episodes',
-      'status'
+      'number_of_episodes'
     ];
 
     tvObject.first_air_date = jsonService.formatDate(tvObject.first_air_date);
-    tvObject.last_air_date = jsonService.formatDate(tvObject.last_air_date);
-    tvObject.runtime = jsonService.formatRuntime(tvObject.episode_run_time[0]);
+    tvObject.last_air_date  = jsonService.formatDate(tvObject.last_air_date);
+    tvObject.runtime        = jsonService.formatRuntime(tvObject.episode_run_time[0]);
+    tvObject.status         = jsonService.getProductionStatus(tvObject.status);
 
     // make array (not object) to keep own order
     // [0] - key, [1] - value
@@ -71,7 +72,8 @@ module.exports = function TvController(jsonService, photoService, $state, $sce, 
         else {
           return null;
         }
-      }).filter(function(element) {
+      })
+      .filter(function(element) {
         return element; // return not null elements
       });
   }

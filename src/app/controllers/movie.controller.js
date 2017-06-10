@@ -22,13 +22,13 @@ module.exports = function MovieController(jsonService, photoService, $state, $sc
     movieObject.runtime      = jsonService.formatRuntime(movieObject.runtime);
     movieObject.budget       = jsonService.formatMoney(movieObject.budget);
     movieObject.revenue      = jsonService.formatMoney(movieObject.revenue);
+    movieObject.status       = jsonService.getProductionStatus(movieObject.status);
 
     // make array (not object) to keep own order
     // [0] - key, [1] - value
     return paramKeys.map(function(element) {
       return [element,movieObject[element]];
     });
-
   };
 
   jsonService.fetch('movie', fetchParams).then(function(response) {
@@ -106,7 +106,8 @@ module.exports = function MovieController(jsonService, photoService, $state, $sc
         else {
           return null;
         }
-      }).filter(function(element) {
+      })
+      .filter(function(element) {
         return element; // return not null elements
       });
   };

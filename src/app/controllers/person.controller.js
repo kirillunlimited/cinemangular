@@ -12,7 +12,7 @@ module.exports = function PersonController(jsonService, photoService, $state, $s
     vm.person = response.data;
 
     vm.info = {
-      gender: (vm.person.gender === 1) ? 'Женский' : 'Мужской',
+      gender: jsonService.getGender(vm.person.gender),
       birthday: jsonService.formatDate(vm.person.birthday),
       birthplace: vm.person.place_of_birth,
       deathday: jsonService.formatDate(vm.person.deathday),
