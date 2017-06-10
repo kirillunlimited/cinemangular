@@ -11,6 +11,8 @@
     display: block;
     padding: 0 2em;
     line-height: 4em;
+    transition: .1s ease-in-out background-color;
+    @extend %text_with_shadow;
     &:hover {
       background-color: $brand_color;
     }

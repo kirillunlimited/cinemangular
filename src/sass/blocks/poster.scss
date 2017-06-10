@@ -19,6 +19,7 @@
     left: 1em;
     opacity: 0;
     line-height: 1.2;
+    @extend %text_with_shadow;
     transition: opacity .1s ease-in-out;
   }
 

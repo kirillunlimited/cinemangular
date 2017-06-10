@@ -8,6 +8,7 @@
   text-align: center;
   transition: color .1s ease-in-out, background-color .1s ease-in-out;
   cursor: pointer;
+  @extend %text_with_shadow;
   &:hover {
     color: #fff;
     background-color: $brand_color;
