@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function CreditsController(jsonService, photoService, dateService, $state, $rootScope, $translate) {
+module.exports = function CreditsController(jsonService, photoService, $state, $rootScope, $translate) {
   var vm = this;
 
   vm.status = 'Loading';

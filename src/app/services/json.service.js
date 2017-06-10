@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function jsonService($http, dateService, PATH, KEY, $translate) {
+module.exports = function jsonService($http, PATH, KEY, $translate) {
 
    function fetch(method, params, lang){
     var action = (params) ? PATH.METHODS[method].replace('{id}',params.id) : PATH.METHODS[method];

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function MovieController(jsonService, photoService, dateService, $state, $sce, $rootScope) {
+module.exports = function MovieController(jsonService, photoService, $state, $sce, $rootScope) {
   var vm = this;
 
   vm.movieStatus = 'Loading';

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function TvController(jsonService, photoService, dateService, $state, $sce, $rootScope) {
+module.exports = function TvController(jsonService, photoService, $state, $sce, $rootScope) {
   var vm = this;
 
   vm.tvStatus = 'Loading';
