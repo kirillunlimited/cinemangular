@@ -38,6 +38,7 @@
     "famfamfam-flags": "^1.0.0",
     "material-design-iconic-font": "^2.2.0",
     "ng-image-gallery": "2.0.8",
+    "normalize-scss": "^7.0.0",
     "normalize.css": "^7.0.0"
   }
 }
