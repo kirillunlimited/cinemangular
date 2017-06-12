@@ -2,7 +2,7 @@
 module.exports = function VideosController(jsonService, $state, $sce, $rootScope, $translate) {
   var vm = this;
 
-  vm.status = 'Loading';
+  var loader = new jsonService.PageLoader(1);
 
   var fetchParams = {
     id: $state.params.id
@@ -57,7 +57,7 @@ module.exports = function VideosController(jsonService, $state, $sce, $rootScope
       if (vm.videosContent.results) {
         vm.videos = getVideos(vm.videosContent.results);
       }
-      vm.status = 'Ready'
+      loader.progress();
     });
   });
 

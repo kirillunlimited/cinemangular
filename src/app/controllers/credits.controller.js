@@ -2,7 +2,7 @@
 module.exports = function CreditsController(jsonService, photoService, $state, $rootScope, $translate) {
   var vm = this;
 
-  vm.status = 'Loading';
+  var loader = new jsonService.PageLoader(1);
 
   var fetchParams = {
     id: $state.params.id
@@ -38,7 +38,7 @@ module.exports = function CreditsController(jsonService, photoService, $state, $
 
     jsonService.fetch(creditsFetchMethods[$state.current.name], fetchParams).then(function(response) {
       vm.credits = response.data;
-      vm.status = 'Ready';
+      loader.progress();
     });
   });
 

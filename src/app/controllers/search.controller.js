@@ -2,6 +2,8 @@
 module.exports = function SearchController(jsonService, $state, $rootScope, $translate) {
   var vm = this;
 
+  var loader = new jsonService.PageLoader(1);
+
   vm.searchString = $state.params.query;
 
   vm.getClass = function(currentState) {
@@ -63,6 +65,7 @@ module.exports = function SearchController(jsonService, $state, $rootScope, $tra
 
         if (searchTabCounter == statesCount) {
           vm.tabsInit(statesWithResult, vm.searchString);
+          loader.progress();
         }
 
       });
@@ -71,6 +74,7 @@ module.exports = function SearchController(jsonService, $state, $rootScope, $tra
 
   vm.searchInit = function() {
     if (vm.searchString != null) {
+      loader = new jsonService.PageLoader(1);
       var fetchParams = {
         query: vm.searchString
       };
@@ -79,6 +83,8 @@ module.exports = function SearchController(jsonService, $state, $rootScope, $tra
       $translate('SEARCH').then(function(translation) {
         $rootScope.pageTitle = translation + ' – ' + vm.searchString;
       });
+    } else {
+      loader.progress();
     }
   };
 

@@ -2,7 +2,7 @@
 module.exports = function PersonController(jsonService, photoService, $state, $scope, $rootScope) {
   var vm = this;
 
-  vm.status = 'Loading';
+  var loader = new jsonService.PageLoader(4);
 
   var fetchParams = {
     id: $state.params.personId
@@ -19,6 +19,14 @@ module.exports = function PersonController(jsonService, photoService, $state, $s
       homepage:  vm.person.homepage
     };
 
+    vm.isPersonInfoEmpty = true;
+    for (var index in vm.info) {
+      if (vm.info[index]) {
+        vm.isPersonInfoEmpty = false;
+        break;
+      }
+    }
+
     vm.bio = vm.person.biography;
     if (!vm.bio) {
       jsonService.fetch('person', fetchParams, 'en').then(function(response) {
@@ -28,20 +36,23 @@ module.exports = function PersonController(jsonService, photoService, $state, $s
 
     $rootScope.pageTitle = vm.person.name;
 
-    vm.status = 'Ready';
+    loader.progress();
   });
 
   jsonService.fetch('personPhotos', fetchParams).then(function(resposne) {
     vm.photos = resposne.data;
     vm.gallery = photoService.getPersonGallery(vm.photos.profiles);
+    loader.progress();
   });
 
   jsonService.fetch('personMovieCredits', fetchParams).then(function(response) {
     vm.movieCredits = response.data;
+    loader.progress();
   });
 
   jsonService.fetch('personTvCredits', fetchParams).then(function(response) {
     vm.tvCredits = response.data;
+    loader.progress();
   });
 
   vm.getPersonMovieYear = function(date) {

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function jsonService($http, PATH, KEY, $translate) {
+module.exports = function jsonService($http, PATH, KEY, $translate, $rootScope) {
 
    function fetch(method, params, lang){
     var action = (params) ? PATH.METHODS[method].replace('{id}',params.id) : PATH.METHODS[method];
@@ -184,6 +184,18 @@ module.exports = function jsonService($http, PATH, KEY, $translate) {
     return genderTranslations[$translate.use()][inputGender];
   }
 
+  function PageLoader(loadingSteps) {
+    $rootScope.loading = true;
+    var loadingProgress = 0;
+    var loadingSteps = loadingSteps;
+    this.progress = function() {
+      loadingProgress++;
+      if (loadingProgress == loadingSteps) {
+        $rootScope.loading = false;
+      }
+    }
+  }
+
   return {
     fetch: fetch,
     parse: parse,
@@ -195,5 +207,6 @@ module.exports = function jsonService($http, PATH, KEY, $translate) {
     cloneObject: cloneObject,
     getProductionStatus: getProductionStatus,
     getGender: getGender,
+    PageLoader: PageLoader
   };
 };

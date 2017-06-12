@@ -2,7 +2,7 @@
 module.exports = function MovieController(jsonService, photoService, $state, $sce, $rootScope) {
   var vm = this;
 
-  vm.movieStatus = 'Loading';
+  var loader = new jsonService.PageLoader(4);
 
   var fetchParams = {
     id:$state.params.id
@@ -34,9 +34,9 @@ module.exports = function MovieController(jsonService, photoService, $state, $sc
   jsonService.fetch('movie', fetchParams).then(function(response) {
     vm.movie = response.data;
     vm.movieParams = getMovieParams(jsonService.cloneObject(vm.movie));
-    vm.movieStatus = 'Ready';
 
     $rootScope.pageTitle = vm.movie.title;
+    loader.progress();
   });
 
   var getCredits = function(creditsObject) {
@@ -74,6 +74,7 @@ module.exports = function MovieController(jsonService, photoService, $state, $sc
   jsonService.fetch('movieCredits', fetchParams).then(function(response) {
     vm.credits = response.data;
     vm.crew = getCredits(jsonService.cloneObject(vm.credits));
+    loader.progress();
   });
 
   var galleryFetchParams = {
@@ -86,6 +87,7 @@ module.exports = function MovieController(jsonService, photoService, $state, $sc
   jsonService.fetch('movieGallery', galleryFetchParams).then(function(response){
     vm.movieGalleryContent = response.data;
     vm.gallery = photoService.getMovieGallery(vm.movieGalleryContent.backdrops.slice(0,6));
+    loader.progress();
   });
 
   function getTrailer(videoObjects) {
@@ -118,6 +120,7 @@ module.exports = function MovieController(jsonService, photoService, $state, $sc
       vm.videos = getVideos(vm.videosContent.results);
       vm.trailer = getTrailer(vm.videosContent.results);
     }
+    loader.progress();
   });
 
 };

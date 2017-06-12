@@ -2,7 +2,7 @@
 module.exports = function TvController(jsonService, photoService, $state, $sce, $rootScope) {
   var vm = this;
 
-  vm.tvStatus = 'Loading';
+  var loader = new jsonService.PageLoader(4);
 
   var fetchParams = {
     id:$state.params.id
@@ -33,13 +33,14 @@ module.exports = function TvController(jsonService, photoService, $state, $sce, 
   jsonService.fetch('tv', fetchParams).then(function(response) {
     vm.tv = response.data;
     vm.tvParams = getTvParams(jsonService.cloneObject(vm.tv));
-    vm.tvStatus = 'Ready';
 
     $rootScope.pageTitle = vm.tv.name;
+    loader.progress();
   });
 
   jsonService.fetch('tvCredits', fetchParams).then(function(response) {
     vm.credits = response.data;
+    loader.progress();
   });
 
   var galleryFetchParams = {
@@ -52,6 +53,7 @@ module.exports = function TvController(jsonService, photoService, $state, $sce, 
   jsonService.fetch('tvGallery', galleryFetchParams).then(function(response){
     vm.tvGalleryContent = response.data;
     vm.gallery = photoService.getMovieGallery(vm.tvGalleryContent.backdrops.slice(0,6));
+    loader.progress();
   });
 
   function getTrailer(videoObjects) {
@@ -84,6 +86,7 @@ module.exports = function TvController(jsonService, photoService, $state, $sce, 
       vm.videos = getVideos(vm.videosContent.results);
       vm.trailer = getTrailer(vm.videosContent.results);
     }
+    loader.progress();
   });
 
 };

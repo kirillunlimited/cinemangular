@@ -1,10 +1,6 @@
-<div ng-if="creditsCtrl.status == 'Loading'">
-  <div class="loader"></div>
-</div>
+<div class="credits">
 
-<div class="credits" ng-if="creditsCtrl.status == 'Ready'">
-
-  <backdrop path="{{creditsCtrl.subject.backdrop_path}}" class="backdrop--credits"></backdrop>
+  <backdrop ng-if="creditsCtrl.subject" path="{{creditsCtrl.subject.backdrop_path}}" class="backdrop--credits"></backdrop>
 
   <div class="credits__wrapper">
 

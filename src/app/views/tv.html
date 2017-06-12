@@ -1,17 +1,13 @@
-<div ng-if="tvCtrl.tvStatus == 'Loading'">
-  <div class="loader"></div>
-</div>
+<div class="movie">
 
-<div class="movie" ng-if="tvCtrl.tvStatus == 'Ready'">
-
-  <backdrop path="{{tvCtrl.tv.backdrop_path}}" class="backdrop--movie"></backdrop>
+  <backdrop ng-if="tvCtrl.tv" path="{{tvCtrl.tv.backdrop_path}}" class="backdrop--movie"></backdrop>
 
   <div class="movie__content">
     <header class="movie__header">
       <section class="movie__headerTop">
         <div class="movie__wrapper">
           <div class="movie__poster">
-            <cover path="{{tvCtrl.tv.poster_path}}" view="movie" type="poster"></cover>
+            <cover ng-if="tvCtrl.tv" path="{{tvCtrl.tv.poster_path}}" view="movie" type="poster"></cover>
           </div>
 
           <div class="movie__main">
@@ -72,7 +68,7 @@
             <cover path="{{person.profile_path}}" view="cast" type="profile"></cover>
             <span class="cast__info">
               <span class="cast__name">{{person.name}}</span><br/>
-              <span class="cast__character">as<br/>{{person.character}}</span>
+              <span class="cast__character" ng-if="person.character">as<br/>{{person.character}}</span>
             </span>
           </a>
         </div>

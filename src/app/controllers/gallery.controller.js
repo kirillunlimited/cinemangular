@@ -2,7 +2,7 @@
 module.exports = function GalleryController(jsonService, photoService, $state, $rootScope, $translate) {
   var vm = this;
 
-  vm.status = 'Loading';
+  var loader = new jsonService.PageLoader(1);
 
   var fetchParams = {
     id: $state.params.id
@@ -44,7 +44,7 @@ module.exports = function GalleryController(jsonService, photoService, $state, $
     jsonService.fetch(galleryFetchMethods[$state.current.name], galleryFetchParams).then(function(response){
       vm.galleryContent = response.data;
       vm.gallery = photoService.getMovieGallery(vm.galleryContent.backdrops);
-      vm.status = 'Ready';
+      loader.progress();
     });
   });
 

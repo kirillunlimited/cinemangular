@@ -2,7 +2,7 @@
 module.exports = function MoviesController(jsonService, $state, $location) {
   var vm = this;
 
-  vm.status = 'Loading';
+  var loader = new jsonService.PageLoader(1);
 
   vm.getClass = function(currentState) {
     return $state.current.name === currentState;
@@ -17,7 +17,7 @@ module.exports = function MoviesController(jsonService, $state, $location) {
   vm.getContent = function() {
     jsonService.fetch(moviesMethods[$state.current.name]).then(function(response) {
       vm.movies = response.data.results;
-      vm.status = 'Ready';
+      loader.progress();
     });
   };
 

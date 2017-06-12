@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "angular": "^1.5.7",
-    "angular-animate": "^1.5.8",
     "angular-cookies": "^1.6.4",
     "angular-sanitize": "^1.6.4",
     "angular-translate": "^2.15.1",
@@ -38,7 +37,6 @@
     "famfamfam-flags": "^1.0.0",
     "material-design-iconic-font": "^2.2.0",
     "ng-image-gallery": "2.0.8",
-    "normalize-scss": "^7.0.0",
-    "normalize.css": "^7.0.0"
+    "normalize-scss": "^7.0.0"
   }
 }

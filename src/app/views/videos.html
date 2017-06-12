@@ -1,5 +1,5 @@
-<section class="videos" ng-if="videosCtrl.status == 'Ready'">
-  <backdrop path="{{videosCtrl.subject.backdrop_path}}" class="backdrop--credits"></backdrop>
+<section class="videos">
+  <backdrop ng-if="videosCtrl.subject" path="{{videosCtrl.subject.backdrop_path}}" class="backdrop--credits"></backdrop>
   <div class="videos__wrapper">
 
     <h1 class="title title--main">
