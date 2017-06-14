@@ -28,5 +28,12 @@
   <div class="page__content content">
     <div ui-view></div>
   </div>
+  <footer ng-if="!$root.loading" class="page__footer footer">
+    <div class="footer__wrapper">
+      {{'DATA_PROVIDED_BY' | translate }} <a class="link" href="//www.themoviedb.org/" target="_blank">TMDb</a><br/>
+      {{'BUILT_WITH' | translate }} <a class="link" href="https://angularjs.org/" target="_blank">Angular JS</a><br/>
+      <a class="link" href="//github.com/kirillunlimited/cinemangular" target="_blank">{{'SOURCE_CODE' | translate }}</a><br/>
+    </div>
+  </footer>
 </body>
 </html>

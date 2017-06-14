@@ -1,12 +1,13 @@
 .person {
   &__wrapper {
     @extend %wrapper;
+    display: flex;
+    flex-direction: row;
   }
   &__details {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 300px;
     padding-right: 1em;
     border-right: 1px solid $brand_color;
   }
@@ -27,15 +28,11 @@
   &__infoValue {
     margin-bottom: 1em;
   }
-  &__main {
-    padding-left: 300px;
-    margin-left: 2em;
-  }
   &__biography {
     margin-bottom: 1em;
     white-space: pre-wrap;
   }
   &__credits {
-    position: relative;
+    padding-left: 1em;
   }
 }

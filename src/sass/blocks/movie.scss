@@ -2,7 +2,7 @@
   &__content {
     width: 100%;
     min-width: $min_width;
-    position: absolute;
+    position: relative;
     top: 100%;
     background-color: $bg_color;
   }
@@ -23,7 +23,7 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 20em;
+      height: 100%;
       background: linear-gradient(to bottom, transparent,#000);
     }
   }
