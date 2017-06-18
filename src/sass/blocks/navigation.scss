@@ -1,9 +1,9 @@
 .navigation {
   width: 100%;
-  position: fixed;
+  min-width: $min-width;
+  position: absolute;
   top: 0;
   background-color: rgba(0,0,0,.75);
   z-index: 1;
   transform: translateZ(0);
-  overflow: auto;
 }

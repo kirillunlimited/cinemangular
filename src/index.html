@@ -2,7 +2,7 @@
 <html lang="ru" ng-app="app" ng-cloak>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width">
   <title>{{pageTitle}} | CINEMANGULAR</title>
   <link rel="stylesheet" href="css/main.css" />
   <script src="app/app.js"></script>
@@ -29,11 +29,9 @@
     <div ui-view></div>
   </div>
   <footer ng-if="!$root.loading" class="page__footer footer">
-    <div class="footer__wrapper">
-      {{'DATA_PROVIDED_BY' | translate }} <a class="link" href="//www.themoviedb.org/" target="_blank">TMDb</a><br/>
-      {{'BUILT_WITH' | translate }} <a class="link" href="https://angularjs.org/" target="_blank">Angular JS</a><br/>
-      <a class="link" href="//github.com/kirillunlimited/cinemangular" target="_blank">{{'SOURCE_CODE' | translate }}</a><br/>
-    </div>
+    {{'DATA_PROVIDED_BY' | translate }} <a class="link" href="//www.themoviedb.org/" target="_blank">TMDb</a><br/>
+    {{'BUILT_WITH' | translate }} <a class="link" href="https://angularjs.org/" target="_blank">Angular JS</a><br/>
+    <a class="link" href="//github.com/kirillunlimited/cinemangular" target="_blank">{{'SOURCE_CODE' | translate }}</a><br/>
   </footer>
 </body>
 </html>
