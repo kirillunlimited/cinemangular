@@ -1,11 +1,14 @@
 # CINEMANGULAR
 
+![alt text](https://raw.githubusercontent.com/kirillunlimited/cinemangular/master/logo.png)
+
 CINEMANGULAR is a Single Page Application built with [AngularJS](https://angularjs.org/). It uses data from [TMDb API](https://www.themoviedb.org/documentation/api).
 
 ## INSTALLATION
 
 ```
 npm install
+npm install gulp -g
 gulp
 ```
 
